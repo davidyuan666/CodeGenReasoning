@@ -4,3 +4,8 @@ commit:
 	git push origin main
 
 
+install:
+	pdm install .
+
+run:
+	pdm run run.py
