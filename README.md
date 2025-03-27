@@ -10,7 +10,7 @@ We can visualize the "thought process" for R1 by:
 - Converting the text to embeddings with the OpenAI API
 - Plotting the embeddings sequentially with t-SNE
 
-Here's what it looks like when R1 answers a question (in this case "Describe how a bicycle works."):
+Here's what it looks like when R1 answers a question (in this case "Implement a binary tree search algorithm."):
 
 | |
 |---------|
@@ -46,16 +46,16 @@ The graph above shows the aggregate distances for 10 samples. To my eyes it look
 
 I used these prompts:
 
-1. Describe how a bicycle works.
-2. Design a new type of transportation.
-3. Explain why leaves change color in autumn
-4. How should society balance individual freedom with collective good?
-5. How would you resolve a conflict between two people with opposing views?
-6. What makes a good life?
-7. What would happen if gravity suddenly doubled?
-8. What's the best way to comfort someone who is grieving
-9. Why do humans make art?
-10. Why do people tell jokes?
+1. Implement a binary tree data structure with basic operations
+2. Design a new caching system architecture
+3. Explain and implement the Decorator pattern
+4. How do you balance code performance with readability?
+5. How would you resolve a conflict between two competing design patterns?
+6. What makes a good code architecture?
+7. What optimizations would you make if system concurrency suddenly doubled?
+8. What's the best way to handle exceptions and error cases?
+9. Why do we need to write unit tests?
+10. Why do developers use design patterns?
 
 The chains are available in data/chains. To easily pull from Deepseek's public chat interface, paste the "pull_cot.js" script into your browser console when a chat is open. It will download automatically.
 

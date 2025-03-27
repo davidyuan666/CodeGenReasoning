@@ -38,15 +38,20 @@ class AnimatedTSNEVisualizer:
 ####### Compute
 
     def compute_tsne_embedding(self,
-                             vectors: List[np.ndarray],
-                             labels: Optional[List[Union[str, int]]] = None,
-                             perplexity: int = 5,
-                             n_iter: int = 2000,
-                             random_state: int = 42) -> None:
+                         vectors: List[np.ndarray],
+                         labels: Optional[List[Union[str, int]]] = None,
+                         perplexity: int = 5,
+                         n_iter: int = 2000,
+                         random_state: int = 42) -> None:
         vectors_array = np.array(vectors)
+        
+        # Adjust perplexity if it's too large
+        n_samples = len(vectors_array)
+        adjusted_perplexity = min(perplexity, n_samples - 1)
+        
         tsne = TSNE(
             n_components=2,
-            perplexity=perplexity,
+            perplexity=adjusted_perplexity,  # Use adjusted perplexity
             early_exaggeration=4,
             learning_rate=200,
             n_iter=n_iter,
@@ -57,7 +62,6 @@ class AnimatedTSNEVisualizer:
         self.cached_tsne_coords = tsne.fit_transform(vectors_array)
         self.cached_vectors = vectors_array
         self.cached_labels = labels if labels is not None else list(range(len(vectors)))
-
 ####### Animation
 
     def create_frame(self,

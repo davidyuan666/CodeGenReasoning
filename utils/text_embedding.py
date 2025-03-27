@@ -1,6 +1,8 @@
 from typing import List, Optional, Union
 import numpy as np
 from openai import OpenAI
+from dotenv import load_dotenv
+import os
 
 class TextEmbedder:
     """A class to handle text embedding operations using OpenAI's API"""
@@ -13,7 +15,15 @@ class TextEmbedder:
             model (str): The OpenAI embedding model to use.
                         Defaults to "text-embedding-3-large".
         """
-        self.client = OpenAI()
+        # 加载.env文件
+        load_dotenv()
+        
+        # 获取OpenAI API密钥
+        openai_api_key = os.getenv('OPENAI_API_KEY')
+        if not openai_api_key:
+            raise ValueError("OPENAI_API_KEY not found in .env file")
+            
+        self.client = OpenAI(api_key=openai_api_key)
         self.model = model
 
     def get_reference_dictionary(self, texts: List[str]):
