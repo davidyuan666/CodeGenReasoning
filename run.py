@@ -74,3 +74,15 @@ visualizer.create_combined_animation('img/dual_animation.gif', show_line=True)
 # aggregate distances
 #filepaths=["data/chains/1.json", "data/chains/2.json", "data/chains/3.json", "data/chains/4.json", "data/chains/5.json", "data/chains/6.json", "data/chains/7.json", "data/chains/8.json", "data/chains/9.json", "data/chains/10.json"]
 #aggregate_distances(filepaths)
+
+
+
+
+# 保存t-SNE静态图序列
+visualizer.save_static_frames('static-image/tsne_{:03d}.png', show_line=True)
+
+# 保存距离条形图静态图序列
+visualizer.save_distance_frames('static-image/distance_{:03d}.png', metric="cosine", normalization="maxunit")
+
+# 保存组合视图静态图序列
+visualizer.save_combined_frames('static-image/combined_{:03d}.png', show_line=True)

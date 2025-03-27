@@ -591,3 +591,205 @@ class AnimatedTSNEVisualizer:
         for file in temp_dir.glob("*.png"):
             file.unlink()
         temp_dir.rmdir()
+
+
+        
+######### Static Export Methods
+
+    def save_static_tsne(self,
+                    output_path: str,
+                    figsize: Tuple[int, int] = (12, 8),
+                    show_line: bool = True,
+                    dpi: int = 200) -> None:
+        """
+        Save a static image of the final t-SNE visualization.
+        
+        Args:
+            output_path: Path to save the static image
+            figsize: Figure size (width, height)
+            show_line: Whether to show connecting lines between points
+            dpi: Resolution of the output image
+        """
+        if self.cached_tsne_coords is None:
+            raise ValueError("Must call compute_tsne_embedding() or from_dict() first")
+            
+        # Create frame showing all vectors
+        fig = self.create_frame(
+            displayed_indices=list(range(len(self.cached_vectors))),
+            figsize=figsize,
+            show_line=show_line
+        )
+        
+        # Save high-quality static image
+        fig.savefig(output_path, dpi=dpi, bbox_inches='tight')
+        plt.close(fig)
+        
+    def save_static_distance(self,
+                    output_path: str,
+                    figsize: Tuple[int, int] = (10, 6),
+                    metric: str = 'cosine',
+                    normalization: str = 'maxunit',
+                    dpi: int = 200) -> None:
+        """
+        Save a static image of the distance visualization.
+        
+        Args:
+            output_path: Path to save the static image
+            figsize: Figure size (width, height)
+            metric: Distance metric to use ('cosine' or 'euclidean')
+            normalization: Normalization method for distances
+            dpi: Resolution of the output image
+        """
+        if self.cached_vectors is None:
+            raise ValueError("Must call compute_tsne_embedding() or from_dict() first")
+            
+        # Calculate all distances
+        distances = self.calculate_consecutive_distances(metric=metric, normalization=normalization)
+        distance_values = [d['distance'] for d in distances]
+        
+        # Create figure
+        fig, ax = plt.subplots(figsize=figsize)
+        
+        # Plot bars
+        bars = ax.bar(range(1, len(distance_values) + 1), distance_values)
+        
+        # Color bars based on distance value
+        normalize = plt.Normalize(min(distance_values), max(distance_values))
+        colors = plt.cm.RdYlBu_r(normalize(distance_values))  # Red for high distance, blue for low
+        for bar, color in zip(bars, colors):
+            bar.set_color(color)
+            
+        # Set axis limits
+        ax.set_xlim(0, len(distances) + 1)
+        y_min = min(min(distance_values) * 1.1, 0)  # Include 0 and add 10% padding
+        y_max = max(distance_values) * 1.1  # Add 10% padding
+        ax.set_ylim(y_min, y_max)
+        
+        # Labels and title
+        ax.set_xlabel('Transition Number')
+        ax.set_ylabel(f'Normalized {metric.capitalize()} Distance')
+        ax.set_title(f'Consecutive {metric.capitalize()} Distances Between Points')
+        
+        # Add grid for better readability
+        ax.grid(True, alpha=0.3)
+        
+        # Add transition labels on x-axis for smaller datasets
+        if len(distances) <= 20:
+            transition_labels = []
+            for i, d in enumerate(distances):
+                from_label = str(d['from_label'])
+                to_label = str(d['to_label'])
+                
+                # Truncate long labels
+                if len(from_label) > 10:
+                    from_label = from_label[:7] + "..."
+                if len(to_label) > 10:
+                    to_label = to_label[:7] + "..."
+                    
+                transition_labels.append(f"{from_label}\n→\n{to_label}")
+                
+            ax.set_xticks(range(1, len(distances) + 1))
+            ax.set_xticklabels(transition_labels, rotation=90, fontsize=8)
+        
+        # Save high-quality static image
+        fig.savefig(output_path, dpi=dpi, bbox_inches='tight')
+        plt.close(fig)
+        
+    def save_static_combined(self,
+                    output_path: str,
+                    figsize: Tuple[int, int] = (15, 10),
+                    show_line: bool = True,
+                    metric: str = 'cosine',
+                    normalization: str = 'maxunit',
+                    dpi: int = 200) -> None:
+        """
+        Save a static image combining both t-SNE and distance visualizations.
+        
+        Args:
+            output_path: Path to save the static image
+            figsize: Figure size (width, height)
+            show_line: Whether to show connecting lines between points
+            metric: Distance metric to use ('cosine' or 'euclidean')
+            normalization: Normalization method for distances
+            dpi: Resolution of the output image
+        """
+        if self.cached_tsne_coords is None:
+            raise ValueError("Must call compute_tsne_embedding() or from_dict() first")
+            
+        # Calculate all distances
+        distances = self.calculate_consecutive_distances(metric=metric, normalization=normalization)
+        
+        # Create combined frame showing all points
+        fig = self.create_combined_frame(
+            displayed_indices=list(range(len(self.cached_vectors))),
+            distances=distances,
+            figsize=figsize,
+            show_line=show_line
+        )
+        
+        # Save high-quality static image
+        fig.savefig(output_path, dpi=dpi, bbox_inches='tight')
+        plt.close(fig)
+        
+    def save_all_static(self,
+                    output_dir: str,
+                    base_filename: str = "tsne",
+                    figsize_tsne: Tuple[int, int] = (12, 8),
+                    figsize_dist: Tuple[int, int] = (10, 6),
+                    figsize_combined: Tuple[int, int] = (15, 10),
+                    show_line: bool = True,
+                    metric: str = 'cosine',
+                    normalization: str = 'maxunit',
+                    dpi: int = 200) -> None:
+        """
+        Save all types of static visualizations to the specified directory.
+        
+        Args:
+            output_dir: Directory to save the static images
+            base_filename: Base name for output files
+            figsize_tsne: Figure size for t-SNE visualization
+            figsize_dist: Figure size for distance visualization
+            figsize_combined: Figure size for combined visualization
+            show_line: Whether to show connecting lines between points
+            metric: Distance metric to use ('cosine' or 'euclidean')
+            normalization: Normalization method for distances
+            dpi: Resolution of the output images
+        """
+        # Create output directory if it doesn't exist
+        output_path = Path(output_dir)
+        output_path.mkdir(exist_ok=True, parents=True)
+        
+        # Save t-SNE visualization
+        tsne_path = output_path / f"{base_filename}_tsne.png"
+        self.save_static_tsne(
+            output_path=str(tsne_path),
+            figsize=figsize_tsne,
+            show_line=show_line,
+            dpi=dpi
+        )
+        
+        # Save distance visualization
+        dist_path = output_path / f"{base_filename}_distances.png"
+        self.save_static_distance(
+            output_path=str(dist_path),
+            figsize=figsize_dist,
+            metric=metric,
+            normalization=normalization,
+            dpi=dpi
+        )
+        
+        # Save combined visualization
+        combined_path = output_path / f"{base_filename}_combined.png"
+        self.save_static_combined(
+            output_path=str(combined_path),
+            figsize=figsize_combined,
+            show_line=show_line,
+            metric=metric,
+            normalization=normalization,
+            dpi=dpi
+        )
+        
+        print(f"Static visualizations saved to {output_dir}:")
+        print(f" - T-SNE plot: {tsne_path.name}")
+        print(f" - Distance plot: {dist_path.name}")
+        print(f" - Combined plot: {combined_path.name}")
