@@ -37,6 +37,7 @@ def generate_embeddings(texts, tokenizer, model, device, max_length=512, batch_s
         embeddings.extend(batch_embeddings)
     
     return np.array(embeddings)
+    
 
 # 将embeddings可视化为2D图
 def visualize_embeddings(text_embeddings, code_embeddings, method='tsne', n_samples=100, save_path=None):
