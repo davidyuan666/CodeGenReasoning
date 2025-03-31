@@ -172,18 +172,3 @@ def plot_normalized_sequences(sequences: List[List[float]],
     plt.tight_layout()
     #plt.show()
     plt.savefig(output_path)
-
-# Example sequences of different lengths
-#test_sequences = [
-#    [0.5, 0.8, 0.3],  # length 3
-#    [0.6, 0.9, 0.7, 0.5],  # length 4
-#    [0.4, 0.8, 0.6, 0.3, 0.2, 0.1, 0.05]  # length 7
-#]
-
-# Analyze sequences
-#metrics = analyze_sequences(test_sequences)
-#print(f"Average max index (as percentage): {metrics.avg_max_index_pct:.2f}")
-#print(f"Average sequence length: {metrics.avg_sequence_length:.2f}")
-
-# Plot the sequences
-#plot_normalized_sequences(test_sequences, show_individual=True)
