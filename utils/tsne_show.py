@@ -330,6 +330,7 @@ class AnimatedTSNEVisualizer:
 
         # Calculate all distances upfront
         distances = self.calculate_consecutive_distances(metric=metric, normalization=normalization)
+
         distance_values = [d['distance'] for d in distances]
 
         frames = []

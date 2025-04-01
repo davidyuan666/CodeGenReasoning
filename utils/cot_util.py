@@ -41,6 +41,43 @@ class CoTUtil:
         except Exception as e:
             print(f"Error reading file: {str(e)}")
             raise
+
+    def read_dataset_random(self, sample_size: int = None) -> List[Dict]:
+        """随机采样读取数据集文件
+        
+        Args:
+            sample_size: 采样数量，默认为None，则使用self.limit
+            
+        Returns:
+            随机采样的数据列表
+        """
+        import random
+        
+        if sample_size is None:
+            sample_size = self.limit
+            
+        try:
+            all_data = []
+            with open(self.data_path, 'r', encoding='utf-8') as f:
+                json_list = f.readlines()
+                for json_str in tqdm(json_list, desc="Loading full dataset"):
+                    json_obj = json.loads(json_str)
+                    json_obj['reference_code'] = json_obj['reference_code'].replace('\n', '')
+                    json_obj['prompt'] = json_obj['prompt'].replace('\n', '')
+                    all_data.append(json_obj)
+                    
+            # 随机采样
+            if sample_size >= len(all_data):
+                return all_data
+            
+            sampled_data = random.sample(all_data, sample_size)
+            print(f"Randomly sampled {len(sampled_data)} examples from {len(all_data)} total examples")
+            return sampled_data
+            
+        except Exception as e:
+            print(f"Error reading file: {str(e)}")
+            raise
+
     
     def generate_chain_of_thought_by_deepseek(self, prompt: str, reference_code: str) -> List[Dict]:
         """生成思维链推理过程"""
@@ -136,7 +173,8 @@ class CoTUtil:
     
     def process_and_save(self):
         """处理数据集并保存推理链结果"""
-        codelist = self.read_dataset()
+        # codelist = self.read_dataset()
+        codelist = self.read_dataset_random(100)
         results = []
         
         for idx, item in tqdm(enumerate(codelist), desc="Generating reasoning chains", total=len(codelist)):

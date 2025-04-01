@@ -51,6 +51,9 @@ for id, cot_list in tqdm(cot_dict.items(), desc="Generating visualizations"):
     # distance bars
     visualizer.create_distance_animation(f'dynamic-img/{cot_model}/{embedding_model}/{id}/distance.gif', metric="cosine", normalization="maxunit")
 
+
+
+
     # combined t-SNE and distance bars
     visualizer.create_combined_animation(f'dynamic-img/{cot_model}/{embedding_model}/{id}/dual_animation.gif', show_line=True)
 
@@ -67,3 +70,12 @@ for id, cot_list in tqdm(cot_dict.items(), desc="Generating visualizations"):
     # 保存组合视图静态图序列
     visualizer.save_static_combined(f'static-image/{cot_model}/{embedding_model}/{id}/combined.png', show_line=True)
 
+    distances = visualizer.calculate_consecutive_distances( metric="euclidean", normalization="maxunit")
+
+    # 保存距离值
+    if not os.path.exists(f"metrics/{cot_model}/{embedding_model}/{id}"):
+        os.makedirs(f"metrics/{cot_model}/{embedding_model}/{id}")
+
+    # 保存距离值
+    with open(f'metrics/{cot_model}/{embedding_model}/{id}/distances.json', 'w', encoding='utf-8') as f:
+        json.dump(distances, f, ensure_ascii=False, indent=4)
