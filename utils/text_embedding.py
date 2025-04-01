@@ -4,6 +4,8 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 import requests
+from tqdm import tqdm
+
 
 class TextEmbedder:
     """A class to handle text embedding operations using OpenAI's API"""
@@ -22,12 +24,12 @@ class TextEmbedder:
 
     def get_reference_dictionary(self, texts: List[str]):
         reference_dict = {}
-        for text in texts:
+        for text in tqdm(texts, desc="Creating embeddings"):
             if os.getenv("EMBEDDING_MODEL") == "openai":
                 reference_dict[text] = self.get_embedding(text,normalize=True)
             elif os.getenv("EMBEDDING_MODEL") == "codebert":
                 reference_dict[text] = self.get_embedding_by_remote_api(text,normalize=True)
-        return reference_dict        
+        return reference_dict             
     
 
     """
