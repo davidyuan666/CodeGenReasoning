@@ -4,90 +4,66 @@ from utils.tsne_show import *
 from utils.distance import *
 from utils.text_embedding import TextEmbedder
 import os
+from tqdm import tqdm
+from dotenv import load_dotenv
 
-COT_END_OFFSET = 2
+load_dotenv()
 
-##### Load
 
-def get_cot(filepath):
+def get_cot_from_json(filepath):
+    cot_dict = {}
     with open(filepath, 'r', encoding='utf-8') as file:
         data = json.load(file)
+        for item in data:
+            cot_list = []
+            id = item['id']
+            cot = item['reasoning_chains']
+            prompt = item['prompt']
+            reference_code = item['reference_code']
+            cot_list.append(prompt)
+            cot_list.extend(cot)
+            cot_list.append(reference_code)
+            cot_dict[id] = cot_list
 
-        # Find where the <next> tag is
-        delimiter_index = None
-        for i, text in enumerate(data):
-            if "<next>" in text:
-                delimiter_index = i
-
-        # If we found a delimiter, only take texts before it
-        if delimiter_index is not None:
-            return [text for text in data[:delimiter_index + COT_END_OFFSET] if text.strip() and "<next>" not in text]
-
-        # If no delimiter found, return all non-empty texts
-        return [text for text in data if text.strip() and "<next>" not in text]
-
-###### Distances
-
-def aggregate_distances(filepaths):
-
-    distances = []
-
-    for filepath in filepaths:
-        # get cot for filepath
-        texts = get_cot(filepath)
-        # get embeddings
-        reference_dict = TextEmbedder().get_reference_dictionary(texts)
-        # get dict
-        visualizer = AnimatedTSNEVisualizer()
-        visualizer.from_dict(reference_dict)
-        # get distances
-        distances_for_text = visualizer.calculate_consecutive_distances(
-            metric="cosine",
-            normalization="maxunit"
-        )
-        # parse distances
-        distances_parsed = [distance_for_text["distance"] for distance_for_text in distances_for_text]
-        # append
-        distances.append(distances_parsed)
-
-    plot_normalized_sequences(distances, show_individual=True)
-
+    return cot_dict
 
 
 # get CoT
-filepath = "data/chains/1.json"
-texts = get_cot(filepath)
-reference_dict = TextEmbedder().get_reference_dictionary(texts)
+filepath = f"data/chains/{os.getenv('COT_MODEL')}/ds{os.getenv('LIMIT')}_cot.json"
+cot_dict = get_cot_from_json(filepath)
 
-# make visualizaer
-visualizer = AnimatedTSNEVisualizer()
-visualizer.from_dict(reference_dict)
+for id, cot_list in tqdm(cot_dict.items(), desc="Generating visualizations"):
+    reference_dict = TextEmbedder().get_reference_dictionary(cot_list)
 
-if not os.path.exists("dynamic-img"):
-    os.makedirs("dynamic-img")
+    # make visualizaer
+    visualizer = AnimatedTSNEVisualizer()
+    visualizer.from_dict(reference_dict)
 
-# simple CoT viz
-visualizer.create_animation('dynamic-img/simple_animation.gif', show_line=True)
+    embedding_model = os.getenv("EMBEDDING_MODEL")
+    cot_model = os.getenv("COT_MODEL")
 
-# distance bars
-visualizer.create_distance_animation('dynamic-img/distance.gif', metric="cosine", normalization="maxunit")
+    if not os.path.exists(f"dynamic-img/{cot_model}/{embedding_model}/{id}"):
+        os.makedirs(f"dynamic-img/{cot_model}/{embedding_model}/{id}")
 
-# combined t-SNE and distance bars
-visualizer.create_combined_animation('dynamic-img/dual_animation.gif', show_line=True)
+    # simple CoT viz
+    visualizer.create_animation(f'dynamic-img/{cot_model}/{embedding_model}/{id}/simple_animation.gif', show_line=True)
 
-# aggregate distances
-# filepaths=["data/chains/1.json", "data/chains/2.json", "data/chains/3.json", "data/chains/4.json", "data/chains/5.json", "data/chains/6.json", "data/chains/7.json", "data/chains/8.json", "data/chains/9.json", "data/chains/10.json"]
-# aggregate_distances(filepaths)
+    # distance bars
+    visualizer.create_distance_animation(f'dynamic-img/{cot_model}/{embedding_model}/{id}/distance.gif', metric="cosine", normalization="maxunit")
+
+    # combined t-SNE and distance bars
+    visualizer.create_combined_animation(f'dynamic-img/{cot_model}/{embedding_model}/{id}/dual_animation.gif', show_line=True)
 
 
-if not os.path.exists("static-image"):
-    os.makedirs("static-image")
+    if not os.path.exists(f"static-image/{cot_model}/{embedding_model}/{id}"):
+        os.makedirs(f"static-image/{cot_model}/{embedding_model}/{id}")
 
-# 保存t-SNE静态图序列
-visualizer.save_static_tsne('static-image/tsne.png', show_line=True)
+    # 保存t-SNE静态图序列
+    visualizer.save_static_tsne(f'static-image/{cot_model}/{embedding_model}/{id}/tsne.png', show_line=True)
 
-# 保存距离条形图静态图序列
-visualizer.save_static_distance('static-image/distance.png', metric="cosine", normalization="maxunit")
+    # 保存距离条形图静态图序列
+    visualizer.save_static_distance(f'static-image/{cot_model}/{embedding_model}/{id}/distance.png', metric="cosine", normalization="maxunit")
 
-# 保存组合视图静态图序列
-visualizer.save_static_combined('static-image/combined.png', show_line=True)
+    # 保存组合视图静态图序列
+    visualizer.save_static_combined(f'static-image/{cot_model}/{embedding_model}/{id}/combined.png', show_line=True)
+

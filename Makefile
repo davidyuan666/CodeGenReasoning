@@ -7,5 +7,9 @@ commit:
 install:
 	pdm install .
 
-run:
-	pdm run run.py
+
+cot:
+	pdm run python utils/cot_util.py
+
+start:
+	pdm run python main.py
