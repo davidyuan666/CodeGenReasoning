@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:I'm looking for a fast solution to MATLAB's accumarray in numpy. The accumarray accumulates the elements of an array which belong to the same index.Note that there might be negative indices in accmap, and we treat them like list indices in Python. An example:a = np.arange(1,11)# array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10])accmap = np.array([0,1,0,0,0,-1,-1,2,2,1])Result should bearray([13, 12, 30])Is there a built-in numpy function that can do accumulation like this? Using for-loop is not what I want. Or any other recommendations?A:<code>import numpy as npa = np.arange(1,11)accmap = np.array([0,1,0,0,0,-1,-1,2,2,1])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Identify the maximum value in the accmap array to determine the range of indices."
+    },
+    {
+        "distance": 0.4154613343763105,
+        "from_label": "Identify the maximum value in the accmap array to determine the range of indices.",
+        "to_label": "Create a mask to identify negative indices in the accmap array."
+    },
+    {
+        "distance": 0.40387346442356864,
+        "from_label": "Create a mask to identify negative indices in the accmap array.",
+        "to_label": "Adjust the negative indices in accmap by adding (max_value + 1) to them, converting them to positive indices that are out of the original range."
+    },
+    {
+        "distance": 0.3837304454857948,
+        "from_label": "Adjust the negative indices in accmap by adding (max_value + 1) to them, converting them to positive indices that are out of the original range.",
+        "to_label": "Use numpy's bincount function to accumulate the values in array 'a' based on the adjusted indices in accmap. The weights parameter ensures that the values from 'a' are summed according to their corresponding indices in accmap."
+    },
+    {
+        "distance": 0.40983511409828316,
+        "from_label": "Use numpy's bincount function to accumulate the values in array 'a' based on the adjusted indices in accmap. The weights parameter ensures that the values from 'a' are summed according to their corresponding indices in accmap.",
+        "to_label": "The result is an array where each element at index i is the sum of all elements in 'a' that correspond to the index i in the adjusted accmap."
+    },
+    {
+        "distance": 0.5298530855844314,
+        "from_label": "The result is an array where each element at index i is the sum of all elements in 'a' that correspond to the index i in the adjusted accmap.",
+        "to_label": "add = np.max(accmap)mask = accmap < 0accmap[mask] += add+1result = np.bincount(accmap, weights = a)"
+    }
+]

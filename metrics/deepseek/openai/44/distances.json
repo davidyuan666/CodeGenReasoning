@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 0.6797884538342167,
+        "from_label": "Problem:I have a 2D array `a` to represent a many-many mapping :0   3   1   33   0   0   01   0   0   03   0   0   0What is the quickest way to 'zero' out the second row and the first column?A:<code>import numpy as npa = np.array([[0, 3, 1, 3], [3, 0, 0, 0], [1, 0, 0, 0], [3, 0, 0, 0]])</code>a = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Identify the rows and columns to be zeroed out. In this problem, we need to zero out the second row (index 1) and the first column (index 0)."
+    },
+    {
+        "distance": 0.8001211992834876,
+        "from_label": "Identify the rows and columns to be zeroed out. In this problem, we need to zero out the second row (index 1) and the first column (index 0).",
+        "to_label": "Use NumPy array indexing to select the entire second row. This can be done using the syntax `a[1, :]`, where `1` is the row index and `:` selects all columns."
+    },
+    {
+        "distance": 0.6128144297140857,
+        "from_label": "Use NumPy array indexing to select the entire second row. This can be done using the syntax `a[1, :]`, where `1` is the row index and `:` selects all columns.",
+        "to_label": "Set all elements in the selected second row to zero by assigning `0` to `a[1, :]`."
+    },
+    {
+        "distance": 0.6238891523878377,
+        "from_label": "Set all elements in the selected second row to zero by assigning `0` to `a[1, :]`.",
+        "to_label": "Use NumPy array indexing to select the entire first column. This can be done using the syntax `a[:, 0]`, where `:` selects all rows and `0` is the column index."
+    },
+    {
+        "distance": 0.526783706248302,
+        "from_label": "Use NumPy array indexing to select the entire first column. This can be done using the syntax `a[:, 0]`, where `:` selects all rows and `0` is the column index.",
+        "to_label": "Set all elements in the selected first column to zero by assigning `0` to `a[:, 0]`."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Set all elements in the selected first column to zero by assigning `0` to `a[:, 0]`.",
+        "to_label": "The resulting array will have the second row and first column zeroed out as required."
+    },
+    {
+        "distance": 0.9391690112956627,
+        "from_label": "The resulting array will have the second row and first column zeroed out as required.",
+        "to_label": "a[1, :] = 0a[:, 0] = 0"
+    }
+]

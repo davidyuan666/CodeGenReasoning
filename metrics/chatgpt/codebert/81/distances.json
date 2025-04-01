@@ -1,0 +1,47 @@
+[
+    {
+        "distance": 0.5752404856627242,
+        "from_label": "Problem:I have a silly question.I have done Cross-validation in scikit learn and would like to make a more visual information with the values I got for each model.However, I can not access only the template name to insert into the dataframe. Always comes with the parameters together. Is there some method of objects created to access only the name of the model, without its parameters. Or will I have to create an external list with the names for it?I use:for model in models:   scores = cross_val_score(model, X, y, cv=5)   print(f'Name model: {model} , Mean score: {scores.mean()}')But I obtain the name with the parameters:Name model: model = LinearSVC(), Mean score: 0.8066782865537986In fact I want to get the information this way:Name Model: LinearSVC, Mean Score: 0.8066782865537986Thanks!A:<code>import numpy as npimport pandas as pdfrom sklearn.svm import LinearSVCmodel = LinearSVC()</code>model_name = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: The goal is to extract the name of a scikit-learn model without its parameters, which is typically displayed when printing the model object directly."
+    },
+    {
+        "distance": 0.5315179399279216,
+        "from_label": "Understand the problem: The goal is to extract the name of a scikit-learn model without its parameters, which is typically displayed when printing the model object directly.",
+        "to_label": "In scikit-learn, when you print a model object, it shows the class name along with its parameters. For example, printing 'model = LinearSVC()' will display 'LinearSVC()' with parameters if any are set."
+    },
+    {
+        "distance": 0.6267560276238177,
+        "from_label": "In scikit-learn, when you print a model object, it shows the class name along with its parameters. For example, printing 'model = LinearSVC()' will display 'LinearSVC()' with parameters if any are set.",
+        "to_label": "To extract only the class name of the model, we need to access the class of the model object and then get its name. This can be done using Python's built-in functions."
+    },
+    {
+        "distance": 0.3736096860754153,
+        "from_label": "To extract only the class name of the model, we need to access the class of the model object and then get its name. This can be done using Python's built-in functions.",
+        "to_label": "Use the 'type()' function to get the type of the model object. This returns the class of the object."
+    },
+    {
+        "distance": 0.24478351142803834,
+        "from_label": "Use the 'type()' function to get the type of the model object. This returns the class of the object.",
+        "to_label": "Next, access the '__name__' attribute of the class obtained from the 'type()' function. This attribute contains the name of the class as a string."
+    },
+    {
+        "distance": 0.34124275660383274,
+        "from_label": "Next, access the '__name__' attribute of the class obtained from the 'type()' function. This attribute contains the name of the class as a string.",
+        "to_label": "Assign this class name to the 'model_name' variable by using 'model_name = type(model).__name__'. This will store the name of the model class without any parameters."
+    },
+    {
+        "distance": 0.4129293730663027,
+        "from_label": "Assign this class name to the 'model_name' variable by using 'model_name = type(model).__name__'. This will store the name of the model class without any parameters.",
+        "to_label": "This solution can be used in a loop to extract names of different models in a list of models, enabling you to create a dataframe or any visual representation with just the model names and their corresponding scores."
+    },
+    {
+        "distance": 0.5518329082776104,
+        "from_label": "This solution can be used in a loop to extract names of different models in a list of models, enabling you to create a dataframe or any visual representation with just the model names and their corresponding scores.",
+        "to_label": "Here's the full code snippet: 'model_name = type(model).__name__'. This will correctly assign 'LinearSVC' to the 'model_name' variable when 'model' is an instance of 'LinearSVC'."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Here's the full code snippet: 'model_name = type(model).__name__'. This will correctly assign 'LinearSVC' to the 'model_name' variable when 'model' is an instance of 'LinearSVC'.",
+        "to_label": "model_name = type(model).__name__"
+    }
+]

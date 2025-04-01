@@ -1,0 +1,42 @@
+[
+    {
+        "distance": 0.7610889344950372,
+        "from_label": "Problem:Considering a simple df:HeaderA | HeaderB | HeaderC | HeaderX    476      4365      457        345Is there a way to rename all columns, for example to add to columns which don’t end with \"X\" and add to all columns an \"X\" in the head?XHeaderAX | XHeaderBX | XHeaderCX  | XHeaderX    476      4365      457    345I am concatenating multiple dataframes and want to easily differentiate the columns dependent on which dataset they came from. Or is this the only way?df.rename(columns={'HeaderA': 'HeaderAX'}, inplace=True)I have over 50 column headers and ten files; so the above approach will take a long time. Thank YouA:<code>import pandas as pddf = pd.DataFrame(    {'HeaderA': [476],     'HeaderB': [4365],     'HeaderC': [457],     \"HeaderX\": [345]})</code>df = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: You have a DataFrame with several columns, and you want to rename these columns by adding an 'X' prefix to all column names and an 'X' suffix to those that don't already end with 'X'. This needs to be done automatically to handle many columns efficiently."
+    },
+    {
+        "distance": 0.9184392387567778,
+        "from_label": "Understand the problem: You have a DataFrame with several columns, and you want to rename these columns by adding an 'X' prefix to all column names and an 'X' suffix to those that don't already end with 'X'. This needs to be done automatically to handle many columns efficiently.",
+        "to_label": "Import the necessary library: Begin by importing the pandas library, which is essential for handling DataFrames in Python."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Import the necessary library: Begin by importing the pandas library, which is essential for handling DataFrames in Python.",
+        "to_label": "Create a DataFrame: Initialize a DataFrame similar to what you might have in your actual data to simulate the renaming process. This example will use the column headers 'HeaderA', 'HeaderB', 'HeaderC', and 'HeaderX' with sample data."
+    },
+    {
+        "distance": 0.5292696608499139,
+        "from_label": "Create a DataFrame: Initialize a DataFrame similar to what you might have in your actual data to simulate the renaming process. This example will use the column headers 'HeaderA', 'HeaderB', 'HeaderC', and 'HeaderX' with sample data.",
+        "to_label": "Define the renaming function: Create a function that iterates over the DataFrame's columns. For each column, check if the column name ends with 'X'. If it does not, rename the column by adding an 'X' to the end."
+    },
+    {
+        "distance": 0.45979889621665854,
+        "from_label": "Define the renaming function: Create a function that iterates over the DataFrame's columns. For each column, check if the column name ends with 'X'. If it does not, rename the column by adding an 'X' to the end.",
+        "to_label": "Add a prefix to all columns: After renaming columns that do not end with 'X', add an 'X' prefix to all column names using the `add_prefix` method provided by pandas."
+    },
+    {
+        "distance": 0.40946062675162154,
+        "from_label": "Add a prefix to all columns: After renaming columns that do not end with 'X', add an 'X' prefix to all column names using the `add_prefix` method provided by pandas.",
+        "to_label": "Return the modified DataFrame: Ensure the function returns the DataFrame with updated column names."
+    },
+    {
+        "distance": 0.6641019114846949,
+        "from_label": "Return the modified DataFrame: Ensure the function returns the DataFrame with updated column names.",
+        "to_label": "Test the function: Apply the function to the DataFrame and verify that the column names are correctly updated. Each column name should now have an 'X' prefix, and those that did not end with 'X' originally should also have an 'X' suffix."
+    },
+    {
+        "distance": 0.5299256519549251,
+        "from_label": "Test the function: Apply the function to the DataFrame and verify that the column names are correctly updated. Each column name should now have an 'X' prefix, and those that did not end with 'X' originally should also have an 'X' suffix.",
+        "to_label": "def g(df):    for col in df.columns:        if not col.endswith('X'):            df.rename(columns={col: col+'X'}, inplace=True)    return df.add_prefix('X')df = g(df.copy())"
+    }
+]

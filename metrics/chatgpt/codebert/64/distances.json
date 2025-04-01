@@ -1,0 +1,47 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:I'm Looking for a generic way of turning a DataFrame to a nested dictionaryThis is a sample data frame     name    v1  v2  v30   A       A1  A11 11   A       A2  A12 22   B       B1  B12 33   C       C1  C11 44   B       B2  B21 55   A       A2  A21 6The number of columns may differ and so does the column names.like this : {'A' : {     'A1' : { 'A11' : 1 }    'A2' : { 'A12' : 2 , 'A21' : 6 }} , 'B' : {     'B1' : { 'B12' : 3 } } , 'C' : {     'C1' : { 'C11' : 4}}}What is best way to achieve this ? closest I got was with the zip function but haven't managed to make it work for more then one level (two columns).A:<code>import pandas as pddf = pd.DataFrame({'name': ['A', 'A', 'B', 'C', 'B', 'A'],                   'v1': ['A1', 'A2', 'B1', 'C1', 'B2', 'A2'],                   'v2': ['A11', 'A12', 'B12', 'C11', 'B21', 'A21'],                   'v3': [1, 2, 3, 4, 5, 6]})</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "The task is to convert a DataFrame into a nested dictionary where each level of the dictionary hierarchy corresponds to a column in the DataFrame. The nested dictionary should reflect the structure of the DataFrame based on unique values in each column, starting from the leftmost column."
+    },
+    {
+        "distance": 0.22133458764660519,
+        "from_label": "The task is to convert a DataFrame into a nested dictionary where each level of the dictionary hierarchy corresponds to a column in the DataFrame. The nested dictionary should reflect the structure of the DataFrame based on unique values in each column, starting from the leftmost column.",
+        "to_label": "To solve this problem, we need a recursive function that can handle DataFrames of varying sizes and column names. The base case of the recursion should handle the situation where the DataFrame has only one column left."
+    },
+    {
+        "distance": 0.358609929247946,
+        "from_label": "To solve this problem, we need a recursive function that can handle DataFrames of varying sizes and column names. The base case of the recursion should handle the situation where the DataFrame has only one column left.",
+        "to_label": "If the DataFrame has only one column, we check if it contains only one value. If so, we return that value directly. If it contains multiple values, we use the squeeze method to return a Series or an array of values."
+    },
+    {
+        "distance": 0.5320680124545051,
+        "from_label": "If the DataFrame has only one column, we check if it contains only one value. If so, we return that value directly. If it contains multiple values, we use the squeeze method to return a Series or an array of values.",
+        "to_label": "For the recursive step, we use the groupby method on the first column to group the DataFrame by unique values in that column. This allows us to create a nested dictionary structure by processing each group separately."
+    },
+    {
+        "distance": 0.1840279944893691,
+        "from_label": "For the recursive step, we use the groupby method on the first column to group the DataFrame by unique values in that column. This allows us to create a nested dictionary structure by processing each group separately.",
+        "to_label": "For each group, we recursively call the function on the DataFrame that results from dropping the first column. This moves us one level deeper into the dictionary hierarchy."
+    },
+    {
+        "distance": 0.4547049855055773,
+        "from_label": "For each group, we recursively call the function on the DataFrame that results from dropping the first column. This moves us one level deeper into the dictionary hierarchy.",
+        "to_label": "The result of the recursive calls is used to construct a dictionary where the keys are the unique values from the first column, and the values are the result of the recursive calls on the sub-DataFrames."
+    },
+    {
+        "distance": 0.4434780637200675,
+        "from_label": "The result of the recursive calls is used to construct a dictionary where the keys are the unique values from the first column, and the values are the result of the recursive calls on the sub-DataFrames.",
+        "to_label": "Finally, the function returns the constructed nested dictionary. This approach ensures that the function adapts to any number of columns and different column names, making it generic for various DataFrame structures."
+    },
+    {
+        "distance": 0.4572876509270769,
+        "from_label": "Finally, the function returns the constructed nested dictionary. This approach ensures that the function adapts to any number of columns and different column names, making it generic for various DataFrame structures.",
+        "to_label": "The provided reference solution implements this logic. The function 'g' is defined to handle the recursive conversion process, and it is initially called on a copy of the DataFrame to ensure that the original DataFrame is not modified."
+    },
+    {
+        "distance": 0.26538639953156157,
+        "from_label": "The provided reference solution implements this logic. The function 'g' is defined to handle the recursive conversion process, and it is initially called on a copy of the DataFrame to ensure that the original DataFrame is not modified.",
+        "to_label": "def g(df):    if len(df.columns) == 1:        if df.values.size == 1: return df.values[0][0]        return df.values.squeeze()    grouped = df.groupby(df.columns[0])    d = {k: g(t.iloc[:, 1:]) for k, t in grouped}    return dresult = g(df.copy())"
+    }
+]

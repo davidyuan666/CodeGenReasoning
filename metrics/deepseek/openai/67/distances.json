@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 0.7568382542734601,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltx = np.random.random((10, 2))# Plot each column in x as an individual line and label them as \"a\" and \"b\"# SOLUTION START",
+        "to_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, and matplotlib.pyplot for plotting."
+    },
+    {
+        "distance": 0.9857129834346853,
+        "from_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, and matplotlib.pyplot for plotting.",
+        "to_label": "Generate a 10x2 numpy array 'x' filled with random numbers between 0 and 1 using np.random.random((10, 2))."
+    },
+    {
+        "distance": 0.9835909698418485,
+        "from_label": "Generate a 10x2 numpy array 'x' filled with random numbers between 0 and 1 using np.random.random((10, 2)).",
+        "to_label": "Use plt.plot(x) to plot the data in 'x'. This will plot each column of 'x' as a separate line. The function returns a list of line objects representing the plotted lines."
+    },
+    {
+        "distance": 0.795822987003502,
+        "from_label": "Use plt.plot(x) to plot the data in 'x'. This will plot each column of 'x' as a separate line. The function returns a list of line objects representing the plotted lines.",
+        "to_label": "Unpack the returned line objects into variables 'a' and 'b', corresponding to the first and second columns of 'x' respectively."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Unpack the returned line objects into variables 'a' and 'b', corresponding to the first and second columns of 'x' respectively.",
+        "to_label": "Add a legend to the plot using plt.legend(), passing the line objects 'a' and 'b' and their corresponding labels 'a' and 'b' as arguments."
+    },
+    {
+        "distance": 0.5926205443263227,
+        "from_label": "Add a legend to the plot using plt.legend(), passing the line objects 'a' and 'b' and their corresponding labels 'a' and 'b' as arguments.",
+        "to_label": "[a, b] = plt.plot(x)plt.legend([a, b], [\"a\", \"b\"])"
+    }
+]

@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 0.5822647222313858,
+        "from_label": "Problem:I'm using tensorflow 2.10.0.I have a tensor of lengths in tensorflow, let's say it looks like this:[4, 3, 5, 2]I wish to create a mask of 1s and 0s whose number of 0s correspond to the entries to this tensor, padded in front by 1s to a total length of 8. I.e. I want to create this tensor:[[1. 1. 1. 1. 0. 0. 0. 0.] [1. 1. 1. 1. 1. 0. 0. 0.] [1. 1. 1. 0. 0. 0. 0. 0.] [1. 1. 1. 1. 1. 1. 0. 0.]]How might I do this?A:<code>import tensorflow as tflengths = [4, 3, 5, 2]</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Calculate the number of 1s needed for each row by subtracting each length from the total length (8). This gives us the number of leading 1s before the 0s start. For the given lengths [4, 3, 5, 2], the calculations would be [8-4, 8-3, 8-5, 8-2] resulting in [4, 5, 3, 6]."
+    },
+    {
+        "distance": 0.9623154887820966,
+        "from_label": "Calculate the number of 1s needed for each row by subtracting each length from the total length (8). This gives us the number of leading 1s before the 0s start. For the given lengths [4, 3, 5, 2], the calculations would be [8-4, 8-3, 8-5, 8-2] resulting in [4, 5, 3, 6].",
+        "to_label": "Expand the dimensions of the calculated 1s counts to make it a column vector. This is done using tf.expand_dims to facilitate broadcasting in subsequent operations."
+    },
+    {
+        "distance": 0.8424482071805175,
+        "from_label": "Expand the dimensions of the calculated 1s counts to make it a column vector. This is done using tf.expand_dims to facilitate broadcasting in subsequent operations.",
+        "to_label": "Create a range tensor from 0 to 7 (inclusive) representing the column indices of the mask. This is done using tf.range(0, 8, 1)."
+    },
+    {
+        "distance": 0.45169694981013786,
+        "from_label": "Create a range tensor from 0 to 7 (inclusive) representing the column indices of the mask. This is done using tf.range(0, 8, 1).",
+        "to_label": "Expand the dimensions of the range tensor to make it a row vector. This is done using tf.expand_dims to facilitate broadcasting in subsequent operations."
+    },
+    {
+        "distance": 0.6184207452757639,
+        "from_label": "Expand the dimensions of the range tensor to make it a row vector. This is done using tf.expand_dims to facilitate broadcasting in subsequent operations.",
+        "to_label": "Compare the expanded range row vector with the expanded 1s counts column vector using tf.less. This creates a boolean mask where True represents positions that should be 1s and False represents positions that should be 0s."
+    },
+    {
+        "distance": 0.45161747050725753,
+        "from_label": "Compare the expanded range row vector with the expanded 1s counts column vector using tf.less. This creates a boolean mask where True represents positions that should be 1s and False represents positions that should be 0s.",
+        "to_label": "Convert the boolean mask to a float mask of 1s and 0s using tf.where. The condition is the boolean mask, the x parameter is a tensor of ones with shape [4, 8], and the y parameter is a tensor of zeros with shape [4, 8]. This results in the desired output tensor."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Convert the boolean mask to a float mask of 1s and 0s using tf.where. The condition is the boolean mask, the x parameter is a tensor of ones with shape [4, 8], and the y parameter is a tensor of zeros with shape [4, 8]. This results in the desired output tensor.",
+        "to_label": "def g(lengths):    lengths = [8-x for x in lengths]    lengths_transposed = tf.expand_dims(lengths, 1)    range = tf.range(0, 8, 1)    range_row = tf.expand_dims(range, 0)    mask = tf.less(range_row, lengths_transposed)    result = tf.where(mask, tf.ones([4, 8]), tf.zeros([4, 8]))    return resultresult = g(lengths.copy())"
+    }
+]

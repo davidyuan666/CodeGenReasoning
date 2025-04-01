@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:In numpy, is there a nice idiomatic way of testing if all columns are equal in a 2d array?I can do something likenp.all([np.array_equal(a[0], a[i]) for i in xrange(1,len(a))])This seems to mix python lists with numpy arrays which is ugly and presumably also slow.Is there a nicer/neater way?A:<code>import numpy as npa = np.repeat(np.arange(1, 6).reshape(-1, 1), 3, axis = 1)</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to check if all columns in a 2D numpy array are equal. This means comparing each column to the first column and verifying if they are all identical."
+    },
+    {
+        "distance": 0.9377406317908512,
+        "from_label": "Understand the problem: We need to check if all columns in a 2D numpy array are equal. This means comparing each column to the first column and verifying if they are all identical.",
+        "to_label": "Select the first column as the reference: Extract the first column of the array using `a[:, 0]`. This will be the column against which all other columns are compared."
+    },
+    {
+        "distance": 0.46316179130054635,
+        "from_label": "Select the first column as the reference: Extract the first column of the array using `a[:, 0]`. This will be the column against which all other columns are compared.",
+        "to_label": "Reshape the reference column for broadcasting: Reshape the first column to a 2D array with shape (n, 1) using `reshape(-1, 1)`. This allows numpy to broadcast it across all columns of the original array."
+    },
+    {
+        "distance": 0.6879380234429553,
+        "from_label": "Reshape the reference column for broadcasting: Reshape the first column to a 2D array with shape (n, 1) using `reshape(-1, 1)`. This allows numpy to broadcast it across all columns of the original array.",
+        "to_label": "Compare all columns to the reference column: Use `np.isclose` to compare each element of the original array to the corresponding element in the reshaped reference column. The `atol=0` parameter ensures exact equality (no tolerance for floating point errors)."
+    },
+    {
+        "distance": 0.452824489410169,
+        "from_label": "Compare all columns to the reference column: Use `np.isclose` to compare each element of the original array to the corresponding element in the reshaped reference column. The `atol=0` parameter ensures exact equality (no tolerance for floating point errors).",
+        "to_label": "Check if all comparisons are True: Apply the `all()` method to the result of `np.isclose` to verify that all elements in each column match the reference column. This gives a single boolean result indicating whether all columns are equal."
+    },
+    {
+        "distance": 0.7511213516265528,
+        "from_label": "Check if all comparisons are True: Apply the `all()` method to the result of `np.isclose` to verify that all elements in each column match the reference column. This gives a single boolean result indicating whether all columns are equal.",
+        "to_label": "Assign the result: Store the final boolean result in the variable `result`."
+    },
+    {
+        "distance": 0.7136365004699972,
+        "from_label": "Assign the result: Store the final boolean result in the variable `result`.",
+        "to_label": "result =np.isclose(a, a[:, 0].reshape(-1, 1), atol=0).all()"
+    }
+]

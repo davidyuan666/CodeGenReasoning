@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:I have a 2-dimensional numpy array which contains time series data. I want to bin that array into equal partitions of a given length (it is fine to drop the last partition if it is not the same size) and then calculate the mean of each of those bins. Due to some reason, I want the binning to be aligned to the end of the array. That is, discarding the first few elements of each row when misalignment occurs.I suspect there is numpy, scipy, or pandas functionality to do this.example:data = [[4,2,5,6,7],\t[5,4,3,5,7]]for a bin size of 2:bin_data = [[(2,5),(6,7)],\t     [(4,3),(5,7)]]bin_data_mean = [[3.5,6.5],\t\t  [3.5,6]]for a bin size of 3:bin_data = [[(5,6,7)],\t     [(3,5,7)]]bin_data_mean = [[6],\t\t  [5]]A:<code>import numpy as npdata = np.array([[4, 2, 5, 6, 7],[ 5, 4, 3, 5, 7]])bin_size = 3</code>bin_data_mean = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Reverse each row of the original array to align the binning to the end of the array. This is done using slicing with [:, ::-1], which reverses the order of elements in each row."
+    },
+    {
+        "distance": 0.46222288953705004,
+        "from_label": "Reverse each row of the original array to align the binning to the end of the array. This is done using slicing with [:, ::-1], which reverses the order of elements in each row.",
+        "to_label": "Truncate the reversed array to ensure the length is a multiple of the bin size. This is done by taking only the first (data.shape[1] // bin_size) * bin_size elements of each row, which effectively drops the excess elements at the end that don't fit into a complete bin."
+    },
+    {
+        "distance": 0.5040788877609174,
+        "from_label": "Truncate the reversed array to ensure the length is a multiple of the bin size. This is done by taking only the first (data.shape[1] // bin_size) * bin_size elements of each row, which effectively drops the excess elements at the end that don't fit into a complete bin.",
+        "to_label": "Reshape the truncated array into a 3-dimensional array where the second dimension represents the number of bins and the third dimension represents the bin size. The new shape is (data.shape[0], -1, bin_size), where -1 automatically calculates the number of bins based on the remaining dimensions."
+    },
+    {
+        "distance": 0.8812988646644316,
+        "from_label": "Reshape the truncated array into a 3-dimensional array where the second dimension represents the number of bins and the third dimension represents the bin size. The new shape is (data.shape[0], -1, bin_size), where -1 automatically calculates the number of bins based on the remaining dimensions.",
+        "to_label": "Calculate the mean of each bin along the last axis (axis=-1), which reduces the bin size dimension and leaves us with a 2-dimensional array of bin means for each row."
+    },
+    {
+        "distance": 0.8108373272155428,
+        "from_label": "Calculate the mean of each bin along the last axis (axis=-1), which reduces the bin size dimension and leaves us with a 2-dimensional array of bin means for each row.",
+        "to_label": "Reverse the order of the bins in each row to restore the original alignment (since we initially reversed the rows). This is done using slicing with [:, ::-1], which reverses the order of bins in each row."
+    },
+    {
+        "distance": 0.5793347294168337,
+        "from_label": "Reverse the order of the bins in each row to restore the original alignment (since we initially reversed the rows). This is done using slicing with [:, ::-1], which reverses the order of bins in each row.",
+        "to_label": "new_data = data[:, ::-1]bin_data_mean = new_data[:,:(data.shape[1] // bin_size) * bin_size].reshape(data.shape[0], -1, bin_size).mean(axis=-1)[:,::-1]"
+    }
+]

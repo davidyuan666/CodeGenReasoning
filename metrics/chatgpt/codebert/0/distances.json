@@ -1,0 +1,57 @@
+[
+    {
+        "distance": 0.296812109102981,
+        "from_label": "Problem:I want to process a gray image in the form of np.array. *EDIT: chose a slightly more complex example to clarifySupposeim = np.array([ [0,0,0,0,0,0] [0,0,1,1,1,0] [0,1,1,0,1,0] [0,0,0,1,1,0] [0,0,0,0,0,0]])I'm trying to create this:[ [0,1,1,1], [1,1,0,1], [0,0,1,1] ]That is, to remove the peripheral zeros(black pixels) that fill an entire row/column.I can brute force this with loops, but intuitively I feel like numpy has a better means of doing this.A:<code>import numpy as npim = np.array([[0,0,0,0,0,0],               [0,0,1,1,1,0],               [0,1,1,0,1,0],               [0,0,0,1,1,0],               [0,0,0,0,0,0]])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We have a 2D numpy array representing a grayscale image, where zeros represent black pixels. The task is to crop the array such that only the central portion remains, removing any full rows or columns of zeros from the periphery."
+    },
+    {
+        "distance": 0.2729884380974022,
+        "from_label": "Understand the problem: We have a 2D numpy array representing a grayscale image, where zeros represent black pixels. The task is to crop the array such that only the central portion remains, removing any full rows or columns of zeros from the periphery.",
+        "to_label": "Initialize the given image array, `im`, using numpy. This array is a 5x6 grid with zeros on the periphery and some ones in the center."
+    },
+    {
+        "distance": 0.21041592813266646,
+        "from_label": "Initialize the given image array, `im`, using numpy. This array is a 5x6 grid with zeros on the periphery and some ones in the center.",
+        "to_label": "Create a mask of the image where each element is True if the corresponding element in `im` is zero, and False otherwise. This mask will help identify the locations of non-zero elements in the array."
+    },
+    {
+        "distance": 0.33421019141095337,
+        "from_label": "Create a mask of the image where each element is True if the corresponding element in `im` is zero, and False otherwise. This mask will help identify the locations of non-zero elements in the array.",
+        "to_label": "Use the `~` operator to invert the mask so that it identifies positions of non-zero elements as True. This inverted mask will be used to determine which rows and columns contain non-zero elements."
+    },
+    {
+        "distance": 0.26815866741228034,
+        "from_label": "Use the `~` operator to invert the mask so that it identifies positions of non-zero elements as True. This inverted mask will be used to determine which rows and columns contain non-zero elements.",
+        "to_label": "Sum the inverted mask along axis 1 (rows) to determine which rows contain non-zero elements. Use `np.flatnonzero()` to get the indices of these rows."
+    },
+    {
+        "distance": 0.17654940310530587,
+        "from_label": "Sum the inverted mask along axis 1 (rows) to determine which rows contain non-zero elements. Use `np.flatnonzero()` to get the indices of these rows.",
+        "to_label": "Similarly, sum the inverted mask along axis 0 (columns) to determine which columns contain non-zero elements. Use `np.flatnonzero()` to get the indices of these columns."
+    },
+    {
+        "distance": 0.5857601887553585,
+        "from_label": "Similarly, sum the inverted mask along axis 0 (columns) to determine which columns contain non-zero elements. Use `np.flatnonzero()` to get the indices of these columns.",
+        "to_label": "Check if there are any rows or columns with non-zero elements by examining the shapes of the resulting row and column index arrays. If there are no such rows or columns, return an empty array as the result."
+    },
+    {
+        "distance": 0.19028226869001383,
+        "from_label": "Check if there are any rows or columns with non-zero elements by examining the shapes of the resulting row and column index arrays. If there are no such rows or columns, return an empty array as the result.",
+        "to_label": "If there are rows and columns with non-zero elements, determine the minimum and maximum indices for both rows and columns. These indices will define the boundaries of the cropped region."
+    },
+    {
+        "distance": 0.7370605715590685,
+        "from_label": "If there are rows and columns with non-zero elements, determine the minimum and maximum indices for both rows and columns. These indices will define the boundaries of the cropped region.",
+        "to_label": "Use slicing to extract the subarray from `im` that is bounded by the minimum and maximum row and column indices. This subarray should contain only the non-zero elements and exclude peripheral zeros."
+    },
+    {
+        "distance": 0.7032830544503845,
+        "from_label": "Use slicing to extract the subarray from `im` that is bounded by the minimum and maximum row and column indices. This subarray should contain only the non-zero elements and exclude peripheral zeros.",
+        "to_label": "Assign the resulting subarray to the variable `result`. This array is the desired cropped version of the original image, free of peripheral zeros."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Assign the resulting subarray to the variable `result`. This array is the desired cropped version of the original image, free of peripheral zeros.",
+        "to_label": "mask = im == 0rows = np.flatnonzero((~mask).sum(axis=1))cols = np.flatnonzero((~mask).sum(axis=0))if rows.shape[0] == 0:    result = np.array([])else:    result = im[rows.min():rows.max()+1, cols.min():cols.max()+1]"
+    }
+]

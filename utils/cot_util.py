@@ -42,7 +42,7 @@ class CoTUtil:
             print(f"Error reading file: {str(e)}")
             raise
 
-    def read_dataset_random(self, sample_size: int = None) -> List[Dict]:
+    def read_dataset_random(self) -> List[Dict]:
         """随机采样读取数据集文件
         
         Args:
@@ -53,8 +53,7 @@ class CoTUtil:
         """
         import random
         
-        if sample_size is None:
-            sample_size = self.limit
+        sample_size = self.limit
             
         try:
             all_data = []
@@ -174,7 +173,7 @@ class CoTUtil:
     def process_and_save(self):
         """处理数据集并保存推理链结果"""
         # codelist = self.read_dataset()
-        codelist = self.read_dataset_random(100)
+        codelist = self.read_dataset_random()
         results = []
         
         for idx, item in tqdm(enumerate(codelist), desc="Generating reasoning chains", total=len(codelist)):
@@ -182,7 +181,7 @@ class CoTUtil:
             reference_code = item['reference_code']
             
             # 生成推理链
-            if os.getenv("COT_MODEL") == "gpt":
+            if os.getenv("COT_MODEL") == "chatgpt":
                 reasoning_chains = self.generate_chain_of_thought_by_gpt(prompt, reference_code)
             elif os.getenv("COT_MODEL") == "deepseek" or os.getenv("COT_MODEL") == "deepseekr1":
                 reasoning_chains = self.generate_chain_of_thought_by_deepseek(prompt, reference_code)

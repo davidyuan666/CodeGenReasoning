@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:Consider I have 2D Tensor, index_in_batch * diag_ele. How can I get a 3D Tensor index_in_batch * Matrix (who is a diagonal matrix, construct by drag_ele)?The torch.diag() construct diagonal matrix only when input is 1D, and return diagonal element when input is 2D.A:<code>import numpy as npimport pandas as pdimport torchTensor_2D = load_data()def Convert(t):    # return the solution in this function    # result = Convert(t)    ### BEGIN SOLUTION",
+        "to_label": "Understand the problem: You have a 2D tensor where each row represents a set of diagonal elements for a matrix. The task is to convert this 2D tensor into a 3D tensor where each slice along the third dimension is a diagonal matrix constructed from the corresponding row of the 2D tensor."
+    },
+    {
+        "distance": 0.4414064689092854,
+        "from_label": "Understand the problem: You have a 2D tensor where each row represents a set of diagonal elements for a matrix. The task is to convert this 2D tensor into a 3D tensor where each slice along the third dimension is a diagonal matrix constructed from the corresponding row of the 2D tensor.",
+        "to_label": "Identify the appropriate PyTorch function: PyTorch provides the function `torch.diag_embed` which can take a 2D tensor and create a 3D tensor where each 2D slice is a diagonal matrix formed from the corresponding row of the input 2D tensor."
+    },
+    {
+        "distance": 0.4244864127597191,
+        "from_label": "Identify the appropriate PyTorch function: PyTorch provides the function `torch.diag_embed` which can take a 2D tensor and create a 3D tensor where each 2D slice is a diagonal matrix formed from the corresponding row of the input 2D tensor.",
+        "to_label": "Implement the conversion: Use the `torch.diag_embed` function to transform the input 2D tensor into a 3D tensor. This function automatically handles the construction of diagonal matrices from each row of the input."
+    },
+    {
+        "distance": 0.39641875100066426,
+        "from_label": "Implement the conversion: Use the `torch.diag_embed` function to transform the input 2D tensor into a 3D tensor. This function automatically handles the construction of diagonal matrices from each row of the input.",
+        "to_label": "Write the Convert function: Define a function named `Convert` that takes a 2D tensor as input and uses `torch.diag_embed` to return the corresponding 3D tensor."
+    },
+    {
+        "distance": 0.6453711713789231,
+        "from_label": "Write the Convert function: Define a function named `Convert` that takes a 2D tensor as input and uses `torch.diag_embed` to return the corresponding 3D tensor.",
+        "to_label": "Return the result: Ensure that the function returns the resulting 3D tensor after applying `torch.diag_embed`."
+    },
+    {
+        "distance": 0.448563155271816,
+        "from_label": "Return the result: Ensure that the function returns the resulting 3D tensor after applying `torch.diag_embed`.",
+        "to_label": "Example usage: Assuming `Tensor_2D` is the input 2D tensor, call `Convert(Tensor_2D)` to obtain the 3D tensor where each matrix slice is a diagonal matrix derived from the rows of `Tensor_2D`."
+    },
+    {
+        "distance": 0.8437316172115755,
+        "from_label": "Example usage: Assuming `Tensor_2D` is the input 2D tensor, call `Convert(Tensor_2D)` to obtain the 3D tensor where each matrix slice is a diagonal matrix derived from the rows of `Tensor_2D`.",
+        "to_label": "# def Convert(t):    ### BEGIN SOLUTION    result = torch.diag_embed(t)    ### END SOLUTION    # return result# Tensor_3D = Convert(Tensor_2D)    return result"
+    }
+]

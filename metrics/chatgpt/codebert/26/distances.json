@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 0.890660314957253,
+        "from_label": "import matplotlib.pyplot as pltimport numpy as npdata = np.random.random((10, 10))# Set xlim and ylim to be between 0 and 10# Plot a heatmap of data in the rectangle where right is 5, left is 1, bottom is 1, and top is 4.# SOLUTION START",
+        "to_label": "Import the necessary libraries. In this problem, we need to import 'matplotlib.pyplot' as 'plt' and 'numpy' as 'np'. These libraries are essential for creating visualizations and handling numerical data, respectively."
+    },
+    {
+        "distance": 0.386198030156324,
+        "from_label": "Import the necessary libraries. In this problem, we need to import 'matplotlib.pyplot' as 'plt' and 'numpy' as 'np'. These libraries are essential for creating visualizations and handling numerical data, respectively.",
+        "to_label": "Generate random data using numpy. We use 'np.random.random((10, 10))' to create a 10x10 array of random numbers. This array will be used as the data for the heatmap."
+    },
+    {
+        "distance": 0.4010805603712055,
+        "from_label": "Generate random data using numpy. We use 'np.random.random((10, 10))' to create a 10x10 array of random numbers. This array will be used as the data for the heatmap.",
+        "to_label": "Set the x-axis and y-axis limits for the plot. The problem specifies that the 'xlim' and 'ylim' should be between 0 and 10. We use 'plt.xlim(0, 10)' and 'plt.ylim(0, 10)' to set these axis limits."
+    },
+    {
+        "distance": 0.8908308082099363,
+        "from_label": "Set the x-axis and y-axis limits for the plot. The problem specifies that the 'xlim' and 'ylim' should be between 0 and 10. We use 'plt.xlim(0, 10)' and 'plt.ylim(0, 10)' to set these axis limits.",
+        "to_label": "Plot the heatmap using 'plt.imshow()'. The 'extent' parameter is used to specify the bounding box in data coordinates that the image will fill. In this case, 'extent=[1, 5, 1, 4]' means that the left boundary is at x=1, the right boundary is at x=5, the bottom boundary is at y=1, and the top boundary is at y=4. This scales and positions the heatmap within the specified rectangle."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Plot the heatmap using 'plt.imshow()'. The 'extent' parameter is used to specify the bounding box in data coordinates that the image will fill. In this case, 'extent=[1, 5, 1, 4]' means that the left boundary is at x=1, the right boundary is at x=5, the bottom boundary is at y=1, and the top boundary is at y=4. This scales and positions the heatmap within the specified rectangle.",
+        "to_label": "Finally, display the plot using 'plt.show()'. This function renders the plot window and displays the heatmap with the specified axis limits and extent."
+    },
+    {
+        "distance": 0.5249502095701215,
+        "from_label": "Finally, display the plot using 'plt.show()'. This function renders the plot window and displays the heatmap with the specified axis limits and extent.",
+        "to_label": "plt.xlim(0, 10)plt.ylim(0, 10)plt.imshow(data, extent=[1, 5, 1, 4])"
+    }
+]

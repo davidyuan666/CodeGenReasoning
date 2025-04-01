@@ -1,0 +1,42 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:I have a data which include dates in sorted order.I would like to split the given data to train and test set. However, I must to split the data in a way that the test have to be older than the train set.Please look at the given example:Let's assume that we have data by dates:1, 2, 3, ..., n.The numbers from 1 to n represents the days.I would like to split it to 80% from the data to be train set and 20% of the data to be test set.Good results:1) train set = 21, ..., 100   test set = 1, 2, 3, ..., 202) train set = 121, ... 200    test set = 101, 102, ... 120My code:train_size = 0.8train_dataframe, test_dataframe = cross_validation.train_test_split(features_dataframe, train_size=train_size)train_dataframe = train_dataframe.sort([\"date\"])test_dataframe = test_dataframe.sort([\"date\"])Does not work for me!Any suggestions?A:<code>import numpy as npimport pandas as pdfrom sklearn.model_selection import train_test_splitfeatures_dataframe = load_data()</code>train_dataframe, test_dataframe = ... # put solution in these variablesBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to split the data into train and test sets where the test set contains older data than the train set. The train set should include 80% of the data, and the test set should contain 20%."
+    },
+    {
+        "distance": 0.7042567488490385,
+        "from_label": "Understand the problem: We need to split the data into train and test sets where the test set contains older data than the train set. The train set should include 80% of the data, and the test set should contain 20%.",
+        "to_label": "Check the current code: The original code uses `cross_validation.train_test_split`, which randomly splits the data into train and test sets. This is not suitable since we need to maintain the order based on dates."
+    },
+    {
+        "distance": 0.43528194417971333,
+        "from_label": "Check the current code: The original code uses `cross_validation.train_test_split`, which randomly splits the data into train and test sets. This is not suitable since we need to maintain the order based on dates.",
+        "to_label": "Plan the solution: To ensure the test set contains older data than the train set, we should directly slice the sorted data. We will calculate the split index based on the percentages and use slicing to create the train and test sets."
+    },
+    {
+        "distance": 0.7661592730961739,
+        "from_label": "Plan the solution: To ensure the test set contains older data than the train set, we should directly slice the sorted data. We will calculate the split index based on the percentages and use slicing to create the train and test sets.",
+        "to_label": "Calculate the number of samples: We need to determine how many samples should be in the test set (20%) and how many in the train set (80%). If `n` is the total number of samples, `test_size = ceil(n * 0.2)` and `train_size = n - test_size`."
+    },
+    {
+        "distance": 0.9829234932660357,
+        "from_label": "Calculate the number of samples: We need to determine how many samples should be in the test set (20%) and how many in the train set (80%). If `n` is the total number of samples, `test_size = ceil(n * 0.2)` and `train_size = n - test_size`.",
+        "to_label": "Slice the data: Use the calculated sizes to slice the data. The first part of the data slice (0 to `test_size`) will be the test set, and the remaining part will be the train set."
+    },
+    {
+        "distance": 0.3772437975604835,
+        "from_label": "Slice the data: Use the calculated sizes to slice the data. The first part of the data slice (0 to `test_size`) will be the test set, and the remaining part will be the train set.",
+        "to_label": "Implement the solution: Use pandas DataFrame slicing to split the sorted data. Ensure the data is sorted by date before slicing, although it is implied the data is already sorted."
+    },
+    {
+        "distance": 0.25300823272454187,
+        "from_label": "Implement the solution: Use pandas DataFrame slicing to split the sorted data. Ensure the data is sorted by date before slicing, although it is implied the data is already sorted.",
+        "to_label": "Write the implementation code: Calculate the test size, slice the DataFrame to get the test set from the start up to the test size, and the train set from the test size to the end."
+    },
+    {
+        "distance": 0.4212682532184754,
+        "from_label": "Write the implementation code: Calculate the test size, slice the DataFrame to get the test set from the start up to the test size, and the train set from the test size to the end.",
+        "to_label": "n = features_dataframe.shape[0]train_size = 0.8test_size = 1 - train_size + 0.005train_dataframe = features_dataframe.iloc[int(n * test_size):]test_dataframe = features_dataframe.iloc[:int(n * test_size)]"
+    }
+]

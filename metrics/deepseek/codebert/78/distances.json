@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:How to batch convert sentence lengths to masks in PyTorch?For example, fromlens = [3, 5, 4]we want to getmask = [[1, 1, 1, 0, 0],        [1, 1, 1, 1, 1],        [1, 1, 1, 1, 0]]Both of which are torch.LongTensors.A:<code>import numpy as npimport pandas as pdimport torchlens = load_data()</code>mask = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Determine the maximum length of the sequences in the input list 'lens'. This will be the length of each row in the output mask tensor."
+    },
+    {
+        "distance": 0.3856262372410974,
+        "from_label": "Determine the maximum length of the sequences in the input list 'lens'. This will be the length of each row in the output mask tensor.",
+        "to_label": "Create a tensor using torch.arange that contains values from 0 to max_len - 1. This tensor will be expanded to match the number of sequences in 'lens'."
+    },
+    {
+        "distance": 0.3716565921748233,
+        "from_label": "Create a tensor using torch.arange that contains values from 0 to max_len - 1. This tensor will be expanded to match the number of sequences in 'lens'.",
+        "to_label": "Expand the tensor created in step 2 to have the same number of rows as there are sequences in 'lens' and the same number of columns as max_len. This creates a matrix where each row is a sequence from 0 to max_len - 1."
+    },
+    {
+        "distance": 0.3769425387038902,
+        "from_label": "Expand the tensor created in step 2 to have the same number of rows as there are sequences in 'lens' and the same number of columns as max_len. This creates a matrix where each row is a sequence from 0 to max_len - 1.",
+        "to_label": "Compare each element in the expanded tensor with the corresponding sequence length from 'lens'. Since 'lens' is a 1D tensor, it needs to be unsqueezed to make it a column vector for proper broadcasting."
+    },
+    {
+        "distance": 0.790533728214547,
+        "from_label": "Compare each element in the expanded tensor with the corresponding sequence length from 'lens'. Since 'lens' is a 1D tensor, it needs to be unsqueezed to make it a column vector for proper broadcasting.",
+        "to_label": "The result of the comparison will be a boolean tensor where each element is True if the position is less than the sequence length and False otherwise."
+    },
+    {
+        "distance": 0.3612180855172426,
+        "from_label": "The result of the comparison will be a boolean tensor where each element is True if the position is less than the sequence length and False otherwise.",
+        "to_label": "Convert the boolean tensor to a LongTensor to get the final mask with 1s and 0s instead of True and False values."
+    },
+    {
+        "distance": 0.44417248880535354,
+        "from_label": "Convert the boolean tensor to a LongTensor to get the final mask with 1s and 0s instead of True and False values.",
+        "to_label": "max_len = max(lens)mask = torch.arange(max_len).expand(len(lens), max_len) < lens.unsqueeze(1)mask = mask.type(torch.LongTensor)"
+    }
+]

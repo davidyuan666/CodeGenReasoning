@@ -1,0 +1,42 @@
+[
+    {
+        "distance": 0.8989091146983301,
+        "from_label": "Problem:I have following pandas dataframe :import pandas as pd from pandas import Series, DataFramedata = DataFrame({'Qu1': ['apple', 'potato', 'cheese', 'banana', 'cheese', 'banana', 'cheese', 'potato', 'egg'],              'Qu2': ['sausage', 'banana', 'apple', 'apple', 'apple', 'sausage', 'banana', 'banana', 'banana'],              'Qu3': ['apple', 'potato', 'sausage', 'cheese', 'cheese', 'potato', 'cheese', 'potato', 'egg']})I'd like to change values in columns Qu1,Qu2,Qu3 according to value_counts() when value count great or equal 2For example for Qu1 column >>> pd.value_counts(data.Qu1) >= 2cheese     Truepotato     Truebanana     Trueapple     Falseegg       FalseI'd like to keep values cheese,potato,banana, because each value has at least two appearances.From values apple and egg I'd like to create value others For column Qu2 no changes :>>> pd.value_counts(data.Qu2) >= 2banana     Trueapple      Truesausage    TrueThe final result as in attached test_datatest_data = DataFrame({'Qu1': ['other', 'potato', 'cheese', 'banana', 'cheese', 'banana', 'cheese', 'potato', 'other'],                  'Qu2': ['sausage', 'banana', 'apple', 'apple', 'apple', 'sausage', 'banana', 'banana', 'banana'],                  'Qu3': ['other', 'potato', 'other', 'cheese', 'cheese', 'potato', 'cheese', 'potato', 'other']})Thanks !A:<code>import pandas as pddf = pd.DataFrame({'Qu1': ['apple', 'potato', 'cheese', 'banana', 'cheese', 'banana', 'cheese', 'potato', 'egg'],                   'Qu2': ['sausage', 'banana', 'apple', 'apple', 'apple', 'sausage', 'banana', 'banana', 'banana'],                   'Qu3': ['apple', 'potato', 'sausage', 'cheese', 'cheese', 'potato', 'cheese', 'potato', 'egg']})</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to replace values in columns Qu1, Qu2, Qu3 with 'other' if their count in the column is less than 2. Otherwise, keep the original value."
+    },
+    {
+        "distance": 0.6215443763779672,
+        "from_label": "Understand the problem: We need to replace values in columns Qu1, Qu2, Qu3 with 'other' if their count in the column is less than 2. Otherwise, keep the original value.",
+        "to_label": "For each column, calculate the value counts to determine which values appear at least twice."
+    },
+    {
+        "distance": 0.7781877988545844,
+        "from_label": "For each column, calculate the value counts to determine which values appear at least twice.",
+        "to_label": "Use the pandas where() function to conditionally replace values. The condition checks if the count of each value in its respective column is >= 2."
+    },
+    {
+        "distance": 0.7682276215333667,
+        "from_label": "Use the pandas where() function to conditionally replace values. The condition checks if the count of each value in its respective column is >= 2.",
+        "to_label": "If the condition is False (count < 2), replace the value with 'other'."
+    },
+    {
+        "distance": 0.6097579724141288,
+        "from_label": "If the condition is False (count < 2), replace the value with 'other'.",
+        "to_label": "Apply this operation to each column in the DataFrame using apply() and a lambda function that maps each value to its count in the column."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Apply this operation to each column in the DataFrame using apply() and a lambda function that maps each value to its count in the column.",
+        "to_label": "Store the result in the variable 'result'."
+    },
+    {
+        "distance": 0.802017182430791,
+        "from_label": "Store the result in the variable 'result'.",
+        "to_label": "Verify the result matches the expected output where only values with counts >= 2 are retained, and others are replaced with 'other'."
+    },
+    {
+        "distance": 0.8298802926206976,
+        "from_label": "Verify the result matches the expected output where only values with counts >= 2 are retained, and others are replaced with 'other'.",
+        "to_label": "def g(df):    return df.where(df.apply(lambda x: x.map(x.value_counts())) >= 2, \"other\")result = g(df.copy())"
+    }
+]

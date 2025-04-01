@@ -1,0 +1,52 @@
+[
+    {
+        "distance": 0.5984310404019431,
+        "from_label": "Problem:This question and answer demonstrate that when feature selection is performed using one of scikit-learn's dedicated feature selection routines, then the names of the selected features can be retrieved as follows:np.asarray(vectorizer.get_feature_names())[featureSelector.get_support()]For example, in the above code, featureSelector might be an instance of sklearn.feature_selection.SelectKBest or sklearn.feature_selection.SelectPercentile, since these classes implement the get_support method which returns a boolean mask or integer indices of the selected features.When one performs feature selection via linear models penalized with the L1 norm, it's unclear how to accomplish this. sklearn.svm.LinearSVC has no get_support method and the documentation doesn't make clear how to retrieve the feature indices after using its transform method to eliminate features from a collection of samples. Am I missing something here?Note use penalty='l1' and keep default arguments for others unless necessaryA:<code>import numpy as npimport pandas as pdimport sklearnfrom sklearn.feature_extraction.text import TfidfVectorizerfrom sklearn.svm import LinearSVCcorpus, y = load_data()assert type(corpus) == listassert type(y) == listvectorizer = TfidfVectorizer()X = vectorizer.fit_transform(corpus)def solve(corpus, y, vectorizer, X):    # return the solution in this function    # selected_feature_names = solve(corpus, y, vectorizer, X)    ### BEGIN SOLUTION",
+        "to_label": "Import necessary libraries including numpy, pandas, and sklearn modules such as TfidfVectorizer and LinearSVC."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Import necessary libraries including numpy, pandas, and sklearn modules such as TfidfVectorizer and LinearSVC.",
+        "to_label": "Load the data into variables corpus and y, ensuring they are of type list as per the assertions."
+    },
+    {
+        "distance": 0.6284152589818072,
+        "from_label": "Load the data into variables corpus and y, ensuring they are of type list as per the assertions.",
+        "to_label": "Initialize a TfidfVectorizer object and fit it to the corpus data to transform the text data into a TF-IDF feature matrix X."
+    },
+    {
+        "distance": 0.3537415944921953,
+        "from_label": "Initialize a TfidfVectorizer object and fit it to the corpus data to transform the text data into a TF-IDF feature matrix X.",
+        "to_label": "Define the solve function which takes corpus, y, vectorizer, and X as inputs."
+    },
+    {
+        "distance": 0.6651984395375626,
+        "from_label": "Define the solve function which takes corpus, y, vectorizer, and X as inputs.",
+        "to_label": "Inside the solve function, initialize a LinearSVC model with 'l1' penalty and dual=False to enable L1 regularization."
+    },
+    {
+        "distance": 0.24738320001699432,
+        "from_label": "Inside the solve function, initialize a LinearSVC model with 'l1' penalty and dual=False to enable L1 regularization.",
+        "to_label": "Fit the LinearSVC model to the feature matrix X and target variable y."
+    },
+    {
+        "distance": 0.9942116519371128,
+        "from_label": "Fit the LinearSVC model to the feature matrix X and target variable y.",
+        "to_label": "Retrieve the feature names from the vectorizer using get_feature_names_out() and use the non-zero coefficients from the trained LinearSVC model to filter the selected features."
+    },
+    {
+        "distance": 0.5638655502493986,
+        "from_label": "Retrieve the feature names from the vectorizer using get_feature_names_out() and use the non-zero coefficients from the trained LinearSVC model to filter the selected features.",
+        "to_label": "Return the selected feature names as the output of the solve function."
+    },
+    {
+        "distance": 0.23535702807694864,
+        "from_label": "Return the selected feature names as the output of the solve function.",
+        "to_label": "Call the solve function with the appropriate arguments to get the selected feature names."
+    },
+    {
+        "distance": 0.7914598053464957,
+        "from_label": "Call the solve function with the appropriate arguments to get the selected feature names.",
+        "to_label": "# def solve(corpus, y, vectorizer, X):    ### BEGIN SOLUTION    svc = LinearSVC(penalty='l1', dual=False)    svc.fit(X, y)    selected_feature_names = np.asarray(vectorizer.get_feature_names_out())[np.flatnonzero(svc.coef_)]    ### END SOLUTION    # return selected_feature_names# selected_feature_names = solve(corpus, y, vectorizer, X)    return selected_feature_names"
+    }
+]

@@ -1,0 +1,67 @@
+[
+    {
+        "distance": 0.4245375447258652,
+        "from_label": "Problem:In pandas, how do I replace &AMP; with '&' from all columns where &AMP could be in any position in a string?Then please evaluate this expression.For example, in column Title if there is a value '1 &AMP; 0', how do I replace it with '1 & 0 = 0'?A:<code>import pandas as pddf = pd.DataFrame({'A': ['1 &AMP; 1', 'BB', 'CC', 'DD', '1 &AMP; 0'], 'B': range(5), 'C': ['0 &AMP; 0'] * 5})</code>df = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Import the pandas library to work with DataFrames."
+    },
+    {
+        "distance": 0.36008506676954616,
+        "from_label": "Import the pandas library to work with DataFrames.",
+        "to_label": "Create a DataFrame 'df' with sample data containing strings with '&AMP;'."
+    },
+    {
+        "distance": 0.42993582613495485,
+        "from_label": "Create a DataFrame 'df' with sample data containing strings with '&AMP;'.",
+        "to_label": "Define a function 'g' that takes a DataFrame as input. This function will process each cell in the DataFrame."
+    },
+    {
+        "distance": 0.21992291881032996,
+        "from_label": "Define a function 'g' that takes a DataFrame as input. This function will process each cell in the DataFrame.",
+        "to_label": "Iterate over each row in the DataFrame using the index."
+    },
+    {
+        "distance": 0.09104183017333463,
+        "from_label": "Iterate over each row in the DataFrame using the index.",
+        "to_label": "For each row, iterate over all columns in the DataFrame."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "For each row, iterate over all columns in the DataFrame.",
+        "to_label": "Check if the current cell contains a string and if '&AMP;' is present in that string."
+    },
+    {
+        "distance": 0.12327631086798695,
+        "from_label": "Check if the current cell contains a string and if '&AMP;' is present in that string.",
+        "to_label": "If '&AMP;' is found, replace it with '&' in the string."
+    },
+    {
+        "distance": 0.12798234936838426,
+        "from_label": "If '&AMP;' is found, replace it with '&' in the string.",
+        "to_label": "After replacing '&AMP;', evaluate the modified string as a Python expression and append the result in the format ' = result' to the string."
+    },
+    {
+        "distance": 0.14271456772717847,
+        "from_label": "After replacing '&AMP;', evaluate the modified string as a Python expression and append the result in the format ' = result' to the string.",
+        "to_label": "Update the cell in the DataFrame with the new string that includes the evaluation result."
+    },
+    {
+        "distance": 0.32824444208052544,
+        "from_label": "Update the cell in the DataFrame with the new string that includes the evaluation result.",
+        "to_label": "After processing all cells, perform a global replacement of '&AMP;' with '&' using regex for any remaining instances."
+    },
+    {
+        "distance": 0.7181686893697666,
+        "from_label": "After processing all cells, perform a global replacement of '&AMP;' with '&' using regex for any remaining instances.",
+        "to_label": "Return the modified DataFrame from the function 'g'."
+    },
+    {
+        "distance": 0.10377626258194533,
+        "from_label": "Return the modified DataFrame from the function 'g'.",
+        "to_label": "Call the function 'g' with a copy of the original DataFrame 'df' and assign the result back to 'df'."
+    },
+    {
+        "distance": 0.401717316354948,
+        "from_label": "Call the function 'g' with a copy of the original DataFrame 'df' and assign the result back to 'df'.",
+        "to_label": "def g(df):    for i in df.index:        for col in list(df):            if type(df.loc[i, col]) == str:                if '&AMP;' in df.loc[i, col]:                    df.loc[i, col] = df.loc[i, col].replace('&AMP;', '&')                    df.loc[i, col] = df.loc[i, col]+' = '+str(eval(df.loc[i, col]))    df.replace('&AMP;', '&', regex=True)    return dfdf = g(df.copy())"
+    }
+]

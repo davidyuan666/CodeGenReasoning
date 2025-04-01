@@ -1,0 +1,42 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:   Survived  SibSp  Parch0         0      1      01         1      1      02         1      0      03         1      1      04         0      0      1Given the above dataframe, is there an elegant way to groupby with a condition?I want to split the data into two groups based on the following conditions:(df['SibSp'] > 0) | (df['Parch'] > 0) =   New Group -\"Has Family\" (df['SibSp'] == 0) & (df['Parch'] == 0) = New Group - \"No Family\"then take the means of both of these groups and end up with an output like this:Has Family    0.5No Family     1.0Name: Survived, dtype: float64Can it be done using groupby or would I have to append a new column using the above conditional statement?A:<code>import pandas as pddf = pd.DataFrame({'Survived': [0,1,1,1,0],                   'SibSp': [1,1,0,1,0],                   'Parch': [0,0,0,0,1]})</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "First, we need to understand the problem: We have a DataFrame with columns 'Survived', 'SibSp', and 'Parch'. We want to group the DataFrame into two categories based on whether the passenger has family ('Has Family') or not ('No Family'). The criteria for 'Has Family' is either 'SibSp' > 0 or 'Parch' > 0. The criteria for 'No Family' is both 'SibSp' == 0 and 'Parch' == 0."
+    },
+    {
+        "distance": 0.6459954543951115,
+        "from_label": "First, we need to understand the problem: We have a DataFrame with columns 'Survived', 'SibSp', and 'Parch'. We want to group the DataFrame into two categories based on whether the passenger has family ('Has Family') or not ('No Family'). The criteria for 'Has Family' is either 'SibSp' > 0 or 'Parch' > 0. The criteria for 'No Family' is both 'SibSp' == 0 and 'Parch' == 0.",
+        "to_label": "To solve this problem, we can use the numpy `np.where` function to create a new array that assigns 'Has Family' or 'No Family' to each row based on the conditions specified."
+    },
+    {
+        "distance": 0.4089533305359715,
+        "from_label": "To solve this problem, we can use the numpy `np.where` function to create a new array that assigns 'Has Family' or 'No Family' to each row based on the conditions specified.",
+        "to_label": "We will use the condition `(df['SibSp'] + df['Parch']) >= 1` to determine if a passenger has family. This condition checks if the sum of 'SibSp' and 'Parch' is greater than or equal to 1, which effectively checks if either 'SibSp' > 0 or 'Parch' > 0."
+    },
+    {
+        "distance": 0.2391030366832714,
+        "from_label": "We will use the condition `(df['SibSp'] + df['Parch']) >= 1` to determine if a passenger has family. This condition checks if the sum of 'SibSp' and 'Parch' is greater than or equal to 1, which effectively checks if either 'SibSp' > 0 or 'Parch' > 0.",
+        "to_label": "Using `np.where`, we will create a new array `family`, where each element is 'Has Family' if the condition is true, and 'No Family' if the condition is false."
+    },
+    {
+        "distance": 0.39232792982037434,
+        "from_label": "Using `np.where`, we will create a new array `family`, where each element is 'Has Family' if the condition is true, and 'No Family' if the condition is false.",
+        "to_label": "With the `family` array created, we can use it to group the DataFrame. We use the `groupby` function on the DataFrame, passing the `family` array as the key to group by."
+    },
+    {
+        "distance": 0.28418354136279944,
+        "from_label": "With the `family` array created, we can use it to group the DataFrame. We use the `groupby` function on the DataFrame, passing the `family` array as the key to group by.",
+        "to_label": "After grouping, we use the `mean` function to calculate the mean of the 'Survived' column for each group. This will give us the average survival rate for passengers with and without family."
+    },
+    {
+        "distance": 0.5195486059993684,
+        "from_label": "After grouping, we use the `mean` function to calculate the mean of the 'Survived' column for each group. This will give us the average survival rate for passengers with and without family.",
+        "to_label": "Finally, we store the result of this operation in the `result` variable, which contains the mean survival rates for the 'Has Family' and 'No Family' groups."
+    },
+    {
+        "distance": 0.5364502434937017,
+        "from_label": "Finally, we store the result of this operation in the `result` variable, which contains the mean survival rates for the 'Has Family' and 'No Family' groups.",
+        "to_label": "import numpy as npdef g(df):    family = np.where((df['SibSp'] + df['Parch']) >= 1 , 'Has Family', 'No Family')    return df.groupby(family)['Survived'].mean()result = g(df.copy())"
+    }
+]

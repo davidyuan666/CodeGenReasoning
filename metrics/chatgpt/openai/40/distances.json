@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 0.41776175711961433,
+        "from_label": "Problem:I'm sorry in advance if this is a duplicated question, I looked for this information but still couldn't find it.Is it possible to get a numpy array (or python list) filled with the indexes of the elements in decreasing order?For instance, the array:a = array([4, 1, 0, 8, 5, 2])The indexes of the elements in decreasing order would give :8 --> 35 --> 44 --> 02 --> 51 --> 10 --> 2result = [3, 4, 0, 5, 1, 2]Thanks in advance!A:<code>import numpy as npa = np.array([4, 1, 0, 8, 5, 2])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to find the indices of the array elements in decreasing order of their values. Given an array 'a', we want to produce an output array 'result' such that if we sort 'a' in decreasing order, 'result' will contain the indices of each element in that order."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Understand the problem: We need to find the indices of the array elements in decreasing order of their values. Given an array 'a', we want to produce an output array 'result' such that if we sort 'a' in decreasing order, 'result' will contain the indices of each element in that order.",
+        "to_label": "Identify the function that can help us: NumPy provides a function 'argsort' which returns the indices that would sort an array. By default, 'argsort' sorts in ascending order, so we'll need to reverse the result to get descending order."
+    },
+    {
+        "distance": 0.602637102015377,
+        "from_label": "Identify the function that can help us: NumPy provides a function 'argsort' which returns the indices that would sort an array. By default, 'argsort' sorts in ascending order, so we'll need to reverse the result to get descending order.",
+        "to_label": "Apply 'np.argsort' to the array 'a': This will give us the indices that would sort 'a' in ascending order. For the input array 'a = np.array([4, 1, 0, 8, 5, 2])', 'np.argsort(a)' would produce the array [2, 1, 5, 0, 4, 3]."
+    },
+    {
+        "distance": 0.393092948477281,
+        "from_label": "Apply 'np.argsort' to the array 'a': This will give us the indices that would sort 'a' in ascending order. For the input array 'a = np.array([4, 1, 0, 8, 5, 2])', 'np.argsort(a)' would produce the array [2, 1, 5, 0, 4, 3].",
+        "to_label": "Reverse the result of 'np.argsort': We reverse the result to get indices in descending order. In Python, we can reverse an array using slicing '[::-1]'. So, 'np.argsort(a)[::-1]' will give us the array [3, 4, 0, 5, 1, 2]."
+    },
+    {
+        "distance": 0.35608279219993777,
+        "from_label": "Reverse the result of 'np.argsort': We reverse the result to get indices in descending order. In Python, we can reverse an array using slicing '[::-1]'. So, 'np.argsort(a)[::-1]' will give us the array [3, 4, 0, 5, 1, 2].",
+        "to_label": "Assign the reversed indices to 'result': Now we assign this result to the variable 'result'. So, the final code will look like this: 'result = np.argsort(a)[::-1]'. This will give us the indices of 'a' sorted in descending order of their values."
+    },
+    {
+        "distance": 0.44726063019778517,
+        "from_label": "Assign the reversed indices to 'result': Now we assign this result to the variable 'result'. So, the final code will look like this: 'result = np.argsort(a)[::-1]'. This will give us the indices of 'a' sorted in descending order of their values.",
+        "to_label": "result = np.argsort(a)[::-1][:len(a)]"
+    }
+]

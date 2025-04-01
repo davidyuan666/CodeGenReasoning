@@ -1,0 +1,52 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:I want to figure out how to remove nan values from my array. For example, My array looks something like this:x = [[1400, 1500, 1600, nan], [1800, nan, nan ,1700]] #Not in this exact configurationHow can I remove the nan values from x?Note that after removing nan, the result cannot be np.array due to dimension mismatch, so I want to convert the result to list of lists.x = [[1400, 1500, 1600], [1800, 1700]]A:<code>import numpy as npx = np.array([[1400, 1500, 1600, np.nan], [1800, np.nan, np.nan ,1700]])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We have a 2D array with some 'nan' values and we want to remove these 'nan' values from each sub-array. The result should be a list of lists, with each list containing the non-'nan' values from the corresponding sub-array."
+    },
+    {
+        "distance": 0.46281444249534903,
+        "from_label": "Understand the problem: We have a 2D array with some 'nan' values and we want to remove these 'nan' values from each sub-array. The result should be a list of lists, with each list containing the non-'nan' values from the corresponding sub-array.",
+        "to_label": "Import necessary library: Since the array has 'nan' values, which is a special float value in NumPy, we'll use the NumPy library to handle these values efficiently."
+    },
+    {
+        "distance": 0.29649767390849147,
+        "from_label": "Import necessary library: Since the array has 'nan' values, which is a special float value in NumPy, we'll use the NumPy library to handle these values efficiently.",
+        "to_label": "Create the initial array: We'll start with the given array 'x' containing numbers and 'nan' values. We'll use NumPy to create this array for efficient manipulation."
+    },
+    {
+        "distance": 0.6152265385935979,
+        "from_label": "Create the initial array: We'll start with the given array 'x' containing numbers and 'nan' values. We'll use NumPy to create this array for efficient manipulation.",
+        "to_label": "Identify the 'nan' values: Use NumPy's 'isnan' function to create a boolean mask for each sub-array, where 'True' indicates the presence of a 'nan' value and 'False' indicates a non-'nan' value."
+    },
+    {
+        "distance": 0.33622846415504903,
+        "from_label": "Identify the 'nan' values: Use NumPy's 'isnan' function to create a boolean mask for each sub-array, where 'True' indicates the presence of a 'nan' value and 'False' indicates a non-'nan' value.",
+        "to_label": "Invert the boolean mask: Use the '~' operator to invert the boolean mask, so that 'True' corresponds to non-'nan' values and 'False' to 'nan' values."
+    },
+    {
+        "distance": 0.5130028575669858,
+        "from_label": "Invert the boolean mask: Use the '~' operator to invert the boolean mask, so that 'True' corresponds to non-'nan' values and 'False' to 'nan' values.",
+        "to_label": "Extract non-'nan' values: Use a list comprehension to iterate over each sub-array. For each sub-array, use the inverted mask to filter out the 'nan' values and collect the remaining values."
+    },
+    {
+        "distance": 0.2823832888601654,
+        "from_label": "Extract non-'nan' values: Use a list comprehension to iterate over each sub-array. For each sub-array, use the inverted mask to filter out the 'nan' values and collect the remaining values.",
+        "to_label": "Convert the result to a list of lists: As required, the result should be a list of lists, where each list contains the non-'nan' values from the corresponding sub-array."
+    },
+    {
+        "distance": 0.38158721085652186,
+        "from_label": "Convert the result to a list of lists: As required, the result should be a list of lists, where each list contains the non-'nan' values from the corresponding sub-array.",
+        "to_label": "Implement the solution: Combine all the steps above into a single line of code using a list comprehension to produce the desired output."
+    },
+    {
+        "distance": 0.7139670035644913,
+        "from_label": "Implement the solution: Combine all the steps above into a single line of code using a list comprehension to produce the desired output.",
+        "to_label": "Final solution code: result = [list(x[i, mask]) for i, mask in enumerate(~np.isnan(x))]"
+    },
+    {
+        "distance": 0.2694376444849953,
+        "from_label": "Final solution code: result = [list(x[i, mask]) for i, mask in enumerate(~np.isnan(x))]",
+        "to_label": "result = [x[i, row] for i, row in enumerate(~np.isnan(x))]"
+    }
+]

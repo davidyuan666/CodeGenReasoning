@@ -1,0 +1,47 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as snsdf = sns.load_dataset(\"penguins\")[    [\"bill_length_mm\", \"bill_depth_mm\", \"flipper_length_mm\", \"body_mass_g\"]]# Make 2 subplots.# In the first subplot, plot a seaborn regression plot of \"bill_depth_mm\" over \"bill_length_mm\"# In the second subplot, plot a seaborn regression plot of \"flipper_length_mm\" over \"bill_length_mm\"# Do not share y axix for the subplots# SOLUTION START",
+        "to_label": "Import necessary libraries for data manipulation and visualization, including numpy, pandas, matplotlib, and seaborn."
+    },
+    {
+        "distance": 0.2193533065191825,
+        "from_label": "Import necessary libraries for data manipulation and visualization, including numpy, pandas, matplotlib, and seaborn.",
+        "to_label": "Load the 'penguins' dataset from seaborn's built-in datasets using the sns.load_dataset function. This dataset contains measurements of penguin species."
+    },
+    {
+        "distance": 0.18657962121370447,
+        "from_label": "Load the 'penguins' dataset from seaborn's built-in datasets using the sns.load_dataset function. This dataset contains measurements of penguin species.",
+        "to_label": "Select specific columns from the dataset that are relevant for the plots: 'bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', and 'body_mass_g'. This can be done using dataframe indexing."
+    },
+    {
+        "distance": 0.40664134711659217,
+        "from_label": "Select specific columns from the dataset that are relevant for the plots: 'bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', and 'body_mass_g'. This can be done using dataframe indexing.",
+        "to_label": "Create a figure with two subplots using matplotlib's plt.subplots function. Set the number of rows to 1 and columns to 2 for side-by-side plots. Specify the figure size using the figsize parameter to ensure the plots are of appropriate size."
+    },
+    {
+        "distance": 0.46767278313026395,
+        "from_label": "Create a figure with two subplots using matplotlib's plt.subplots function. Set the number of rows to 1 and columns to 2 for side-by-side plots. Specify the figure size using the figsize parameter to ensure the plots are of appropriate size.",
+        "to_label": "In the first subplot, plot a seaborn regression plot of 'bill_depth_mm' over 'bill_length_mm'. Use sns.regplot function with the x parameter set to 'bill_length_mm' and y parameter set to 'bill_depth_mm'. Use the ax parameter to specify that this plot should be drawn on the first subplot (ax[0])."
+    },
+    {
+        "distance": 0.16495874094452434,
+        "from_label": "In the first subplot, plot a seaborn regression plot of 'bill_depth_mm' over 'bill_length_mm'. Use sns.regplot function with the x parameter set to 'bill_length_mm' and y parameter set to 'bill_depth_mm'. Use the ax parameter to specify that this plot should be drawn on the first subplot (ax[0]).",
+        "to_label": "In the second subplot, plot a seaborn regression plot of 'flipper_length_mm' over 'bill_length_mm'. Again, use sns.regplot function with the x parameter set to 'bill_length_mm' and y parameter set to 'flipper_length_mm'. Use the ax parameter to specify that this plot should be drawn on the second subplot (ax[1])."
+    },
+    {
+        "distance": 0.382059257436747,
+        "from_label": "In the second subplot, plot a seaborn regression plot of 'flipper_length_mm' over 'bill_length_mm'. Again, use sns.regplot function with the x parameter set to 'bill_length_mm' and y parameter set to 'flipper_length_mm'. Use the ax parameter to specify that this plot should be drawn on the second subplot (ax[1]).",
+        "to_label": "Ensure that the y-axis is not shared between the two subplots. This can be done by default in the plt.subplots function which creates independent axes for each subplot unless explicitly specified otherwise."
+    },
+    {
+        "distance": 0.4648128392537889,
+        "from_label": "Ensure that the y-axis is not shared between the two subplots. This can be done by default in the plt.subplots function which creates independent axes for each subplot unless explicitly specified otherwise.",
+        "to_label": "Display the plots using plt.show() to visualize the seaborn regression plots created in the previous steps."
+    },
+    {
+        "distance": 0.9478698139412052,
+        "from_label": "Display the plots using plt.show() to visualize the seaborn regression plots created in the previous steps.",
+        "to_label": "f, ax = plt.subplots(1, 2, figsize=(12, 6))sns.regplot(x=\"bill_length_mm\", y=\"bill_depth_mm\", data=df, ax=ax[0])sns.regplot(x=\"bill_length_mm\", y=\"flipper_length_mm\", data=df, ax=ax[1])"
+    }
+]

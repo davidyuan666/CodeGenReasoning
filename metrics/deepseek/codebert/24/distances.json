@@ -1,0 +1,42 @@
+[
+    {
+        "distance": 0.9026093749839116,
+        "from_label": "Problem:While nan == nan is always False, in many cases people want to treat them as equal, and this is enshrined in pandas.DataFrame.equals:NaNs in the same location are considered equal.Of course, I can writedef equalp(x, y):    return (x == y) or (math.isnan(x) and math.isnan(y))However, this will fail on containers like [float(\"nan\")] and isnan barfs on non-numbers (so the complexity increases).Imagine I have a DataFrame which may contain some Nan:     c0    c1    c2    c3    c4    c5    c6    c7   c8    c90   NaN   6.0  14.0   NaN   5.0   NaN   2.0  12.0  3.0   7.01   NaN   6.0   5.0  17.0   NaN   NaN  13.0   NaN  NaN   NaN2   NaN  17.0   NaN   8.0   6.0   NaN   NaN  13.0  NaN   NaN3   3.0   NaN   NaN  15.0   NaN   8.0   3.0   NaN  3.0   NaN4   7.0   8.0   7.0   NaN   9.0  19.0   NaN   0.0  NaN  11.05   NaN   NaN  14.0   2.0   NaN   NaN   0.0   NaN  NaN   8.06   3.0  13.0   NaN   NaN   NaN   NaN   NaN  12.0  3.0   NaN7  13.0  14.0   NaN   5.0  13.0   NaN  18.0   6.0  NaN   5.08   3.0   9.0  14.0  19.0  11.0   NaN   NaN   NaN  NaN   5.09   3.0  17.0   NaN   NaN   0.0   NaN  11.0   NaN  NaN   0.0I just want to know which columns in row 0 and row 8 are same, desired:Index(['c2', 'c5'], dtype='object')A:<code>import pandas as pdimport numpy as npnp.random.seed(10)df = pd.DataFrame(np.random.randint(0, 20, (10, 10)).astype(float), columns=[\"c%d\"%d for d in range(10)])df.where(np.random.randint(0,2, df.shape).astype(bool), np.nan, inplace=True)</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to compare two rows (row 0 and row 8) in a DataFrame and find out which columns have the same values, considering NaN values as equal."
+    },
+    {
+        "distance": 0.43421648873977325,
+        "from_label": "Understand the problem: We need to compare two rows (row 0 and row 8) in a DataFrame and find out which columns have the same values, considering NaN values as equal.",
+        "to_label": "Handle NaN values: Since NaN values are not equal to each other in standard comparison, we need a way to treat them as equal. One common approach is to replace NaN values with a placeholder string (like 'Nan') before comparison."
+    },
+    {
+        "distance": 0.6403237233871375,
+        "from_label": "Handle NaN values: Since NaN values are not equal to each other in standard comparison, we need a way to treat them as equal. One common approach is to replace NaN values with a placeholder string (like 'Nan') before comparison.",
+        "to_label": "Select the rows: Use iloc to select row 0 and row 8 from the DataFrame. These will be the rows we compare."
+    },
+    {
+        "distance": 0.7313586753998101,
+        "from_label": "Select the rows: Use iloc to select row 0 and row 8 from the DataFrame. These will be the rows we compare.",
+        "to_label": "Replace NaN values: Use the fillna method to replace all NaN values in the selected rows with the string 'Nan'. This ensures that NaN values will be considered equal when compared."
+    },
+    {
+        "distance": 0.36859664669530934,
+        "from_label": "Replace NaN values: Use the fillna method to replace all NaN values in the selected rows with the string 'Nan'. This ensures that NaN values will be considered equal when compared.",
+        "to_label": "Compare the rows: Perform an element-wise comparison between the two rows (after NaN replacement) to find which columns have the same values."
+    },
+    {
+        "distance": 0.6806710166390327,
+        "from_label": "Compare the rows: Perform an element-wise comparison between the two rows (after NaN replacement) to find which columns have the same values.",
+        "to_label": "Get the column names: The result of the comparison will be a boolean Series. Use this boolean Series to index the DataFrame's columns, returning only the names of the columns where the comparison was True."
+    },
+    {
+        "distance": 0.8399841132746358,
+        "from_label": "Get the column names: The result of the comparison will be a boolean Series. Use this boolean Series to index the DataFrame's columns, returning only the names of the columns where the comparison was True.",
+        "to_label": "Return the result: The final result is the Index object containing the names of the columns where row 0 and row 8 have the same values (with NaN considered equal)."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Return the result: The final result is the Index object containing the names of the columns where row 0 and row 8 have the same values (with NaN considered equal).",
+        "to_label": "def g(df):    return df.columns[df.iloc[0,:].fillna('Nan') == df.iloc[8,:].fillna('Nan')]result = g(df.copy())"
+    }
+]

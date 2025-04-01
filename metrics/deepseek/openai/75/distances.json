@@ -1,0 +1,27 @@
+[
+    {
+        "distance": 0.9973066894227751,
+        "from_label": "Problem:I'm using tensorflow 2.10.0.I have two embeddings tensor A and B, which looks like[  [1,1,1],  [1,1,1]]and [  [0,0,0],  [1,1,1]]what I want to do is calculate the L2 distance d(A,B) column-wise. First I did a tf.square(tf.sub(lhs, rhs)) to get[  [1,1,1],  [0,0,0]]and then I want to do an column-wise reduce which returns [  1,1,1]but tf.reduce_sum does not allow my to reduce by column. Any inputs would be appreciated. Thanks.A:<code>import tensorflow as tfa = tf.constant([  [1,1,1],  [0,1,1]])b = tf.constant([  [0,0,1],  [1,1,1]])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "First, we need to compute the element-wise difference between tensors A and B. This can be done using the tf.subtract function, which subtracts each element in B from the corresponding element in A."
+    },
+    {
+        "distance": 0.5237489860002734,
+        "from_label": "First, we need to compute the element-wise difference between tensors A and B. This can be done using the tf.subtract function, which subtracts each element in B from the corresponding element in A.",
+        "to_label": "Next, we square each element of the resulting tensor from the subtraction operation. This is done using the tf.square function, which computes the square of each element in the tensor."
+    },
+    {
+        "distance": 0.5242234919349303,
+        "from_label": "Next, we square each element of the resulting tensor from the subtraction operation. This is done using the tf.square function, which computes the square of each element in the tensor.",
+        "to_label": "After squaring the elements, we need to sum the squared differences column-wise. This is achieved using the tf.reduce_sum function with the axis parameter set to 0, which specifies that the reduction should be performed along the columns (i.e., summing elements in each column)."
+    },
+    {
+        "distance": 0.6163874725869539,
+        "from_label": "After squaring the elements, we need to sum the squared differences column-wise. This is achieved using the tf.reduce_sum function with the axis parameter set to 0, which specifies that the reduction should be performed along the columns (i.e., summing elements in each column).",
+        "to_label": "The final result is a tensor that contains the L2 distance for each column, which is the sum of squared differences for each column."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "The final result is a tensor that contains the L2 distance for each column, which is the sum of squared differences for each column.",
+        "to_label": "def g(a,b):    return tf.reduce_sum(tf.square( tf.subtract( a, b)), 0)result = g(a.__copy__(),b.__copy__())"
+    }
+]

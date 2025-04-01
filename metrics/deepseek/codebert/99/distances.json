@@ -1,0 +1,42 @@
+[
+    {
+        "distance": 0.7886242254756813,
+        "from_label": "Problem:I am performing a query on a DataFrame:Index Category1     Foo2     Bar3     Cho4     FooI would like to return the rows where the category is \"Foo\" or \"Bar\".When I use the code:df.query(\"Catergory==['Foo','Bar']\")This works fine and returns:Index Category1     Foo2     Bar4     FooHowever in future I will want the filter to be changed dynamically so I wrote:filter_list=['Foo','Bar']df.query(\"Catergory==filter_list\")Which threw out the error:UndefinedVariableError: name 'filter_list' is not definedOther variations I tried with no success were:df.query(\"Catergory\"==filter_list)df.query(\"Catergory==\"filter_list)Respectively producing:ValueError: expr must be a string to be evaluated, <class 'bool'> givenSyntaxError: invalid syntaxA:<code>import pandas as pddf=pd.DataFrame({\"Category\":['Foo','Bar','Cho','Foo'],'Index':[1,2,3,4]})filter_list=['Foo','Bar']</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to filter a DataFrame to include only rows where the 'Category' column matches any value in a dynamically defined list called 'filter_list'."
+    },
+    {
+        "distance": 0.7230512394881534,
+        "from_label": "Understand the problem: We need to filter a DataFrame to include only rows where the 'Category' column matches any value in a dynamically defined list called 'filter_list'.",
+        "to_label": "Recognize the issue with the initial attempts: The error occurs because the query method doesn't directly recognize Python variables inside the query string unless properly referenced."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Recognize the issue with the initial attempts: The error occurs because the query method doesn't directly recognize Python variables inside the query string unless properly referenced.",
+        "to_label": "Learn about variable referencing in pandas query: To use external variables in a pandas query string, you need to prefix them with '@' to tell pandas to treat them as variables rather than column names."
+    },
+    {
+        "distance": 0.3514780142268216,
+        "from_label": "Learn about variable referencing in pandas query: To use external variables in a pandas query string, you need to prefix them with '@' to tell pandas to treat them as variables rather than column names.",
+        "to_label": "Implement the solution: Use the '@' symbol before the variable name in the query string to reference the external 'filter_list' variable."
+    },
+    {
+        "distance": 0.6786037875049226,
+        "from_label": "Implement the solution: Use the '@' symbol before the variable name in the query string to reference the external 'filter_list' variable.",
+        "to_label": "Verify the solution: Test the query with the '@' prefix to ensure it correctly filters the DataFrame based on the values in 'filter_list'."
+    },
+    {
+        "distance": 0.8144110125768294,
+        "from_label": "Verify the solution: Test the query with the '@' prefix to ensure it correctly filters the DataFrame based on the values in 'filter_list'.",
+        "to_label": "Encapsulate the solution in a function: Create a function 'g' that takes a DataFrame and a filter list as inputs, applies the query with proper variable referencing, and returns the filtered DataFrame."
+    },
+    {
+        "distance": 0.8160573658945102,
+        "from_label": "Encapsulate the solution in a function: Create a function 'g' that takes a DataFrame and a filter list as inputs, applies the query with proper variable referencing, and returns the filtered DataFrame.",
+        "to_label": "Test the function: Apply the function to the given DataFrame and filter_list to confirm it produces the expected output."
+    },
+    {
+        "distance": 0.49516661931039296,
+        "from_label": "Test the function: Apply the function to the given DataFrame and filter_list to confirm it produces the expected output.",
+        "to_label": "def g(df, filter_list):    return df.query(\"Category == @filter_list\")result = g(df.copy(), filter_list)"
+    }
+]

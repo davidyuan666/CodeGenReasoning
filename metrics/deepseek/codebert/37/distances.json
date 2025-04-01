@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "import pandas as pdimport matplotlib.pyplot as pltvalues = [[1, 2], [3, 4]]df = pd.DataFrame(values, columns=[\"Type A\", \"Type B\"], index=[\"Index 1\", \"Index 2\"])# Plot values in df with line chart# label the x axis and y axis in this plot as \"X\" and \"Y\"# SOLUTION START",
+        "to_label": "Import the necessary libraries: pandas for data manipulation and matplotlib.pyplot for plotting."
+    },
+    {
+        "distance": 0.6545140830959288,
+        "from_label": "Import the necessary libraries: pandas for data manipulation and matplotlib.pyplot for plotting.",
+        "to_label": "Create a DataFrame 'df' with the given values, column labels as 'Type A' and 'Type B', and index labels as 'Index 1' and 'Index 2'."
+    },
+    {
+        "distance": 0.4212679577986287,
+        "from_label": "Create a DataFrame 'df' with the given values, column labels as 'Type A' and 'Type B', and index labels as 'Index 1' and 'Index 2'.",
+        "to_label": "Use the 'plot' method of the DataFrame 'df' to create a line chart. By default, this method plots each column as a line."
+    },
+    {
+        "distance": 0.6585077929658573,
+        "from_label": "Use the 'plot' method of the DataFrame 'df' to create a line chart. By default, this method plots each column as a line.",
+        "to_label": "Label the x-axis as 'X' using the 'xlabel' function from matplotlib.pyplot."
+    },
+    {
+        "distance": 0.3138632898599967,
+        "from_label": "Label the x-axis as 'X' using the 'xlabel' function from matplotlib.pyplot.",
+        "to_label": "Label the y-axis as 'Y' using the 'ylabel' function from matplotlib.pyplot."
+    },
+    {
+        "distance": 0.4054081179268707,
+        "from_label": "Label the y-axis as 'Y' using the 'ylabel' function from matplotlib.pyplot.",
+        "to_label": "df.plot()plt.xlabel(\"X\")plt.ylabel(\"Y\")"
+    }
+]

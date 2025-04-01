@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as plty = 2 * np.random.rand(10)x = np.arange(10)# make the y axis go upside down# SOLUTION START",
+        "to_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, and matplotlib.pyplot for plotting."
+    },
+    {
+        "distance": 0.630058540405949,
+        "from_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, and matplotlib.pyplot for plotting.",
+        "to_label": "Generate random data for the y-axis using `np.random.rand(10)`, which creates an array of 10 random numbers between 0 and 1, then multiply by 2 to scale the values."
+    },
+    {
+        "distance": 0.5362654867499268,
+        "from_label": "Generate random data for the y-axis using `np.random.rand(10)`, which creates an array of 10 random numbers between 0 and 1, then multiply by 2 to scale the values.",
+        "to_label": "Create an array for the x-axis using `np.arange(10)`, which generates values from 0 to 9."
+    },
+    {
+        "distance": 0.5270500908653479,
+        "from_label": "Create an array for the x-axis using `np.arange(10)`, which generates values from 0 to 9.",
+        "to_label": "To invert the y-axis, first get the current axes instance using `plt.gca()`, which stands for 'get current axes'."
+    },
+    {
+        "distance": 0.9548866799213855,
+        "from_label": "To invert the y-axis, first get the current axes instance using `plt.gca()`, which stands for 'get current axes'.",
+        "to_label": "Use the `invert_yaxis()` method on the axes instance to flip the y-axis so that the values decrease as you move upwards."
+    },
+    {
+        "distance": 0.7833441783803075,
+        "from_label": "Use the `invert_yaxis()` method on the axes instance to flip the y-axis so that the values decrease as you move upwards.",
+        "to_label": "ax = plt.gca()ax.invert_yaxis()"
+    }
+]

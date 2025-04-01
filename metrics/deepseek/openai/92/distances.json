@@ -1,0 +1,47 @@
+[
+    {
+        "distance": 0.27477870151660877,
+        "from_label": "Problem:Following-up from this question years ago, is there a \"shift\" function in numpy? Ideally it can be applied to 2-dimensional arrays, and the numbers of shift are different among rows.Example:In [76]: xsOut[76]: array([[ 0.,  1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9.],\t\t [ 1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9., 10.]])In [77]: shift(xs, [1,3])Out[77]: array([[nan,   0.,   1.,   2.,   3.,   4.,   5.,   6.,\t7.,\t8.], [nan, nan, nan, 1.,  2.,  3.,  4.,  5.,  6.,  7.])In [78]: shift(xs, [-2,-3])Out[78]: array([[2.,   3.,   4.,   5.,   6.,   7.,   8.,   9.,  nan,  nan], [4.,  5.,  6.,  7.,  8.,  9., 10., nan, nan, nan]])Any help would be appreciated.A:<code>import numpy as npa = np.array([[ 0.,  1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9.],\t\t[1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.,  9., 10.]])shift = [-2, 3]</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to create a function that shifts each row of a 2D numpy array by a specified number of positions. The shift can be positive (shift right) or negative (shift left). The shifted-out elements should be replaced with NaN."
+    },
+    {
+        "distance": 0.7172163363059574,
+        "from_label": "Understand the problem: We need to create a function that shifts each row of a 2D numpy array by a specified number of positions. The shift can be positive (shift right) or negative (shift left). The shifted-out elements should be replaced with NaN.",
+        "to_label": "Initialize an empty array 'e' with the same shape as the input array 'xs' to store the shifted results."
+    },
+    {
+        "distance": 0.7287173196774092,
+        "from_label": "Initialize an empty array 'e' with the same shape as the input array 'xs' to store the shifted results.",
+        "to_label": "Iterate over each row of the input array along with its corresponding shift value."
+    },
+    {
+        "distance": 0.25859396829419995,
+        "from_label": "Iterate over each row of the input array along with its corresponding shift value.",
+        "to_label": "For each row, check if the shift value is positive (right shift) or negative (left shift)."
+    },
+    {
+        "distance": 0.3724571252406723,
+        "from_label": "For each row, check if the shift value is positive (right shift) or negative (left shift).",
+        "to_label": "If the shift is positive, set the first 'n' elements of the result row to NaN and the remaining elements to the original row's elements shifted by 'n' positions to the right."
+    },
+    {
+        "distance": 0.23286614571831227,
+        "from_label": "If the shift is positive, set the first 'n' elements of the result row to NaN and the remaining elements to the original row's elements shifted by 'n' positions to the right.",
+        "to_label": "If the shift is negative, set the last 'n' elements of the result row to NaN and the remaining elements to the original row's elements shifted by 'n' positions to the left."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "If the shift is negative, set the last 'n' elements of the result row to NaN and the remaining elements to the original row's elements shifted by 'n' positions to the left.",
+        "to_label": "Return the resulting array 'e' after processing all rows."
+    },
+    {
+        "distance": 0.8937643742338773,
+        "from_label": "Return the resulting array 'e' after processing all rows.",
+        "to_label": "Apply the function to the given example with the input array 'a' and shift values [-2, 3] to get the desired output."
+    },
+    {
+        "distance": 0.34970348251883565,
+        "from_label": "Apply the function to the given example with the input array 'a' and shift values [-2, 3] to get the desired output.",
+        "to_label": "def solution(xs, shift):    e = np.empty_like(xs)    for i, n in enumerate(shift):        if n >= 0:            e[i,:n] = np.nan            e[i,n:] = xs[i,:-n]        else:            e[i,n:] = np.nan            e[i,:n] = xs[i,-n:]    return eresult = solution(a, shift)"
+    }
+]

@@ -1,0 +1,22 @@
+[
+    {
+        "distance": 0.712939102261924,
+        "from_label": "Problem:How can I know the (row, column) index of the minimum of a numpy array/matrix?For example, if A = array([[1, 2], [3, 0]]), I want to get (1, 1)Thanks!A:<code>import numpy as npa = np.array([[1, 2], [3, 0]])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Find the index of the minimum value in the flattened array using the argmin() method. This returns the index as if the array were 1D."
+    },
+    {
+        "distance": 0.5289084844779173,
+        "from_label": "Find the index of the minimum value in the flattened array using the argmin() method. This returns the index as if the array were 1D.",
+        "to_label": "Use the unravel_index() function from NumPy to convert the flat index into the corresponding (row, column) index in the original 2D array. The function takes the flat index and the shape of the original array as arguments."
+    },
+    {
+        "distance": 0.5476491504348693,
+        "from_label": "Use the unravel_index() function from NumPy to convert the flat index into the corresponding (row, column) index in the original 2D array. The function takes the flat index and the shape of the original array as arguments.",
+        "to_label": "Assign the result of unravel_index() to the variable 'result' to store the (row, column) index of the minimum value."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Assign the result of unravel_index() to the variable 'result' to store the (row, column) index of the minimum value.",
+        "to_label": "result = np.unravel_index(a.argmin(), a.shape)"
+    }
+]

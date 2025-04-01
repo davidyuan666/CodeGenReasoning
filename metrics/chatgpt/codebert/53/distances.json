@@ -1,0 +1,42 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:I have set up a GridSearchCV and have a set of parameters, with I will find the best combination of parameters. My GridSearch consists of 12 candidate models total.However, I am also interested in seeing the accuracy score of all of the 12, not just the best score, as I can clearly see by using the .best_score_ method. I am curious about opening up the black box that GridSearch sometimes feels like.I see a scoring= argument to GridSearch, but I can't see any way to print out scores. Actually, I want the full results of GridSearchCV besides getting the score, in pandas dataframe.Any advice is appreciated. Thanks in advance.A:<code>import numpy as npimport pandas as pdfrom sklearn.model_selection import GridSearchCVGridSearch_fitted = load_data()assert type(GridSearch_fitted) == sklearn.model_selection._search.GridSearchCV</code>full_results = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the purpose of GridSearchCV: It is used to perform hyperparameter tuning by evaluating a model with different combinations of parameters to find the best set based on a scoring metric."
+    },
+    {
+        "distance": 0.3961842023914775,
+        "from_label": "Understand the purpose of GridSearchCV: It is used to perform hyperparameter tuning by evaluating a model with different combinations of parameters to find the best set based on a scoring metric.",
+        "to_label": "Recognize the need to access all results from the GridSearchCV, not just the best score. The user wants to analyze the performance of each candidate model."
+    },
+    {
+        "distance": 0.562008712353526,
+        "from_label": "Recognize the need to access all results from the GridSearchCV, not just the best score. The user wants to analyze the performance of each candidate model.",
+        "to_label": "Familiarize yourself with the GridSearchCV object. After fitting, it contains an attribute 'cv_results_' which holds detailed results of the grid search, including scores for each parameter combination."
+    },
+    {
+        "distance": 0.7621445224700683,
+        "from_label": "Familiarize yourself with the GridSearchCV object. After fitting, it contains an attribute 'cv_results_' which holds detailed results of the grid search, including scores for each parameter combination.",
+        "to_label": "The 'cv_results_' attribute is a dictionary that contains various metrics and details for each combination of hyperparameters evaluated during the grid search."
+    },
+    {
+        "distance": 0.6545996522484375,
+        "from_label": "The 'cv_results_' attribute is a dictionary that contains various metrics and details for each combination of hyperparameters evaluated during the grid search.",
+        "to_label": "Convert the 'cv_results_' dictionary to a pandas DataFrame for easier analysis and manipulation. This is done using pandas' DataFrame constructor."
+    },
+    {
+        "distance": 0.6725169562524175,
+        "from_label": "Convert the 'cv_results_' dictionary to a pandas DataFrame for easier analysis and manipulation. This is done using pandas' DataFrame constructor.",
+        "to_label": "Access the 'cv_results_' attribute of the fitted GridSearchCV object and pass it to the pandas DataFrame constructor: 'full_results = pd.DataFrame(GridSearch_fitted.cv_results_)'."
+    },
+    {
+        "distance": 0.7319449953699548,
+        "from_label": "Access the 'cv_results_' attribute of the fitted GridSearchCV object and pass it to the pandas DataFrame constructor: 'full_results = pd.DataFrame(GridSearch_fitted.cv_results_)'.",
+        "to_label": "The resulting DataFrame, 'full_results', will contain scores and other evaluation metrics for each candidate model, along with the parameters used, allowing for in-depth analysis."
+    },
+    {
+        "distance": 0.9280443121806891,
+        "from_label": "The resulting DataFrame, 'full_results', will contain scores and other evaluation metrics for each candidate model, along with the parameters used, allowing for in-depth analysis.",
+        "to_label": "full_results = pd.DataFrame(GridSearch_fitted.cv_results_)"
+    }
+]

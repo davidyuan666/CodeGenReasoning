@@ -1,0 +1,47 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:   Survived  SibSp  Parch0         0      1      01         1      1      02         1      0      03         1      1      14         0      0      1Given the above dataframe, is there an elegant way to groupby with a condition?I want to split the data into two groups based on the following conditions:(df['SibSp'] == 1) & (df['Parch'] == 1) =   New Group -\"Has Family\" (df['SibSp'] == 0) & (df['Parch'] == 0) = New Group - \"No Family\"(df['SibSp'] == 0) & (df['Parch'] == 1) =   New Group -\"New Family\" (df['SibSp'] == 1) & (df['Parch'] == 0) = New Group - \"Old Family\"then take the means of both of these groups and end up with an output like this:Has Family    1.0New Family    0.0No Family     1.0Old Family    0.5Name: Survived, dtype: float64Can it be done using groupby or would I have to append a new column using the above conditional statement?A:<code>import pandas as pddf = pd.DataFrame({'Survived': [0,1,1,1,0],                   'SibSp': [1,1,0,1,0],                   'Parch': [0,0,0,0,1]})</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Create a function 'g' that takes a DataFrame 'df' as input."
+    },
+    {
+        "distance": 0.8332921428623323,
+        "from_label": "Create a function 'g' that takes a DataFrame 'df' as input.",
+        "to_label": "Initialize an empty list 'family' to store the group labels for each row in the DataFrame."
+    },
+    {
+        "distance": 0.4935444114280446,
+        "from_label": "Initialize an empty list 'family' to store the group labels for each row in the DataFrame.",
+        "to_label": "Iterate over each row in the DataFrame using a for loop."
+    },
+    {
+        "distance": 0.9421428999110386,
+        "from_label": "Iterate over each row in the DataFrame using a for loop.",
+        "to_label": "For each row, check the conditions on 'SibSp' and 'Parch' columns to determine the appropriate group label."
+    },
+    {
+        "distance": 0.3000353991701112,
+        "from_label": "For each row, check the conditions on 'SibSp' and 'Parch' columns to determine the appropriate group label.",
+        "to_label": "Append the corresponding group label ('No Family', 'Has Family', 'New Family', 'Old Family') to the 'family' list based on the conditions."
+    },
+    {
+        "distance": 0.5558759490823147,
+        "from_label": "Append the corresponding group label ('No Family', 'Has Family', 'New Family', 'Old Family') to the 'family' list based on the conditions.",
+        "to_label": "After processing all rows, use the 'family' list to group the DataFrame and calculate the mean of the 'Survived' column for each group."
+    },
+    {
+        "distance": 0.27174218030328046,
+        "from_label": "After processing all rows, use the 'family' list to group the DataFrame and calculate the mean of the 'Survived' column for each group.",
+        "to_label": "Return the resulting Series which contains the mean 'Survived' values for each group."
+    },
+    {
+        "distance": 0.4918220213402131,
+        "from_label": "Return the resulting Series which contains the mean 'Survived' values for each group.",
+        "to_label": "Call the function 'g' with a copy of the original DataFrame 'df' and store the result in the variable 'result'."
+    },
+    {
+        "distance": 0.7877232897227917,
+        "from_label": "Call the function 'g' with a copy of the original DataFrame 'df' and store the result in the variable 'result'.",
+        "to_label": "def g(df):    family = []    for i in range(len(df)):        if df.loc[i, 'SibSp'] == 0 and df.loc[i, 'Parch'] == 0:            family.append('No Family')        elif df.loc[i, 'SibSp'] == 1 and df.loc[i, 'Parch'] == 1:            family.append('Has Family')        elif df.loc[i, 'SibSp'] == 0 and df.loc[i, 'Parch'] == 1:            family.append('New Family')        else:            family.append('Old Family')    return df.groupby(family)['Survived'].mean()result = g(df.copy())"
+    }
+]

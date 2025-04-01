@@ -1,0 +1,47 @@
+[
+    {
+        "distance": 0.2238362035803685,
+        "from_label": "Problem:I have the following DataFrame:    Col1  Col2  Col3  Type0      1     2     3     11      4     5     6     12      7     8     9     23    10    11    12     24    13    14    15     35    16    17    18     3The DataFrame is read from a CSV file. All rows which have Type 1 are on top, followed by the rows with Type 2, followed by the rows with Type 3, etc.I would like to shuffle the order of the DataFrame's rows according to a list. For example, give a list [2, 4, 0, 3, 1, 5] and desired DataFrame should be:    Col1  Col2  Col3  Type2      7     8     9     24     13    14    15     30     1     2     3     13    10    11    12     21     4     5     6     15    16    17    18     3...I want to know how many rows have different Type than the original DataFrame. In this case, 4 rows (0,1,2,4) have different Type than origin.How can I achieve this?A:<code>import pandas as pdimport numpy as npdf = pd.DataFrame({'Col1': [1, 4, 7, 10, 13, 16],                   'Col2': [2, 5, 8, 11, 14, 17],                   'Col3': [3, 6, 9, 12, 15, 18],                   'Type': [1, 1, 2, 2, 3, 3]})List = np.random.permutation(len(df))</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "First, understand the problem. We have a DataFrame with a column 'Type' that indicates a category for each row. The DataFrame is sorted by 'Type'. We want to reorder the rows based on a provided list of indices and then count how many rows have a different 'Type' after reordering compared to their original 'Type'."
+    },
+    {
+        "distance": 0.3216767683637566,
+        "from_label": "First, understand the problem. We have a DataFrame with a column 'Type' that indicates a category for each row. The DataFrame is sorted by 'Type'. We want to reorder the rows based on a provided list of indices and then count how many rows have a different 'Type' after reordering compared to their original 'Type'.",
+        "to_label": "Initialize the DataFrame as given in the problem. It contains columns 'Col1', 'Col2', 'Col3', and 'Type'. The 'Type' column initially sorts the rows."
+    },
+    {
+        "distance": 0.710590719558704,
+        "from_label": "Initialize the DataFrame as given in the problem. It contains columns 'Col1', 'Col2', 'Col3', and 'Type'. The 'Type' column initially sorts the rows.",
+        "to_label": "Create a list or array that represents the new order of the rows. This list is used to shuffle the DataFrame. For example, [2, 4, 0, 3, 1, 5] means that the row currently at index 2 in the DataFrame should be the first row in the new order, the row at index 4 should be second, and so on."
+    },
+    {
+        "distance": 0.2180683359247798,
+        "from_label": "Create a list or array that represents the new order of the rows. This list is used to shuffle the DataFrame. For example, [2, 4, 0, 3, 1, 5] means that the row currently at index 2 in the DataFrame should be the first row in the new order, the row at index 4 should be second, and so on.",
+        "to_label": "Use the pandas DataFrame method 'iloc' with the list to reorder the DataFrame rows according to the new order. This will give us a new DataFrame where rows are shuffled as per the specified order."
+    },
+    {
+        "distance": 0.26308388038297936,
+        "from_label": "Use the pandas DataFrame method 'iloc' with the list to reorder the DataFrame rows according to the new order. This will give us a new DataFrame where rows are shuffled as per the specified order.",
+        "to_label": "Reset the index of the shuffled DataFrame using 'reset_index(drop=True)' to ensure that the row indices are updated to reflect the new order starting from 0."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Reset the index of the shuffled DataFrame using 'reset_index(drop=True)' to ensure that the row indices are updated to reflect the new order starting from 0.",
+        "to_label": "Compare the 'Type' column of the reordered DataFrame with the original DataFrame's 'Type' column. Use a boolean comparison that checks if each element in the 'Type' column of the reordered DataFrame is not equal to the corresponding element in the original DataFrame."
+    },
+    {
+        "distance": 0.2400499127783514,
+        "from_label": "Compare the 'Type' column of the reordered DataFrame with the original DataFrame's 'Type' column. Use a boolean comparison that checks if each element in the 'Type' column of the reordered DataFrame is not equal to the corresponding element in the original DataFrame.",
+        "to_label": "Sum the boolean comparison result to count how many rows have a different 'Type' after reordering. Each 'True' in the boolean array represents a row with a different 'Type', and 'sum()' will give the total count of such rows."
+    },
+    {
+        "distance": 0.22972880494644304,
+        "from_label": "Sum the boolean comparison result to count how many rows have a different 'Type' after reordering. Each 'True' in the boolean array represents a row with a different 'Type', and 'sum()' will give the total count of such rows.",
+        "to_label": "Store the result of the count in a variable, which will represent the number of rows with a changed 'Type' after reordering. This is the final output of the function."
+    },
+    {
+        "distance": 0.9314462321284855,
+        "from_label": "Store the result of the count in a variable, which will represent the number of rows with a changed 'Type' after reordering. This is the final output of the function.",
+        "to_label": "def g(df, List):    df2 = df.iloc[List].reindex().reset_index(drop=True)    return (df2.Type != df.Type).sum()result = g(df.copy(), List)"
+    }
+]

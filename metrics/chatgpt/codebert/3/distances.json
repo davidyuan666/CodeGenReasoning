@@ -1,0 +1,47 @@
+[
+    {
+        "distance": 0.805705711568635,
+        "from_label": "Problem:I am trying to find duplicates rows in a pandas dataframe.df=pd.DataFrame(data=[[1,2],[3,4],[1,2],[1,4],[1,2]],columns=['col1','col2'])dfOut[15]:    col1  col20     1     21     3     42     1     23     1     44     1     2duplicate_bool = df.duplicated(subset=['col1','col2'], keep='last')duplicate = df.loc[duplicate_bool == True]duplicateOut[16]:    col1  col20     1     22     1     2Is there a way to add a column referring to the index of the last duplicate (the one kept)duplicateOut[16]:    col1  col2  index_original0     1     2               42     1     2               4Note: df could be very very big in my case....A:<code>import pandas as pddf=pd.DataFrame(data=[[1,2],[3,4],[1,2],[1,4],[1,2]],columns=['col1','col2'])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Create the initial DataFrame `df` with the given data and columns ['col1', 'col2']."
+    },
+    {
+        "distance": 0.23714455626959396,
+        "from_label": "Create the initial DataFrame `df` with the given data and columns ['col1', 'col2'].",
+        "to_label": "Use the `duplicated` method to identify duplicate rows in the DataFrame based on columns ['col1', 'col2'], but keeping the last occurrence."
+    },
+    {
+        "distance": 0.42234652314302396,
+        "from_label": "Use the `duplicated` method to identify duplicate rows in the DataFrame based on columns ['col1', 'col2'], but keeping the last occurrence.",
+        "to_label": "Filter the DataFrame using the boolean array obtained from `duplicated` to get only the duplicate rows."
+    },
+    {
+        "distance": 0.5869752001830914,
+        "from_label": "Filter the DataFrame using the boolean array obtained from `duplicated` to get only the duplicate rows.",
+        "to_label": "To add a column indicating the index of the last duplicate, use `groupby` on ['col1', 'col2'] and apply the `transform` method with `idxmax` to get the index of the last occurrence for each group. This will be stored in a new column 'index_original'."
+    },
+    {
+        "distance": 0.42604357055369746,
+        "from_label": "To add a column indicating the index of the last duplicate, use `groupby` on ['col1', 'col2'] and apply the `transform` method with `idxmax` to get the index of the last occurrence for each group. This will be stored in a new column 'index_original'.",
+        "to_label": "Iterate over the DataFrame in reverse order to update 'index_original' for each duplicate row to refer to the actual last duplicate index."
+    },
+    {
+        "distance": 0.26954548648527077,
+        "from_label": "Iterate over the DataFrame in reverse order to update 'index_original' for each duplicate row to refer to the actual last duplicate index.",
+        "to_label": "For each row, check if its current 'index_original' is already pointing to the last occurrence. If so, update it to point to the current row index if the current row is a more recent occurrence."
+    },
+    {
+        "distance": 0.4918024291946465,
+        "from_label": "For each row, check if its current 'index_original' is already pointing to the last occurrence. If so, update it to point to the current row index if the current row is a more recent occurrence.",
+        "to_label": "If the original index of a duplicate is not pointing to a newer occurrence, update it accordingly by setting the 'index_original' of the last duplicate occurrence to the current row's index."
+    },
+    {
+        "distance": 0.20703362291552727,
+        "from_label": "If the original index of a duplicate is not pointing to a newer occurrence, update it accordingly by setting the 'index_original' of the last duplicate occurrence to the current row's index.",
+        "to_label": "Return the DataFrame containing only the duplicate rows with the updated 'index_original' column, which now indicates the index of the last duplicate."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Return the DataFrame containing only the duplicate rows with the updated 'index_original' column, which now indicates the index of the last duplicate.",
+        "to_label": "def g(df):    df['index_original'] = df.groupby(['col1', 'col2']).col1.transform('idxmax')    for i in range(len(df)):        i = len(df) - 1 - i        origin = df.loc[i, 'index_original']        if i <= origin:            continue        if origin == df.loc[origin, 'index_original']:            df.loc[origin, 'index_original'] = i        df.loc[i, 'index_original'] = df.loc[origin, 'index_original']    return df[df.duplicated(subset=['col1', 'col2'], keep='last')]result = g(df.copy())"
+    }
+]
