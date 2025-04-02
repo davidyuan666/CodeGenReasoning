@@ -1,42 +1,32 @@
 [
     {
-        "distance": 0.31203352096244125,
-        "from_label": "Problem:I just start learning Python. Here is a data frame:a=pd.DataFrame({'A1':[0,1,2,3,2,1,6,0,1,1,7,10]})Now I think this data follows multinomial distribution. So, 12 numbers means the frequency of 12 categories (category 0, 1, 2...). For example, the occurance of category 0 is 0. So, I hope to find all the parameters of multinomial given this data. In the end, we have the best parameters of multinomial (or we can say the best probility for every number). For example,category:    0,      1,     2,     3,      4...weights:    0.001,  0.1,   0.2,   0.12,   0.2...So, I do not need a test data to predict. Could anyone give me some help?I know that Maximum Likelihood Estimation is one of the most important procedure to get point estimation for parameters of a distribution. So how can I apply it to this question?A:<code>import scipy.optimize as scioptimport numpy as npimport pandas as pda=pd.DataFrame({'A1':[0,1,2,3,2,1,6,0,1,1,7,10]})</code>weights = ... # put solution in this variableBEGIN SOLUTION<code>",
-        "to_label": "Understand the problem: We have a DataFrame 'a' with a single column 'A1' containing counts of occurrences for different categories (0, 1, 2, ..., 10). We need to estimate the probabilities (weights) for each category under a multinomial distribution."
-    },
-    {
-        "distance": 0.525534164633044,
-        "from_label": "Understand the problem: We have a DataFrame 'a' with a single column 'A1' containing counts of occurrences for different categories (0, 1, 2, ..., 10). We need to estimate the probabilities (weights) for each category under a multinomial distribution.",
-        "to_label": "Recall that in a multinomial distribution, the maximum likelihood estimate (MLE) for the probability of each category is simply the observed frequency of that category divided by the total number of observations."
+        "distance": 0.31391424293934306,
+        "from_label": "Problem:I am performing a query on a DataFrame:Index Category1     Foo2     Bar3     Cho4     FooI would like to return the rows where the category is not \"Foo\" or \"Bar\".When I use the code:df.query(\"Catergory!=['Foo','Bar']\")This works fine and returns:Index Category3     ChoHowever in future I will want the filter to be changed dynamically so I wrote:filter_list=['Foo','Bar']df.query(\"Catergory!=filter_list\")Which threw out the error:UndefinedVariableError: name 'filter_list' is not definedOther variations I tried with no success were:df.query(\"Catergory\"!=filter_list)df.query(\"Catergory!=\"filter_list)Respectively producing:ValueError: expr must be a string to be evaluated, <class 'bool'> givenSyntaxError: invalid syntaxA:<code>import pandas as pddf=pd.DataFrame({\"Category\":['Foo','Bar','Cho','Foo'],'Index':[1,2,3,4]})filter_list=['Foo','Bar']</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to filter a DataFrame to exclude rows where the 'Category' column matches any value in a dynamically defined list."
     },
     {
         "distance": 1.0,
-        "from_label": "Recall that in a multinomial distribution, the maximum likelihood estimate (MLE) for the probability of each category is simply the observed frequency of that category divided by the total number of observations.",
-        "to_label": "Extract the values from the DataFrame 'a' using 'a.values'. This gives us a numpy array of the counts."
+        "from_label": "Understand the problem: We need to filter a DataFrame to exclude rows where the 'Category' column matches any value in a dynamically defined list.",
+        "to_label": "Identify the issue with the initial approach: The query method doesn't directly recognize Python variables inside the query string unless they are properly referenced."
     },
     {
-        "distance": 0.6987924857889279,
-        "from_label": "Extract the values from the DataFrame 'a' using 'a.values'. This gives us a numpy array of the counts.",
-        "to_label": "Calculate the sum of all the counts to get the total number of observations. This is done using 'a.values.sum()'."
+        "distance": 0.3039079750919881,
+        "from_label": "Identify the issue with the initial approach: The query method doesn't directly recognize Python variables inside the query string unless they are properly referenced.",
+        "to_label": "Learn about the correct way to use variables in pandas query: We need to use the '@' symbol to reference Python variables inside the query string."
     },
     {
-        "distance": 0.34251550205623954,
-        "from_label": "Calculate the sum of all the counts to get the total number of observations. This is done using 'a.values.sum()'.",
-        "to_label": "Divide each count by the total sum to get the probability (weight) for each category. This operation is vectorized in numpy, so we can do it directly with 'a.values / a.values.sum()'."
+        "distance": 0.36003032064854823,
+        "from_label": "Learn about the correct way to use variables in pandas query: We need to use the '@' symbol to reference Python variables inside the query string.",
+        "to_label": "Implement the solution: Use the '@' symbol to reference the filter_list variable inside the query string."
     },
     {
-        "distance": 0.4528404612206108,
-        "from_label": "Divide each count by the total sum to get the probability (weight) for each category. This operation is vectorized in numpy, so we can do it directly with 'a.values / a.values.sum()'.",
-        "to_label": "The result of the division is a 2D numpy array. Use 'squeeze()' to convert it to a 1D array, which is more convenient for representing the weights of each category."
+        "distance": 0.3746546506872697,
+        "from_label": "Implement the solution: Use the '@' symbol to reference the filter_list variable inside the query string.",
+        "to_label": "Verify the solution: The query should now correctly filter out rows where 'Category' is in the filter_list."
     },
     {
-        "distance": 0.980316020180337,
-        "from_label": "The result of the division is a 2D numpy array. Use 'squeeze()' to convert it to a 1D array, which is more convenient for representing the weights of each category.",
-        "to_label": "Assign the resulting array to the variable 'weights', which now contains the MLE estimates of the probabilities for each category in the multinomial distribution."
-    },
-    {
-        "distance": 0.9960663005766396,
-        "from_label": "Assign the resulting array to the variable 'weights', which now contains the MLE estimates of the probabilities for each category in the multinomial distribution.",
-        "to_label": "weights = (a.values / a.values.sum()).squeeze()"
+        "distance": 0.39072605674746624,
+        "from_label": "Verify the solution: The query should now correctly filter out rows where 'Category' is in the filter_list.",
+        "to_label": "def g(df, filter_list):    return df.query(\"Category != @filter_list\")result = g(df.copy(), filter_list)"
     }
 ]

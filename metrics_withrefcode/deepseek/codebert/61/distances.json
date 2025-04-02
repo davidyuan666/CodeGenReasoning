@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 0.7878922912005606,
+        "from_label": "Problem:I'm working on a problem that has to do with calculating angles of refraction and what not. However, it seems that I'm unable to use the numpy.cos() function in degrees. I have tried to use numpy.degrees() and numpy.rad2deg().degree = 90numpy.cos(degree)numpy.degrees(numpy.cos(degree))But with no help. How do I compute cosine value using degree?Thanks for your help.A:<code>import numpy as npdegree = 90</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: The issue is that the numpy.cos() function expects its input in radians, but the user is providing the angle in degrees. The goal is to compute the cosine of an angle given in degrees."
+    },
+    {
+        "distance": 0.6255934966000465,
+        "from_label": "Understand the problem: The issue is that the numpy.cos() function expects its input in radians, but the user is providing the angle in degrees. The goal is to compute the cosine of an angle given in degrees.",
+        "to_label": "Convert degrees to radians: Since numpy.cos() works with radians, the first step is to convert the angle from degrees to radians. This can be done using the numpy.deg2rad() function."
+    },
+    {
+        "distance": 0.6956096570874233,
+        "from_label": "Convert degrees to radians: Since numpy.cos() works with radians, the first step is to convert the angle from degrees to radians. This can be done using the numpy.deg2rad() function.",
+        "to_label": "Compute the cosine: Once the angle is converted to radians, pass it to the numpy.cos() function to get the cosine value."
+    },
+    {
+        "distance": 0.9669620676162818,
+        "from_label": "Compute the cosine: Once the angle is converted to radians, pass it to the numpy.cos() function to get the cosine value.",
+        "to_label": "Assign the result: Store the computed cosine value in the variable 'result'."
+    },
+    {
+        "distance": 0.7810805763135412,
+        "from_label": "Assign the result: Store the computed cosine value in the variable 'result'.",
+        "to_label": "Verify the solution: For example, with degree = 90, converting to radians gives π/2, and cos(π/2) is 0. So, the result should be 0."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Verify the solution: For example, with degree = 90, converting to radians gives π/2, and cos(π/2) is 0. So, the result should be 0.",
+        "to_label": "result = np.cos(np.deg2rad(degree))"
+    }
+]

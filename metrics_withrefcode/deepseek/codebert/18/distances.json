@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as snsx = np.random.rand(10)y = np.random.rand(10)plt.scatter(x, y)# how to turn on minor ticks on x axis only# SOLUTION START",
+        "to_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, matplotlib.pyplot for plotting, and seaborn for enhanced visualizations."
+    },
+    {
+        "distance": 0.4066698858133126,
+        "from_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, matplotlib.pyplot for plotting, and seaborn for enhanced visualizations.",
+        "to_label": "Generate random data for the x and y coordinates using numpy's random.rand function, which creates an array of given shape filled with random values between 0 and 1."
+    },
+    {
+        "distance": 0.8494223551013113,
+        "from_label": "Generate random data for the x and y coordinates using numpy's random.rand function, which creates an array of given shape filled with random values between 0 and 1.",
+        "to_label": "Create a scatter plot using plt.scatter(x, y) to visualize the random data points."
+    },
+    {
+        "distance": 0.44334382852851556,
+        "from_label": "Create a scatter plot using plt.scatter(x, y) to visualize the random data points.",
+        "to_label": "Enable minor ticks on all axes by calling plt.minorticks_on(). This function turns on the minor ticks that are not labeled."
+    },
+    {
+        "distance": 0.35521768007381194,
+        "from_label": "Enable minor ticks on all axes by calling plt.minorticks_on(). This function turns on the minor ticks that are not labeled.",
+        "to_label": "Get the current axes instance using plt.gca() (get current axes) and store it in the variable 'ax'. This allows for more detailed customization of the axes."
+    },
+    {
+        "distance": 0.6224725165649468,
+        "from_label": "Get the current axes instance using plt.gca() (get current axes) and store it in the variable 'ax'. This allows for more detailed customization of the axes.",
+        "to_label": "Use the tick_params method on the axes object 'ax' to customize the ticks. Set axis='y' to target the y-axis, which='minor' to specify minor ticks, and tick1On=False to turn off the minor ticks on the y-axis. This leaves the minor ticks on the x-axis visible while hiding them on the y-axis."
+    },
+    {
+        "distance": 0.822379138940677,
+        "from_label": "Use the tick_params method on the axes object 'ax' to customize the ticks. Set axis='y' to target the y-axis, which='minor' to specify minor ticks, and tick1On=False to turn off the minor ticks on the y-axis. This leaves the minor ticks on the x-axis visible while hiding them on the y-axis.",
+        "to_label": "plt.minorticks_on()ax = plt.gca()ax.tick_params(axis=\"y\", which=\"minor\", tick1On=False)"
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltx = np.arange(10)y = np.arange(10)# Plot y over x. Give the plot a title \"Figure 1\". bold the word \"Figure\" in the title but do not bold \"1\"# SOLUTION START",
+        "to_label": "Import the necessary libraries: numpy for numerical operations, pandas for data handling, and matplotlib.pyplot for plotting."
+    },
+    {
+        "distance": 0.3710978996546871,
+        "from_label": "Import the necessary libraries: numpy for numerical operations, pandas for data handling, and matplotlib.pyplot for plotting.",
+        "to_label": "Create the data for the x-axis and y-axis using numpy's arange function, which generates a sequence of numbers from 0 to 9."
+    },
+    {
+        "distance": 0.5893193626623353,
+        "from_label": "Create the data for the x-axis and y-axis using numpy's arange function, which generates a sequence of numbers from 0 to 9.",
+        "to_label": "Use the plot function from matplotlib.pyplot to create a line plot of y over x."
+    },
+    {
+        "distance": 0.995365532137596,
+        "from_label": "Use the plot function from matplotlib.pyplot to create a line plot of y over x.",
+        "to_label": "Set the title of the plot to 'Figure 1' using the title function. To bold the word 'Figure' but not '1', use LaTeX formatting within the title string. The LaTeX command for bold text is '\\bf{}'. Enclose the LaTeX expression in a raw string (prefixed with 'r') to ensure proper interpretation of the backslashes."
+    },
+    {
+        "distance": 0.6387822708984954,
+        "from_label": "Set the title of the plot to 'Figure 1' using the title function. To bold the word 'Figure' but not '1', use LaTeX formatting within the title string. The LaTeX command for bold text is '\\bf{}'. Enclose the LaTeX expression in a raw string (prefixed with 'r') to ensure proper interpretation of the backslashes.",
+        "to_label": "The final title string is r\"$\\bf{Figure}$ 1\", which will render 'Figure' in bold and '1' in normal text."
+    },
+    {
+        "distance": 0.39993700483996725,
+        "from_label": "The final title string is r\"$\\bf{Figure}$ 1\", which will render 'Figure' in bold and '1' in normal text.",
+        "to_label": "plt.plot(x, y)plt.title(r\"$\\bf{Figure}$ 1\")"
+    }
+]

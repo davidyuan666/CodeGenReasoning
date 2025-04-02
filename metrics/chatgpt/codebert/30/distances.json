@@ -1,47 +1,42 @@
 [
     {
+        "distance": 0.8522298621938891,
+        "from_label": "Problem:I have this Pandas dataframe (df):     A    B0    1    green1    2    red2    s    blue3    3    yellow4    b    blackA type is object.I'd select the record where A value are string to have:   A      B2  s   blue4  b  blackThanksA:<code>import pandas as pddf = pd.DataFrame({'A': [1, 2, 's', 3, 'b'],                   'B': ['green', 'red', 'blue', 'yellow', 'black']})</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We have a DataFrame with column 'A' that contains mixed data types (integers and strings). We need to filter this DataFrame to select only the rows where the values in column 'A' are strings."
+    },
+    {
+        "distance": 0.48910334584260745,
+        "from_label": "Understand the problem: We have a DataFrame with column 'A' that contains mixed data types (integers and strings). We need to filter this DataFrame to select only the rows where the values in column 'A' are strings.",
+        "to_label": "Load the sample DataFrame: The DataFrame 'df' is created using the pandas library with two columns, 'A' and 'B'. Column 'A' contains both integers and strings, while column 'B' contains strings."
+    },
+    {
+        "distance": 0.5026606943024281,
+        "from_label": "Load the sample DataFrame: The DataFrame 'df' is created using the pandas library with two columns, 'A' and 'B'. Column 'A' contains both integers and strings, while column 'B' contains strings.",
+        "to_label": "Check the data type of each element in column 'A': Since column 'A' is of type 'object', it can contain mixed types. We need to check each element to determine if it's a string."
+    },
+    {
+        "distance": 0.4540713441253664,
+        "from_label": "Check the data type of each element in column 'A': Since column 'A' is of type 'object', it can contain mixed types. We need to check each element to determine if it's a string.",
+        "to_label": "Use a boolean mask to filter strings: Create a boolean mask by applying the isinstance function to check if each element in column 'A' is an instance of the 'str' class. This mask will be used to filter the DataFrame."
+    },
+    {
+        "distance": 0.24347775391044596,
+        "from_label": "Use a boolean mask to filter strings: Create a boolean mask by applying the isinstance function to check if each element in column 'A' is an instance of the 'str' class. This mask will be used to filter the DataFrame.",
+        "to_label": "Apply the boolean mask to the DataFrame: Use the boolean mask to filter the DataFrame and select only the rows where the values in column 'A' are strings."
+    },
+    {
+        "distance": 0.24069670986656685,
+        "from_label": "Apply the boolean mask to the DataFrame: Use the boolean mask to filter the DataFrame and select only the rows where the values in column 'A' are strings.",
+        "to_label": "Assign the filtered DataFrame to the variable 'result': Store the result of the filtering operation in the variable 'result' as required by the problem statement."
+    },
+    {
         "distance": 1.0,
-        "from_label": "Problem:I have a Pandas DataFrame that looks something like:df = pd.DataFrame({'col1': {0: 'a', 1: 'b', 2: 'c'},                   'col2': {0: 1, 1: 3, 2: 5},                   'col3': {0: 2, 1: 4, 2: 6},                   'col4': {0: 3, 1: 6, 2: 2},                   'col5': {0: 7, 1: 2, 2: 3},                   'col6': {0: 2, 1: 9, 2: 5},                  })df.columns = [list('AAAAAA'), list('BBCCDD'), list('EFGHIJ')]    A    B       C       D    E   F   G   H   I   J0   a   1   2   3   7   21   b   3   4   6   2   92   c   5   6   2   3   5I basically just want to melt the data frame so that each column level becomes a new column like this:   variable_0 variable_1 variable_2 value0           E          B          A     a1           E          B          A     b2           E          B          A     c3           F          B          A     14           F          B          A     35           F          B          A     56           G          C          A     27           G          C          A     48           G          C          A     69           H          C          A     310          H          C          A     611          H          C          A     212          I          D          A     713          I          D          A     214          I          D          A     315          J          D          A     216          J          D          A     917          J          D          A     5However, in my real use-case, There are many initial columns (a lot more than 6), and it would be great if I could make this generalizable so I didn't have to precisely specify the tuples in value_vars. Is there a way to do this in a generalizable way? I'm basically looking for a way to tell pd.melt that I just want to set value_vars to a list of tuples where in each tuple the first element is the first column level, the second is the second column level, and the third element is the third column level.A:<code>import pandas as pddf = pd.DataFrame({'col1': {0: 'a', 1: 'b', 2: 'c'},                   'col2': {0: 1, 1: 3, 2: 5},                   'col3': {0: 2, 1: 4, 2: 6},                   'col4': {0: 3, 1: 6, 2: 2},                   'col5': {0: 7, 1: 2, 2: 3},                   'col6': {0: 2, 1: 9, 2: 5},                  })df.columns = [list('AAAAAA'), list('BBCCDD'), list('EFGHIJ')]</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
-        "to_label": "Start by importing the necessary library, pandas, which is used for data manipulation and analysis in Python."
+        "from_label": "Assign the filtered DataFrame to the variable 'result': Store the result of the filtering operation in the variable 'result' as required by the problem statement.",
+        "to_label": "Implement the solution in code: \n\n```python\nimport pandas as pd\n\ndf = pd.DataFrame({'A': [1, 2, 's', 3, 'b'],\n                   'B': ['green', 'red', 'blue', 'yellow', 'black']})\n\n# Create a boolean mask for rows where 'A' is a string\nmask = df['A'].apply(lambda x: isinstance(x, str))\n\n# Filter the DataFrame using the mask\nresult = df[mask]\n\n# The result will contain:\n#    A     B\n# 2  s  blue\n# 4  b black\n```"
     },
     {
-        "distance": 0.46671352158251667,
-        "from_label": "Start by importing the necessary library, pandas, which is used for data manipulation and analysis in Python.",
-        "to_label": "Create a DataFrame with multi-level column headers. In this example, we have three levels, and each level is represented by a list of strings. Assign these lists to the columns attribute of the DataFrame."
-    },
-    {
-        "distance": 0.2887744333434431,
-        "from_label": "Create a DataFrame with multi-level column headers. In this example, we have three levels, and each level is represented by a list of strings. Assign these lists to the columns attribute of the DataFrame.",
-        "to_label": "Use the pandas `melt` function to reshape the DataFrame from wide format to long format. The `melt` function requires a list of columns to unpivot; in this case, we want to melt all columns, so we pass the `df.columns.tolist()` as the `value_vars` to `melt`."
-    },
-    {
-        "distance": 0.18921050300015888,
-        "from_label": "Use the pandas `melt` function to reshape the DataFrame from wide format to long format. The `melt` function requires a list of columns to unpivot; in this case, we want to melt all columns, so we pass the `df.columns.tolist()` as the `value_vars` to `melt`.",
-        "to_label": "The `melt` function creates a DataFrame with a column 'value' and three other columns representing the levels of the original multi-level columns. However, the order of these levels is not what we desire; they are reversed."
-    },
-    {
-        "distance": 0.17921970594999106,
-        "from_label": "The `melt` function creates a DataFrame with a column 'value' and three other columns representing the levels of the original multi-level columns. However, the order of these levels is not what we desire; they are reversed.",
-        "to_label": "Iterate over the rows of the melted DataFrame to swap the order of the level columns. This involves accessing each row and reassigning the values of the level columns to reverse their order."
-    },
-    {
-        "distance": 0.2253300211786812,
-        "from_label": "Iterate over the rows of the melted DataFrame to swap the order of the level columns. This involves accessing each row and reassigning the values of the level columns to reverse their order.",
-        "to_label": "For each row, extract the current values of the level columns, reverse their order, and reassign them back to the respective columns. This operation ensures that the first level becomes the first column, the second level becomes the second column, and the third level becomes the third column."
-    },
-    {
-        "distance": 0.43277921215602233,
-        "from_label": "For each row, extract the current values of the level columns, reverse their order, and reassign them back to the respective columns. This operation ensures that the first level becomes the first column, the second level becomes the second column, and the third level becomes the third column.",
-        "to_label": "Return the modified DataFrame, which now has the desired structure: three columns representing the levels of the original multi-level columns and a fourth column containing the values."
-    },
-    {
-        "distance": 0.25481589100996643,
-        "from_label": "Return the modified DataFrame, which now has the desired structure: three columns representing the levels of the original multi-level columns and a fourth column containing the values.",
-        "to_label": "Assign the returned DataFrame to the variable `result`, which holds the final output in the desired format."
-    },
-    {
-        "distance": 0.8684181387868345,
-        "from_label": "Assign the returned DataFrame to the variable `result`, which holds the final output in the desired format.",
-        "to_label": "def g(df):    result = pd.melt(df, value_vars=df.columns.tolist())    cols = result.columns[:-1]    for idx in result.index:        t = result.loc[idx, cols]        for i in range(len(cols)):            result.loc[idx, cols[i]] = t[cols[-i-1]]    return resultresult = g(df.copy())"
+        "distance": 0.3115925795876722,
+        "from_label": "Implement the solution in code: \n\n```python\nimport pandas as pd\n\ndf = pd.DataFrame({'A': [1, 2, 's', 3, 'b'],\n                   'B': ['green', 'red', 'blue', 'yellow', 'black']})\n\n# Create a boolean mask for rows where 'A' is a string\nmask = df['A'].apply(lambda x: isinstance(x, str))\n\n# Filter the DataFrame using the mask\nresult = df[mask]\n\n# The result will contain:\n#    A     B\n# 2  s  blue\n# 4  b black\n```",
+        "to_label": "def g(df):    result = []    for i in range(len(df)):        if type(df.loc[i, 'A']) == str:            result.append(i)    return df.iloc[result]result = g(df.copy())"
     }
 ]

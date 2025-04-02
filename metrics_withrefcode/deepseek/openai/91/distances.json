@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 0.8725055983348243,
+        "from_label": "Problem:I'm using tensorflow 2.10.0.I am building a custom metric to measure the accuracy of one class in my multi-class dataset during training. I am having trouble selecting the class. The targets are one hot (e.g: the class 0 label is [1 0 0 0 0]):I have 10 classes in total, so I need a n*10 tensor as result.Now I have a list of integer (e.g. [0, 6, 5, 4, 2]), how to get a tensor like(dtype should be int32):[[1 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 1 0 0 0] [0 0 0 0 0 1 0 0 0 0] [0 0 0 0 1 0 0 0 0 0] [0 0 1 0 0 0 0 0 0 0]]A:<code>import tensorflow as tfexample_labels = [0, 6, 5, 4, 2]def f(labels=example_labels):    # return the solution in this function    # result = f(labels)    ### BEGIN SOLUTION",
+        "to_label": "Import the TensorFlow library to use its functions and operations."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Import the TensorFlow library to use its functions and operations.",
+        "to_label": "Define the list of integer labels that you want to convert into one-hot encoded format. In this example, the list is [0, 6, 5, 4, 2]."
+    },
+    {
+        "distance": 0.6175584049082146,
+        "from_label": "Define the list of integer labels that you want to convert into one-hot encoded format. In this example, the list is [0, 6, 5, 4, 2].",
+        "to_label": "Use the TensorFlow function `tf.one_hot` to convert the list of integers into a one-hot encoded tensor. The `indices` parameter is the list of integers, `depth` is the total number of classes (10 in this case), `on_value` is the value to use for the active class (1), `off_value` is the value to use for inactive classes (0), and `axis` specifies the axis along which the one-hot encoding should be applied (-1 means the last axis)."
+    },
+    {
+        "distance": 0.30520123796772164,
+        "from_label": "Use the TensorFlow function `tf.one_hot` to convert the list of integers into a one-hot encoded tensor. The `indices` parameter is the list of integers, `depth` is the total number of classes (10 in this case), `on_value` is the value to use for the active class (1), `off_value` is the value to use for inactive classes (0), and `axis` specifies the axis along which the one-hot encoding should be applied (-1 means the last axis).",
+        "to_label": "The `tf.one_hot` function will return a tensor where each integer in the input list is replaced by a one-hot encoded vector of length 10 (since depth=10). For example, the integer 0 becomes [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], the integer 6 becomes [0, 0, 0, 0, 0, 0, 1, 0, 0, 0], and so on."
+    },
+    {
+        "distance": 0.7818514555670543,
+        "from_label": "The `tf.one_hot` function will return a tensor where each integer in the input list is replaced by a one-hot encoded vector of length 10 (since depth=10). For example, the integer 0 becomes [1, 0, 0, 0, 0, 0, 0, 0, 0, 0], the integer 6 becomes [0, 0, 0, 0, 0, 0, 1, 0, 0, 0], and so on.",
+        "to_label": "Return the resulting tensor from the function. The tensor will have a shape of (5, 10) for the given example, where 5 is the number of labels and 10 is the depth (number of classes)."
+    },
+    {
+        "distance": 0.3686927376588144,
+        "from_label": "Return the resulting tensor from the function. The tensor will have a shape of (5, 10) for the given example, where 5 is the number of labels and 10 is the depth (number of classes).",
+        "to_label": "    result =  tf.one_hot(indices=labels, depth=10, on_value=1, off_value=0, axis=-1)    return result"
+    }
+]

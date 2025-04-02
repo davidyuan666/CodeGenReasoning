@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 0.671253801892577,
+        "from_label": "Problem:I'm using tensorflow 2.10.0.What is the equivalent of the following in Tensorflow?np.sum(A, axis=1)I want to get a tensor.A:<code>import tensorflow as tfimport numpy as npnp.random.seed(10)A = tf.constant(np.random.randint(100,size=(5, 3)))</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to find the equivalent of numpy's np.sum(A, axis=1) in TensorFlow. This operation sums the elements of the array A along the specified axis (axis=1 means sum across columns for each row)."
+    },
+    {
+        "distance": 0.4910451347076894,
+        "from_label": "Understand the problem: We need to find the equivalent of numpy's np.sum(A, axis=1) in TensorFlow. This operation sums the elements of the array A along the specified axis (axis=1 means sum across columns for each row).",
+        "to_label": "Identify the TensorFlow function: TensorFlow provides tf.reduce_sum() which is equivalent to np.sum(). It reduces the input tensor along the specified axis by summing the elements."
+    },
+    {
+        "distance": 0.41766753726824307,
+        "from_label": "Identify the TensorFlow function: TensorFlow provides tf.reduce_sum() which is equivalent to np.sum(). It reduces the input tensor along the specified axis by summing the elements.",
+        "to_label": "Specify the axis: In TensorFlow, just like in numpy, axis=1 corresponds to summing across columns for each row. So we'll use axis=1 in tf.reduce_sum()."
+    },
+    {
+        "distance": 0.4325444086511957,
+        "from_label": "Specify the axis: In TensorFlow, just like in numpy, axis=1 corresponds to summing across columns for each row. So we'll use axis=1 in tf.reduce_sum().",
+        "to_label": "Implement the solution: The solution is to use tf.reduce_sum(A, 1) where A is the input tensor. This will return a tensor with the sums of each row."
+    },
+    {
+        "distance": 0.4842456269461538,
+        "from_label": "Implement the solution: The solution is to use tf.reduce_sum(A, 1) where A is the input tensor. This will return a tensor with the sums of each row.",
+        "to_label": "Verify the solution: To ensure correctness, you can compare the output of tf.reduce_sum(A, 1) with np.sum(A.numpy(), axis=1). They should produce the same results."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Verify the solution: To ensure correctness, you can compare the output of tf.reduce_sum(A, 1) with np.sum(A.numpy(), axis=1). They should produce the same results.",
+        "to_label": "def g(A):    return tf.reduce_sum(A, 1)result = g(A.__copy__())"
+    }
+]

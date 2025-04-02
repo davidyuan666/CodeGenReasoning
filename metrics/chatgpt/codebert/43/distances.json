@@ -1,37 +1,42 @@
 [
     {
-        "distance": 0.4767230006190166,
-        "from_label": "Problem:I'm using tensorflow 2.10.0.I am building a custom metric to measure the accuracy of one class in my multi-class dataset during training. I am having trouble selecting the class. The targets are one hot (e.g: the class 0 label is [0 1 1 1 1]):I have 10 classes in total, so I need a n*10 tensor as result.Now I have a list of integer (e.g. [0, 6, 5, 4, 2]), how to get a tensor like(dtype should be int32):[[0 1 1 1 1 1 1 1 1 1] [1 1 1 1 1 1 0 1 1 1] [1 1 1 1 1 0 1 1 1 1] [1 1 1 1 0 1 1 1 1 1] [1 1 0 1 1 1 1 1 1 1]]A:<code>import tensorflow as tflabels = [0, 6, 5, 4, 2]</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
-        "to_label": "Understand the Problem: You want to create a tensor where each row corresponds to a specific class label provided in a list, which you want to 'mask' in a one-hot encoded manner. You want zeros at the position of the class label and ones elsewhere in a tensor of shape (n, 10) where n is the number of labels."
+        "distance": 0.24319378379778545,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltx = np.arange(2010, 2020)y = np.arange(10)plt.plot(x, y)# Rotate the xticklabels to -60 degree. Set the xticks horizontal alignment to left.# SOLUTION START",
+        "to_label": "The problem requires rotating the x-axis tick labels in a plot created using Matplotlib. The plot has been set up with `x` and `y` values, where `x` is a range of years from 2010 to 2019 and `y` is a range of numbers from 0 to 9."
     },
     {
-        "distance": 0.28614356696309734,
-        "from_label": "Understand the Problem: You want to create a tensor where each row corresponds to a specific class label provided in a list, which you want to 'mask' in a one-hot encoded manner. You want zeros at the position of the class label and ones elsewhere in a tensor of shape (n, 10) where n is the number of labels.",
-        "to_label": "Recognize the Use of tf.one_hot: TensorFlow has a function `tf.one_hot` which can convert class indices into a one-hot encoded format. However, you want zeros where the class index is and ones elsewhere, which is the opposite of the usual one-hot encoding."
+        "distance": 0.22795783526782162,
+        "from_label": "The problem requires rotating the x-axis tick labels in a plot created using Matplotlib. The plot has been set up with `x` and `y` values, where `x` is a range of years from 2010 to 2019 and `y` is a range of numbers from 0 to 9.",
+        "to_label": "To rotate the x-axis tick labels, we can use the `plt.xticks()` function, which allows us to customize the appearance of the tick labels on the x-axis."
     },
     {
-        "distance": 0.3240321412812252,
-        "from_label": "Recognize the Use of tf.one_hot: TensorFlow has a function `tf.one_hot` which can convert class indices into a one-hot encoded format. However, you want zeros where the class index is and ones elsewhere, which is the opposite of the usual one-hot encoding.",
-        "to_label": "Configure tf.one_hot: Use the `tf.one_hot` function with the parameters: `indices=labels`, `depth=10`, `on_value=0`, and `off_value=1`. This will create a tensor with zeros at the specified indices and ones elsewhere. The `axis=-1` ensures the one-hot encoding is applied along the last axis, which is typical for multi-class classification problems."
+        "distance": 0.21018426601020168,
+        "from_label": "To rotate the x-axis tick labels, we can use the `plt.xticks()` function, which allows us to customize the appearance of the tick labels on the x-axis.",
+        "to_label": "The `plt.xticks()` function can take several parameters, but in this case, we need to focus on two parameters: `rotation` and `ha` (horizontal alignment)."
     },
     {
-        "distance": 0.30974722216860506,
-        "from_label": "Configure tf.one_hot: Use the `tf.one_hot` function with the parameters: `indices=labels`, `depth=10`, `on_value=0`, and `off_value=1`. This will create a tensor with zeros at the specified indices and ones elsewhere. The `axis=-1` ensures the one-hot encoding is applied along the last axis, which is typical for multi-class classification problems.",
-        "to_label": "Implement the Solution: Define a function `g(labels)` that uses the `tf.one_hot` function with the specified parameters to generate the desired tensor. This function will take a list of labels and return the corresponding tensor."
+        "distance": 0.230649853460176,
+        "from_label": "The `plt.xticks()` function can take several parameters, but in this case, we need to focus on two parameters: `rotation` and `ha` (horizontal alignment).",
+        "to_label": "Set the `rotation` parameter to `-60` to rotate the x-axis tick labels by -60 degrees. This will tilt the labels to the left."
     },
     {
-        "distance": 0.5615777426946839,
-        "from_label": "Implement the Solution: Define a function `g(labels)` that uses the `tf.one_hot` function with the specified parameters to generate the desired tensor. This function will take a list of labels and return the corresponding tensor.",
-        "to_label": "Apply the Function: Call the function `g(labels.copy())` to get the result. The `labels.copy()` ensures that the original input list is not modified, though this is not strictly necessary here since we're not altering the list."
+        "distance": 0.4171026738804415,
+        "from_label": "Set the `rotation` parameter to `-60` to rotate the x-axis tick labels by -60 degrees. This will tilt the labels to the left.",
+        "to_label": "Set the `ha` parameter to `'left'` to align the tick labels to the left. This ensures that the left edge of the text is aligned with the tick mark."
     },
     {
-        "distance": 0.3428745533002922,
-        "from_label": "Apply the Function: Call the function `g(labels.copy())` to get the result. The `labels.copy()` ensures that the original input list is not modified, though this is not strictly necessary here since we're not altering the list.",
-        "to_label": "Verify the Output: Ensure the resulting tensor is of dtype `int32` and matches the expected shape and values, with zeros at the specific indices and ones elsewhere."
+        "distance": 0.31528697983621423,
+        "from_label": "Set the `ha` parameter to `'left'` to align the tick labels to the left. This ensures that the left edge of the text is aligned with the tick mark.",
+        "to_label": "Implement the solution using `plt.xticks(rotation=-60, ha='left')` after plotting the data with `plt.plot(x, y)`."
+    },
+    {
+        "distance": 0.8279115705759357,
+        "from_label": "Implement the solution using `plt.xticks(rotation=-60, ha='left')` after plotting the data with `plt.plot(x, y)`.",
+        "to_label": "Here's how the complete code looks after adding the xticks customization:\n\n```python\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nx = np.arange(2010, 2020)\ny = np.arange(10)\nplt.plot(x, y)\nplt.xticks(rotation=-60, ha='left')\nplt.show()\n```\n\nThis code will create a line plot with x-axis tick labels rotated by -60 degrees and aligned to the left."
     },
     {
         "distance": 1.0,
-        "from_label": "Verify the Output: Ensure the resulting tensor is of dtype `int32` and matches the expected shape and values, with zeros at the specific indices and ones elsewhere.",
-        "to_label": "def g(labels):    return tf.one_hot(indices=labels, depth=10, on_value=0, off_value=1, axis=-1)result = g(labels.copy())"
+        "from_label": "Here's how the complete code looks after adding the xticks customization:\n\n```python\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nx = np.arange(2010, 2020)\ny = np.arange(10)\nplt.plot(x, y)\nplt.xticks(rotation=-60, ha='left')\nplt.show()\n```\n\nThis code will create a line plot with x-axis tick labels rotated by -60 degrees and aligned to the left.",
+        "to_label": "plt.xticks(rotation=-60)plt.xticks(ha=\"left\")"
     }
 ]

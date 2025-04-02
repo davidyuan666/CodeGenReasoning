@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:How do I find all rows in a pandas DataFrame which have the min value for count column, after grouping by ['Sp','Mt'] columns?Example 1: the following DataFrame, which I group by ['Sp','Mt']:   Sp   Mt Value   count0  MM1  S1   a     **3**1  MM1  S1   n       22  MM1  S3   cb    **5**3  MM2  S3   mk    **8**4  MM2  S4   bg    **10**5  MM2  S4   dgd     16  MM4  S2   rd      27  MM4  S2   cb      28  MM4  S2   uyi   **7**Expected output: get the result rows whose count is min in each group, like:    Sp  Mt Value  count1  MM1  S1     n      22  MM1  S3    cb      53  MM2  S3    mk      85  MM2  S4   dgd      16  MM4  S2    rd      27  MM4  S2    cb      2Example 2: this DataFrame, which I group by ['Sp','Mt']:   Sp   Mt   Value  count4  MM2  S4   bg     105  MM2  S4   dgd    16  MM4  S2   rd     27  MM4  S2   cb     88  MM4  S2   uyi    8For the above example, I want to get all the rows where count equals min, in each group e.g:    Sp  Mt Value  count1  MM2  S4   dgd      12  MM4  S2    rd      2A:<code>import pandas as pddf = pd.DataFrame({'Sp': ['MM1', 'MM1', 'MM1', 'MM2', 'MM2', 'MM2', 'MM4', 'MM4', 'MM4'],                   'Mt': ['S1', 'S1', 'S3', 'S3', 'S4', 'S4', 'S2', 'S2', 'S2'],                   'Value': ['a', 'n', 'cb', 'mk', 'bg', 'dgd', 'rd', 'cb', 'uyi'],                   'count': [3, 2, 5, 8, 10, 1, 2, 2, 7]})</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Group the DataFrame by the columns ['Sp', 'Mt'] to create groups based on unique combinations of 'Sp' and 'Mt'."
+    },
+    {
+        "distance": 0.9588574141442087,
+        "from_label": "Group the DataFrame by the columns ['Sp', 'Mt'] to create groups based on unique combinations of 'Sp' and 'Mt'.",
+        "to_label": "For each group, compute the minimum value of the 'count' column. This gives the smallest 'count' value in each group."
+    },
+    {
+        "distance": 0.46332517301012127,
+        "from_label": "For each group, compute the minimum value of the 'count' column. This gives the smallest 'count' value in each group.",
+        "to_label": "Use the transform method to broadcast the minimum 'count' value back to the original DataFrame, aligning it with the original rows. This means each row in a group will have the group's minimum 'count' value in a new Series."
+    },
+    {
+        "distance": 0.6618524068094295,
+        "from_label": "Use the transform method to broadcast the minimum 'count' value back to the original DataFrame, aligning it with the original rows. This means each row in a group will have the group's minimum 'count' value in a new Series.",
+        "to_label": "Compare the original 'count' column with the transformed Series (which contains the group-wise minimum 'count' values) to create a boolean mask. This mask will be True for rows where the 'count' value equals the minimum 'count' in its group."
+    },
+    {
+        "distance": 0.3539084515742766,
+        "from_label": "Compare the original 'count' column with the transformed Series (which contains the group-wise minimum 'count' values) to create a boolean mask. This mask will be True for rows where the 'count' value equals the minimum 'count' in its group.",
+        "to_label": "Apply the boolean mask to the original DataFrame to filter and retain only the rows where 'count' is equal to the minimum 'count' in their respective groups."
+    },
+    {
+        "distance": 0.3931893506179586,
+        "from_label": "Apply the boolean mask to the original DataFrame to filter and retain only the rows where 'count' is equal to the minimum 'count' in their respective groups.",
+        "to_label": "The resulting DataFrame will contain all rows that have the minimum 'count' value for each group defined by ['Sp', 'Mt']."
+    },
+    {
+        "distance": 0.3949255258073711,
+        "from_label": "The resulting DataFrame will contain all rows that have the minimum 'count' value for each group defined by ['Sp', 'Mt'].",
+        "to_label": "def g(df):    return df[df.groupby(['Sp', 'Mt'])['count'].transform(min) == df['count']]result = g(df.copy())"
+    }
+]

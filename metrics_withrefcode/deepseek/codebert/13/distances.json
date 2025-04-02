@@ -1,0 +1,47 @@
+[
+    {
+        "distance": 0.627724879241277,
+        "from_label": "Problem:Let's say I have 5 columns.pd.DataFrame({'Column1': [1, 2, 3, 4, 5, 6, 7, 8, 9],'Column2': [4, 3, 6, 8, 3, 4, 1, 4, 3],'Column3': [7, 3, 3, 1, 2, 2, 3, 2, 7],'Column4': [9, 8, 7, 6, 5, 4, 3, 2, 1],'Column5': [1, 1, 1, 1, 1, 1, 1, 1, 1]})Is there a function to know the type of relationship each par of columns has? (one-to-one, one-to-many, many-to-one, many-to-many)An list output like:['Column1 Column2 one-2-many', 'Column1 Column3 one-2-many', 'Column1 Column4 one-2-one', 'Column1 Column5 one-2-many', 'Column2 Column1 many-2-one', 'Column2 Column3 many-2-many', 'Column2 Column4 many-2-one', 'Column2 Column5 many-2-many', 'Column3 Column1 many-2-one', 'Column3 Column2 many-2-many', 'Column3 Column4 many-2-one', 'Column3 Column5 many-2-many', 'Column4 Column1 one-2-one', 'Column4 Column2 one-2-many', 'Column4 Column3 one-2-many', 'Column4 Column5 one-2-many', 'Column5 Column1 many-2-one', 'Column5 Column2 many-2-many', 'Column5 Column3 many-2-many', 'Column5 Column4 many-2-one']A:<code>import pandas as pddf = pd.DataFrame({    'Column1': [1, 2, 3, 4, 5, 6, 7, 8, 9],    'Column2': [4, 3, 6, 8, 3, 4, 1, 4, 3],    'Column3': [7, 3, 3, 1, 2, 2, 3, 2, 7],    'Column4': [9, 8, 7, 6, 5, 4, 3, 2, 1],    'Column5': [1, 1, 1, 1, 1, 1, 1, 1, 1]})</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Define a helper function `get_relation` that takes a DataFrame and two column names as input. This function will determine the relationship between the two columns."
+    },
+    {
+        "distance": 0.28359270134112763,
+        "from_label": "Define a helper function `get_relation` that takes a DataFrame and two column names as input. This function will determine the relationship between the two columns.",
+        "to_label": "In `get_relation`, group the DataFrame by the first column and count the occurrences of each value in the second column. Find the maximum count to determine if the first column is 'one' (max count is 1) or 'many' (max count > 1)."
+    },
+    {
+        "distance": 0.4074178078460012,
+        "from_label": "In `get_relation`, group the DataFrame by the first column and count the occurrences of each value in the second column. Find the maximum count to determine if the first column is 'one' (max count is 1) or 'many' (max count > 1).",
+        "to_label": "Similarly, group the DataFrame by the second column and count the occurrences of each value in the first column. Find the maximum count to determine if the second column is 'one' or 'many'."
+    },
+    {
+        "distance": 0.4745190426476278,
+        "from_label": "Similarly, group the DataFrame by the second column and count the occurrences of each value in the first column. Find the maximum count to determine if the second column is 'one' or 'many'.",
+        "to_label": "Based on the maximum counts from both groupings, return the appropriate relationship string ('one-2-one', 'one-2-many', 'many-2-one', or 'many-2-many')."
+    },
+    {
+        "distance": 0.3126906245992825,
+        "from_label": "Based on the maximum counts from both groupings, return the appropriate relationship string ('one-2-one', 'one-2-many', 'many-2-one', or 'many-2-many').",
+        "to_label": "Define the main function `g` that takes a DataFrame as input. This function will generate all possible pairs of columns (excluding pairs where both columns are the same) and determine their relationships."
+    },
+    {
+        "distance": 0.3341646473713205,
+        "from_label": "Define the main function `g` that takes a DataFrame as input. This function will generate all possible pairs of columns (excluding pairs where both columns are the same) and determine their relationships.",
+        "to_label": "Use `itertools.product` to generate all possible column pairs. For each pair, call `get_relation` to get the relationship and append the result string to the result list."
+    },
+    {
+        "distance": 0.27029881970971675,
+        "from_label": "Use `itertools.product` to generate all possible column pairs. For each pair, call `get_relation` to get the relationship and append the result string to the result list.",
+        "to_label": "Return the result list containing all relationship strings for the column pairs."
+    },
+    {
+        "distance": 0.43276059504043085,
+        "from_label": "Return the result list containing all relationship strings for the column pairs.",
+        "to_label": "Call the function `g` with a copy of the input DataFrame `df` and store the result in the variable `result`."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Call the function `g` with a copy of the input DataFrame `df` and store the result in the variable `result`.",
+        "to_label": "def get_relation(df, col1, col2):    first_max = df[[col1, col2]].groupby(col1).count().max()[0]    second_max = df[[col1, col2]].groupby(col2).count().max()[0]    if first_max==1:        if second_max==1:            return 'one-2-one'        else:            return 'one-2-many'    else:        if second_max==1:            return 'many-2-one'        else:            return 'many-2-many'from itertools import productdef g(df):    result = []    for col_i, col_j in product(df.columns, df.columns):        if col_i == col_j:            continue        result.append(col_i+' '+col_j+' '+get_relation(df, col_i, col_j))    return resultresult = g(df.copy())"
+    }
+]

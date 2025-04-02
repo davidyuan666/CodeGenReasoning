@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 0.8078516608039154,
+        "from_label": "Problem:   Survived  SibSp  Parch0         0      1      01         1      1      02         1      0      03         1      1      04         0      0      1Given the above dataframe, is there an elegant way to groupby with a condition?I want to split the data into two groups based on the following conditions:(df['Survived'] > 0) | (df['Parch'] > 0) =   New Group -\"Has Family\" (df['Survived'] == 0) & (df['Parch'] == 0) = New Group - \"No Family\"then take the means of both of these groups and end up with an output like this:Has Family    0.5No Family     1.0Name: SibSp, dtype: float64Can it be done using groupby or would I have to append a new column using the above conditional statement?A:<code>import pandas as pddf = pd.DataFrame({'Survived': [0,1,1,1,0],                   'SibSp': [1,1,0,1,0],                   'Parch': [0,0,0,0,1]})</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "First, understand the problem requirements. We need to group the dataframe into two categories based on certain conditions and then calculate the mean of 'SibSp' for each group."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "First, understand the problem requirements. We need to group the dataframe into two categories based on certain conditions and then calculate the mean of 'SibSp' for each group.",
+        "to_label": "Define the conditions for grouping: 'Has Family' and 'No Family'. 'Has Family' is defined as rows where either 'Survived' > 0 or 'Parch' > 0. 'No Family' is defined as rows where 'Survived' == 0 and 'Parch' == 0."
+    },
+    {
+        "distance": 0.3629682090569081,
+        "from_label": "Define the conditions for grouping: 'Has Family' and 'No Family'. 'Has Family' is defined as rows where either 'Survived' > 0 or 'Parch' > 0. 'No Family' is defined as rows where 'Survived' == 0 and 'Parch' == 0.",
+        "to_label": "To facilitate the grouping, we can use NumPy's 'np.where' to create a new array that labels each row based on the conditions. Use 'np.where' with the condition: (df['Survived'] + df['Parch']) >= 1 to label 'Has Family', and otherwise label 'No Family'."
+    },
+    {
+        "distance": 0.6909239047314489,
+        "from_label": "To facilitate the grouping, we can use NumPy's 'np.where' to create a new array that labels each row based on the conditions. Use 'np.where' with the condition: (df['Survived'] + df['Parch']) >= 1 to label 'Has Family', and otherwise label 'No Family'.",
+        "to_label": "Perform the groupby operation on the newly created labels and calculate the mean of the 'SibSp' column for each group. Use 'df.groupby' with the group labels array and specify 'SibSp' as the column to aggregate using the 'mean' function."
+    },
+    {
+        "distance": 0.33105866690766517,
+        "from_label": "Perform the groupby operation on the newly created labels and calculate the mean of the 'SibSp' column for each group. Use 'df.groupby' with the group labels array and specify 'SibSp' as the column to aggregate using the 'mean' function.",
+        "to_label": "Write a function 'g' that takes a dataframe as input, applies the grouping logic, and returns the mean 'SibSp' for each group."
+    },
+    {
+        "distance": 0.6649857486478595,
+        "from_label": "Write a function 'g' that takes a dataframe as input, applies the grouping logic, and returns the mean 'SibSp' for each group.",
+        "to_label": "Finally, call the function with a copy of the dataframe to get the desired result. This ensures the original dataframe remains unaltered."
+    },
+    {
+        "distance": 0.5700727166553119,
+        "from_label": "Finally, call the function with a copy of the dataframe to get the desired result. This ensures the original dataframe remains unaltered.",
+        "to_label": "import numpy as npdef g(df):    family = np.where((df['Survived'] + df['Parch']) >= 1 , 'Has Family', 'No Family')    return df.groupby(family)['SibSp'].mean()result = g(df.copy())"
+    }
+]

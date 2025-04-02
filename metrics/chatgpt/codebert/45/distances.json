@@ -1,42 +1,47 @@
 [
     {
         "distance": 1.0,
-        "from_label": "Problem:I have a data which include dates in sorted order.I would like to split the given data to train and test set. However, I must to split the data in a way that the test have to be older than the train set.Please look at the given example:Let's assume that we have data by dates:1, 2, 3, ..., n.The numbers from 1 to n represents the days.I would like to split it to 80% from the data to be train set and 20% of the data to be test set.Good results:1) train set = 21, ..., 100   test set = 1, 2, 3, ..., 202) train set = 121, ... 200    test set = 101, 102, ... 120My code:train_size = 0.8train_dataframe, test_dataframe = cross_validation.train_test_split(features_dataframe, train_size=train_size)train_dataframe = train_dataframe.sort([\"date\"])test_dataframe = test_dataframe.sort([\"date\"])Does not work for me!Any suggestions?A:<code>import numpy as npimport pandas as pdfrom sklearn.model_selection import train_test_splitfeatures_dataframe = load_data()</code>train_dataframe, test_dataframe = ... # put solution in these variablesBEGIN SOLUTION<code>",
-        "to_label": "Understand the problem: We need to split the data into train and test sets where the test set contains older data than the train set. The train set should include 80% of the data, and the test set should contain 20%."
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as snsx = np.arange(10)y = np.random.randn(10)plt.scatter(x, y)# show yticks and horizontal grid at y positions 3 and 4# show xticks and vertical grid at x positions 1 and 2# SOLUTION START",
+        "to_label": "Import the necessary libraries: numpy, pandas, matplotlib.pyplot, and seaborn. These are commonly used for data manipulation and visualization in Python."
     },
     {
-        "distance": 0.7042567488490385,
-        "from_label": "Understand the problem: We need to split the data into train and test sets where the test set contains older data than the train set. The train set should include 80% of the data, and the test set should contain 20%.",
-        "to_label": "Check the current code: The original code uses `cross_validation.train_test_split`, which randomly splits the data into train and test sets. This is not suitable since we need to maintain the order based on dates."
+        "distance": 0.9532774023099148,
+        "from_label": "Import the necessary libraries: numpy, pandas, matplotlib.pyplot, and seaborn. These are commonly used for data manipulation and visualization in Python.",
+        "to_label": "Use numpy to create an array 'x' with values ranging from 0 to 9 using np.arange(10). This will serve as the x-coordinates for the scatter plot."
     },
     {
-        "distance": 0.43528194417971333,
-        "from_label": "Check the current code: The original code uses `cross_validation.train_test_split`, which randomly splits the data into train and test sets. This is not suitable since we need to maintain the order based on dates.",
-        "to_label": "Plan the solution: To ensure the test set contains older data than the train set, we should directly slice the sorted data. We will calculate the split index based on the percentages and use slicing to create the train and test sets."
+        "distance": 0.22326029623269422,
+        "from_label": "Use numpy to create an array 'x' with values ranging from 0 to 9 using np.arange(10). This will serve as the x-coordinates for the scatter plot.",
+        "to_label": "Generate an array 'y' of random numbers from a normal distribution with np.random.randn(10). This serves as the y-coordinates for the scatter plot."
     },
     {
-        "distance": 0.7661592730961739,
-        "from_label": "Plan the solution: To ensure the test set contains older data than the train set, we should directly slice the sorted data. We will calculate the split index based on the percentages and use slicing to create the train and test sets.",
-        "to_label": "Calculate the number of samples: We need to determine how many samples should be in the test set (20%) and how many in the train set (80%). If `n` is the total number of samples, `test_size = ceil(n * 0.2)` and `train_size = n - test_size`."
+        "distance": 0.31490467960303264,
+        "from_label": "Generate an array 'y' of random numbers from a normal distribution with np.random.randn(10). This serves as the y-coordinates for the scatter plot.",
+        "to_label": "Create a scatter plot using matplotlib's plt.scatter function with 'x' and 'y' as inputs. This will plot the points with coordinates (x[i], y[i]) for i in range(10)."
     },
     {
-        "distance": 0.9829234932660357,
-        "from_label": "Calculate the number of samples: We need to determine how many samples should be in the test set (20%) and how many in the train set (80%). If `n` is the total number of samples, `test_size = ceil(n * 0.2)` and `train_size = n - test_size`.",
-        "to_label": "Slice the data: Use the calculated sizes to slice the data. The first part of the data slice (0 to `test_size`) will be the test set, and the remaining part will be the train set."
+        "distance": 0.5858759929270974,
+        "from_label": "Create a scatter plot using matplotlib's plt.scatter function with 'x' and 'y' as inputs. This will plot the points with coordinates (x[i], y[i]) for i in range(10).",
+        "to_label": "To show yticks and horizontal grid lines at y positions 3 and 4, use plt.yticks([3, 4]). This sets the positions where yticks and horizontal grid lines will be displayed."
     },
     {
-        "distance": 0.3772437975604835,
-        "from_label": "Slice the data: Use the calculated sizes to slice the data. The first part of the data slice (0 to `test_size`) will be the test set, and the remaining part will be the train set.",
-        "to_label": "Implement the solution: Use pandas DataFrame slicing to split the sorted data. Ensure the data is sorted by date before slicing, although it is implied the data is already sorted."
+        "distance": 0.2296683514201912,
+        "from_label": "To show yticks and horizontal grid lines at y positions 3 and 4, use plt.yticks([3, 4]). This sets the positions where yticks and horizontal grid lines will be displayed.",
+        "to_label": "To show xticks and vertical grid lines at x positions 1 and 2, use plt.xticks([1, 2]). This sets the positions where xticks and vertical grid lines will be displayed."
     },
     {
-        "distance": 0.25300823272454187,
-        "from_label": "Implement the solution: Use pandas DataFrame slicing to split the sorted data. Ensure the data is sorted by date before slicing, although it is implied the data is already sorted.",
-        "to_label": "Write the implementation code: Calculate the test size, slice the DataFrame to get the test set from the start up to the test size, and the train set from the test size to the end."
+        "distance": 0.7914909000947472,
+        "from_label": "To show xticks and vertical grid lines at x positions 1 and 2, use plt.xticks([1, 2]). This sets the positions where xticks and vertical grid lines will be displayed.",
+        "to_label": "Enable the grid display in the plot using plt.grid(True). This allows the grid lines to be shown at the specified positions."
     },
     {
-        "distance": 0.4212682532184754,
-        "from_label": "Write the implementation code: Calculate the test size, slice the DataFrame to get the test set from the start up to the test size, and the train set from the test size to the end.",
-        "to_label": "n = features_dataframe.shape[0]train_size = 0.8test_size = 1 - train_size + 0.005train_dataframe = features_dataframe.iloc[int(n * test_size):]test_dataframe = features_dataframe.iloc[:int(n * test_size)]"
+        "distance": 0.2245067371673698,
+        "from_label": "Enable the grid display in the plot using plt.grid(True). This allows the grid lines to be shown at the specified positions.",
+        "to_label": "Display the plot using plt.show(). This renders the figure with the scatter plot, ticks, and grid lines as specified."
+    },
+    {
+        "distance": 0.7974778760259668,
+        "from_label": "Display the plot using plt.show(). This renders the figure with the scatter plot, ticks, and grid lines as specified.",
+        "to_label": "ax = plt.gca()ax.yaxis.set_ticks([3, 4])ax.yaxis.grid(True)ax.xaxis.set_ticks([1, 2])ax.xaxis.grid(True)"
     }
 ]

@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 0.9965751528584925,
+        "from_label": "Problem:I have a dataFrame with rows and columns that max value is 2.   A  B  C  D0  1  2  0  11  0  0  0  02  1  0  0  13  0  1  2  04  1  1  0  1The end result should be   A  B  C  D0  0  0  0  01  0  0  0  02  1  0  0  13  0  0  0  04  1  0  0  1Notice the rows and columns that had maximum 2 have been set 0.A:<code>import pandas as pddf = pd.DataFrame([[1,2,3,1],[0,0,0,0],[1,0,0,1],[0,1,2,0],[1,1,0,1]],columns=['A','B','C','D'])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Identify rows where the maximum value is 2. This is done by checking the maximum value in each row (axis=1) and comparing it to 2."
+    },
+    {
+        "distance": 0.45775836403077985,
+        "from_label": "Identify rows where the maximum value is 2. This is done by checking the maximum value in each row (axis=1) and comparing it to 2.",
+        "to_label": "Identify columns where the maximum value is 2. This is done by checking the maximum value in each column (axis=0) and comparing it to 2."
+    },
+    {
+        "distance": 0.8251353532809516,
+        "from_label": "Identify columns where the maximum value is 2. This is done by checking the maximum value in each column (axis=0) and comparing it to 2.",
+        "to_label": "Set all values in the identified rows to 0. This uses the loc accessor to select the rows and assign 0 to all their values."
+    },
+    {
+        "distance": 0.5115792903305826,
+        "from_label": "Set all values in the identified rows to 0. This uses the loc accessor to select the rows and assign 0 to all their values.",
+        "to_label": "Set all values in the identified columns to 0. This uses the loc accessor to select the columns and assign 0 to all their values."
+    },
+    {
+        "distance": 0.8945110848698793,
+        "from_label": "Set all values in the identified columns to 0. This uses the loc accessor to select the columns and assign 0 to all their values.",
+        "to_label": "Return the modified DataFrame with the specified rows and columns set to 0."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Return the modified DataFrame with the specified rows and columns set to 0.",
+        "to_label": "def g(df):    rows = df.max(axis=1) == 2    cols = df.max(axis=0) == 2    df.loc[rows] = 0    df.loc[:,cols] = 0    return dfresult = g(df.copy())"
+    }
+]

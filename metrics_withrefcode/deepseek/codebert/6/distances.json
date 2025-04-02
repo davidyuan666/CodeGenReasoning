@@ -1,0 +1,47 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "import numpyimport pandasimport matplotlib.pyplot as pltimport seabornseaborn.set(style=\"ticks\")numpy.random.seed(0)N = 37_genders = [\"Female\", \"Male\", \"Non-binary\", \"No Response\"]df = pandas.DataFrame(    {        \"Height (cm)\": numpy.random.uniform(low=130, high=200, size=N),        \"Weight (kg)\": numpy.random.uniform(low=30, high=100, size=N),        \"Gender\": numpy.random.choice(_genders, size=N),    })# make seaborn relation plot and color by the gender field of the dataframe df# SOLUTION START",
+        "to_label": "Import the necessary libraries: numpy, pandas, matplotlib.pyplot, and seaborn."
+    },
+    {
+        "distance": 0.4236564404393221,
+        "from_label": "Import the necessary libraries: numpy, pandas, matplotlib.pyplot, and seaborn.",
+        "to_label": "Set the seaborn style to 'ticks' for better visualization."
+    },
+    {
+        "distance": 0.2760731701595715,
+        "from_label": "Set the seaborn style to 'ticks' for better visualization.",
+        "to_label": "Set a random seed for reproducibility using numpy.random.seed(0)."
+    },
+    {
+        "distance": 0.3399572144845581,
+        "from_label": "Set a random seed for reproducibility using numpy.random.seed(0).",
+        "to_label": "Define the number of samples (N) as 37."
+    },
+    {
+        "distance": 0.399856063263428,
+        "from_label": "Define the number of samples (N) as 37.",
+        "to_label": "Create a list of gender categories: 'Female', 'Male', 'Non-binary', and 'No Response'."
+    },
+    {
+        "distance": 0.2622431055203298,
+        "from_label": "Create a list of gender categories: 'Female', 'Male', 'Non-binary', and 'No Response'.",
+        "to_label": "Generate a pandas DataFrame with random data for 'Height (cm)', 'Weight (kg)', and 'Gender' using numpy.random.uniform and numpy.random.choice."
+    },
+    {
+        "distance": 0.3325870371289681,
+        "from_label": "Generate a pandas DataFrame with random data for 'Height (cm)', 'Weight (kg)', and 'Gender' using numpy.random.uniform and numpy.random.choice.",
+        "to_label": "Use seaborn.relplot to create a relational plot. Specify the DataFrame (data=df), the x-axis as 'Weight (kg)', the y-axis as 'Height (cm)', and color the points by the 'Gender' field."
+    },
+    {
+        "distance": 0.7987684230567177,
+        "from_label": "Use seaborn.relplot to create a relational plot. Specify the DataFrame (data=df), the x-axis as 'Weight (kg)', the y-axis as 'Height (cm)', and color the points by the 'Gender' field.",
+        "to_label": "Ensure the order of the gender categories in the legend matches the original list by setting hue_order=_genders."
+    },
+    {
+        "distance": 0.7419700103158753,
+        "from_label": "Ensure the order of the gender categories in the legend matches the original list by setting hue_order=_genders.",
+        "to_label": "seaborn.relplot(    data=df, x=\"Weight (kg)\", y=\"Height (cm)\", hue=\"Gender\", hue_order=_genders)"
+    }
+]

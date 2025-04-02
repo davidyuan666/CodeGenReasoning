@@ -1,0 +1,8 @@
+[
+    "Input: Implement a binary tree search algorithm",
+    "First, we need a node structure to store data and references to left and right subtrees",
+    "<next>",
+    "Based on the binary search tree property: left is smaller, right is larger, we can implement the search using recursion",
+    "<next>",
+    "Code implementation:\ndef search_bst(root, target):\n    if not root or root.val == target:\n        return root\n    if target < root.val:\n        return search_bst(root.left, target)\n    return search_bst(root.right, target)"
+]

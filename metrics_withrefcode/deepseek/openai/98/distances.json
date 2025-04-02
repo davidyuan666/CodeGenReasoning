@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 0.8454764389998486,
+        "from_label": "Problem:How can I perform regression in sklearn, using SVM and a polynomial kernel (degree=2)?Note to use default arguments. Thanks.A:<code>import numpy as npimport pandas as pdimport sklearnX, y = load_data()assert type(X) == np.ndarrayassert type(y) == np.ndarray# fit, then predict X</code>predict = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Import the necessary library for Support Vector Regression (SVR) from sklearn.svm."
+    },
+    {
+        "distance": 0.5294087610497098,
+        "from_label": "Import the necessary library for Support Vector Regression (SVR) from sklearn.svm.",
+        "to_label": "Create an instance of the SVR model with a polynomial kernel of degree 2. This is done by setting the 'kernel' parameter to 'poly' and the 'degree' parameter to 2."
+    },
+    {
+        "distance": 0.5773718158480322,
+        "from_label": "Create an instance of the SVR model with a polynomial kernel of degree 2. This is done by setting the 'kernel' parameter to 'poly' and the 'degree' parameter to 2.",
+        "to_label": "Fit the SVR model to the training data X and target values y using the fit method."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Fit the SVR model to the training data X and target values y using the fit method.",
+        "to_label": "Use the trained model to make predictions on the input data X using the predict method."
+    },
+    {
+        "distance": 0.5047603200636022,
+        "from_label": "Use the trained model to make predictions on the input data X using the predict method.",
+        "to_label": "Assign the predictions to the variable 'predict' as specified in the problem statement."
+    },
+    {
+        "distance": 0.897191287266465,
+        "from_label": "Assign the predictions to the variable 'predict' as specified in the problem statement.",
+        "to_label": "from sklearn.svm import SVRsvr_poly = SVR(kernel='poly', degree=2)svr_poly.fit(X, y)predict = svr_poly.predict(X)"
+    }
+]

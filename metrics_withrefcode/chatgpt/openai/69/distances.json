@@ -1,0 +1,47 @@
+[
+    {
+        "distance": 0.18506485552311674,
+        "from_label": "Problem:I have the following dataframe:  key1  key20    a   one1    a   two2    b   one3    b   two4    a   one5    c   twoNow, I want to group the dataframe by the key1 and count the column key2 with the value \"one\" to get this result:  key1  count0    a      21    b      12    c      0I just get the usual count with:df.groupby(['key1']).size()But I don't know how to insert the condition.I tried things like this:df.groupby(['key1']).apply(df[df['key2'] == 'one'])But I can't get any further.  How can I do this?A:<code>import pandas as pddf = pd.DataFrame({'key1': ['a', 'a', 'b', 'b', 'a', 'c'],                   'key2': ['one', 'two', 'one', 'two', 'one', 'two']})</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We have a DataFrame with two columns, 'key1' and 'key2'. We need to group the DataFrame by 'key1' and count how many times the value 'one' appears in 'key2' for each group."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Understand the problem: We have a DataFrame with two columns, 'key1' and 'key2'. We need to group the DataFrame by 'key1' and count how many times the value 'one' appears in 'key2' for each group.",
+        "to_label": "Create a DataFrame: We start by creating a pandas DataFrame with the given data using the `pd.DataFrame` function."
+    },
+    {
+        "distance": 0.24075188325669084,
+        "from_label": "Create a DataFrame: We start by creating a pandas DataFrame with the given data using the `pd.DataFrame` function.",
+        "to_label": "Write a function to process the DataFrame: Define a function `g` that takes a DataFrame as an argument. This function will perform the needed operations to get the desired result."
+    },
+    {
+        "distance": 0.9543488206104448,
+        "from_label": "Write a function to process the DataFrame: Define a function `g` that takes a DataFrame as an argument. This function will perform the needed operations to get the desired result.",
+        "to_label": "Group by 'key1': Use the `groupby` method on the DataFrame to group the data by 'key1'. This will allow us to perform operations on each group separately."
+    },
+    {
+        "distance": 0.5221581004494492,
+        "from_label": "Group by 'key1': Use the `groupby` method on the DataFrame to group the data by 'key1'. This will allow us to perform operations on each group separately.",
+        "to_label": "Apply a lambda function to count occurrences: Within each group, use the `apply` function with a lambda expression. The lambda will check where 'key2' is equal to 'one' and use the `sum` method to count these occurrences. This works because `True` is treated as 1 and `False` as 0 in pandas."
+    },
+    {
+        "distance": 0.5570893360500431,
+        "from_label": "Apply a lambda function to count occurrences: Within each group, use the `apply` function with a lambda expression. The lambda will check where 'key2' is equal to 'one' and use the `sum` method to count these occurrences. This works because `True` is treated as 1 and `False` as 0 in pandas.",
+        "to_label": "Reset the index: After applying the lambda function, use `reset_index` to convert the resulting Series back into a DataFrame and set the column name to 'count'."
+    },
+    {
+        "distance": 0.3483978574340294,
+        "from_label": "Reset the index: After applying the lambda function, use `reset_index` to convert the resulting Series back into a DataFrame and set the column name to 'count'.",
+        "to_label": "Store the result: Assign the result of the function `g` to the variable `result`. This will store the final DataFrame with 'key1' and the count of 'one' in 'key2'."
+    },
+    {
+        "distance": 0.31765915053374727,
+        "from_label": "Store the result: Assign the result of the function `g` to the variable `result`. This will store the final DataFrame with 'key1' and the count of 'one' in 'key2'.",
+        "to_label": "Execute the function: Finally, execute the function `g` by passing the original DataFrame `df` to it."
+    },
+    {
+        "distance": 0.5063914294667141,
+        "from_label": "Execute the function: Finally, execute the function `g` by passing the original DataFrame `df` to it.",
+        "to_label": "def g(df):    return df.groupby('key1')['key2'].apply(lambda x: (x=='one').sum()).reset_index(name='count')result = g(df.copy())"
+    }
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltx = np.arange(10)y = np.arange(10, 20)z = np.arange(10)import matplotlib.pyplot as pltplt.plot(x, y)plt.plot(x, z)# Give names to the lines in the above plot 'Y' and 'Z' and show them in a legend# SOLUTION START",
+        "to_label": "Start by importing the necessary libraries. We need NumPy for numerical operations, Pandas for data manipulation (though not used in this problem), and Matplotlib for plotting. The code imports NumPy as 'np', Pandas as 'pd', and Matplotlib's pyplot module as 'plt'."
+    },
+    {
+        "distance": 0.3760829350333415,
+        "from_label": "Start by importing the necessary libraries. We need NumPy for numerical operations, Pandas for data manipulation (though not used in this problem), and Matplotlib for plotting. The code imports NumPy as 'np', Pandas as 'pd', and Matplotlib's pyplot module as 'plt'.",
+        "to_label": "Create the data for plotting. Use NumPy's 'arange' function to create three arrays: 'x' which is an array from 0 to 9, 'y' which is an array from 10 to 19, and 'z' which is another array from 0 to 9."
+    },
+    {
+        "distance": 0.8379153633523556,
+        "from_label": "Create the data for plotting. Use NumPy's 'arange' function to create three arrays: 'x' which is an array from 0 to 9, 'y' which is an array from 10 to 19, and 'z' which is another array from 0 to 9.",
+        "to_label": "Plot the first line using 'plt.plot'. This function takes the x-values and y-values for the data to plot. The code 'plt.plot(x, y)' plots 'x' against 'y'."
+    },
+    {
+        "distance": 0.32656074630703447,
+        "from_label": "Plot the first line using 'plt.plot'. This function takes the x-values and y-values for the data to plot. The code 'plt.plot(x, y)' plots 'x' against 'y'.",
+        "to_label": "Plot the second line using 'plt.plot' again. This time, plot 'x' against 'z' by calling 'plt.plot(x, z)'."
+    },
+    {
+        "distance": 0.5419287237461451,
+        "from_label": "Plot the second line using 'plt.plot' again. This time, plot 'x' against 'z' by calling 'plt.plot(x, z)'.",
+        "to_label": "To distinguish between the two lines, add labels to them. Modify the 'plt.plot' function calls by adding the 'label' parameter. For the first line, use 'plt.plot(x, y, label=\"Y\")'. For the second line, use 'plt.plot(x, z, label=\"Z\")'."
+    },
+    {
+        "distance": 0.3201737811901277,
+        "from_label": "To distinguish between the two lines, add labels to them. Modify the 'plt.plot' function calls by adding the 'label' parameter. For the first line, use 'plt.plot(x, y, label=\"Y\")'. For the second line, use 'plt.plot(x, z, label=\"Z\")'.",
+        "to_label": "After plotting both lines with labels, invoke 'plt.legend()' to add a legend to the plot. This function displays the labels defined in the 'plot' functions ('Y' and 'Z') in a legend, making it clear which line corresponds to which dataset."
+    },
+    {
+        "distance": 0.3290252391249937,
+        "from_label": "After plotting both lines with labels, invoke 'plt.legend()' to add a legend to the plot. This function displays the labels defined in the 'plot' functions ('Y' and 'Z') in a legend, making it clear which line corresponds to which dataset.",
+        "to_label": "Finally, display the plot using 'plt.show()'. This is a commonly used function to display the current figure that contains the plot. Note that 'plt.show()' is not part of the reference solution, but it is typically used to visualize the plot."
+    },
+    {
+        "distance": 0.8263815800920942,
+        "from_label": "Finally, display the plot using 'plt.show()'. This is a commonly used function to display the current figure that contains the plot. Note that 'plt.show()' is not part of the reference solution, but it is typically used to visualize the plot.",
+        "to_label": "plt.plot(x, y, label=\"Y\")plt.plot(x, z, label=\"Z\")plt.legend()"
+    }
+]

@@ -1,37 +1,42 @@
 [
     {
-        "distance": 0.3471974286920202,
-        "from_label": "Problem:What is the most efficient way to remove negative elements in an array? I have tried numpy.delete and Remove all specific value from array and code of the form x[x != i].For:import numpy as npx = np.array([-2, -1.4, -1.1, 0, 1.2, 2.2, 3.1, 4.4, 8.3, 9.9, 10, 14, 16.2])I want to end up with an array:[0, 1.2, 2.2, 3.1, 4.4, 8.3, 9.9, 10, 14, 16.2]A:<code>import numpy as npx = np.array([-2, -1.4, -1.1, 0, 1.2, 2.2, 3.1, 4.4, 8.3, 9.9, 10, 14, 16.2])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
-        "to_label": "Understand the problem: We need to remove all negative elements from the numpy array 'x'."
+        "distance": 0.225203836101304,
+        "from_label": "Problem:Considering a simple df:HeaderA | HeaderB | HeaderC     476      4365      457Is there a way to rename all columns, for example to add to all columns an \"X\" in the head? XHeaderA | XHeaderB | XHeaderC    476      4365      457I am concatenating multiple dataframes and want to easily differentiate the columns dependent on which dataset they came from. I have over 50 column headers and ten files; so the above approach will take a long time. Thank YouA:<code>import pandas as pddf = pd.DataFrame(    {'HeaderA': [476],     'HeaderB': [4365],     'HeaderC': [457]})</code>df = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to rename all columns in the DataFrame by adding an 'X' prefix to each column name."
     },
     {
-        "distance": 0.8516913267734268,
-        "from_label": "Understand the problem: We need to remove all negative elements from the numpy array 'x'.",
-        "to_label": "Identify the condition: We want to keep elements that are greater than or equal to 0."
+        "distance": 0.5174242729835049,
+        "from_label": "Understand the problem: We need to rename all columns in the DataFrame by adding an 'X' prefix to each column name.",
+        "to_label": "Identify the current column names of the DataFrame. In this case, the columns are 'HeaderA', 'HeaderB', and 'HeaderC'."
     },
     {
-        "distance": 0.49058060282855315,
-        "from_label": "Identify the condition: We want to keep elements that are greater than or equal to 0.",
-        "to_label": "Use boolean indexing: Numpy allows us to use boolean conditions to filter arrays. The condition 'x >= 0' will return a boolean array where each element is True if the corresponding element in 'x' is >= 0, and False otherwise."
+        "distance": 0.6062864244580272,
+        "from_label": "Identify the current column names of the DataFrame. In this case, the columns are 'HeaderA', 'HeaderB', and 'HeaderC'.",
+        "to_label": "Use the `rename` method of the DataFrame to modify the column names. The `rename` method can take a function that will be applied to each column name."
     },
     {
-        "distance": 0.36202014765448143,
-        "from_label": "Use boolean indexing: Numpy allows us to use boolean conditions to filter arrays. The condition 'x >= 0' will return a boolean array where each element is True if the corresponding element in 'x' is >= 0, and False otherwise.",
-        "to_label": "Apply the condition: By using 'x[x >= 0]', we filter the array 'x' to only include elements where the condition is True (i.e., elements >= 0)."
+        "distance": 0.8264094048254763,
+        "from_label": "Use the `rename` method of the DataFrame to modify the column names. The `rename` method can take a function that will be applied to each column name.",
+        "to_label": "Define a function or a lambda function that adds 'X' to the beginning of each column name. For example, `lambda x: 'X' + x`."
+    },
+    {
+        "distance": 0.8101927975136286,
+        "from_label": "Define a function or a lambda function that adds 'X' to the beginning of each column name. For example, `lambda x: 'X' + x`.",
+        "to_label": "Apply the `rename` method with the lambda function to the DataFrame columns. Set the `axis` parameter to 'columns' to indicate that we are renaming columns."
+    },
+    {
+        "distance": 0.5681338656058353,
+        "from_label": "Apply the `rename` method with the lambda function to the DataFrame columns. Set the `axis` parameter to 'columns' to indicate that we are renaming columns.",
+        "to_label": "Assign the result back to the DataFrame variable to update it with the new column names."
+    },
+    {
+        "distance": 0.2296898630677285,
+        "from_label": "Assign the result back to the DataFrame variable to update it with the new column names.",
+        "to_label": "Verify the result by checking the column names of the DataFrame."
     },
     {
         "distance": 1.0,
-        "from_label": "Apply the condition: By using 'x[x >= 0]', we filter the array 'x' to only include elements where the condition is True (i.e., elements >= 0).",
-        "to_label": "Store the result: Assign the filtered array to the variable 'result'."
-    },
-    {
-        "distance": 0.4159566335693141,
-        "from_label": "Store the result: Assign the filtered array to the variable 'result'.",
-        "to_label": "Verify the result: Check that 'result' contains only non-negative elements from the original array 'x'."
-    },
-    {
-        "distance": 0.44572447558928785,
-        "from_label": "Verify the result: Check that 'result' contains only non-negative elements from the original array 'x'.",
-        "to_label": "result = x[x >=0]"
+        "from_label": "Verify the result by checking the column names of the DataFrame.",
+        "to_label": "def g(df):    return df.add_prefix('X')df = g(df.copy())"
     }
 ]

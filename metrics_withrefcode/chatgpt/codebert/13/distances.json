@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "Problem:I have a dataframe that looks like this:     product     score0    1179160  0.4246541    1066490  0.4245092    1148126  0.4222073    1069104  0.4204554    1069105  0.414603..       ...       ...491  1160330  0.168784492  1069098  0.168749493  1077784  0.168738494  1193369  0.168703495  1179741  0.168684what I'm trying to achieve is to multiply certain score values corresponding to specific products by a constant.I have a list like this: [1069104, 1069105] (this is just a simplifiedexample, in reality it would be more than two products) and my goal is to obtain this:Multiply scores not in the list by 10:     product     score0    1179160  4.246541    1066490  4.245092    1148126  4.222073    1069104  0.42045504    1069105  0.146030..       ...       ...491  1160330  1.68784492  1069098  1.68749493  1077784  1.68738494  1193369  1.68703495  1179741  1.68684I know that exists DataFrame.multiply but checking the examples it works for full columns, and I just one to change those specific values.A:<code>import pandas as pddf = pd.DataFrame({'product': [1179160, 1066490, 1148126, 1069104, 1069105, 1160330, 1069098, 1077784, 1193369, 1179741],                   'score': [0.424654, 0.424509, 0.422207, 0.420455, 0.414603, 0.168784, 0.168749, 0.168738, 0.168703, 0.168684]})products = [1066490, 1077784]</code>df = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Import the necessary library, pandas, which is used to handle data in a DataFrame structure."
+    },
+    {
+        "distance": 0.3072212924260015,
+        "from_label": "Import the necessary library, pandas, which is used to handle data in a DataFrame structure.",
+        "to_label": "Create a DataFrame with columns 'product' and 'score'. This DataFrame contains products and their corresponding scores."
+    },
+    {
+        "distance": 0.5785677955786959,
+        "from_label": "Create a DataFrame with columns 'product' and 'score'. This DataFrame contains products and their corresponding scores.",
+        "to_label": "Define a list of products for which the scores should not be multiplied. These products will remain unchanged, while all others will have their scores multiplied by 10."
+    },
+    {
+        "distance": 0.2649515979045865,
+        "from_label": "Define a list of products for which the scores should not be multiplied. These products will remain unchanged, while all others will have their scores multiplied by 10.",
+        "to_label": "Use the DataFrame method `loc` to access the 'score' column and apply a condition using `isin`. This condition checks which 'product' values are NOT in the list of specified products."
+    },
+    {
+        "distance": 0.26645354196832055,
+        "from_label": "Use the DataFrame method `loc` to access the 'score' column and apply a condition using `isin`. This condition checks which 'product' values are NOT in the list of specified products.",
+        "to_label": "For all 'product' values not in the list, multiply their corresponding 'score' values by 10 using the `*=` operator. This updates the DataFrame in place."
+    },
+    {
+        "distance": 0.3113237850172616,
+        "from_label": "For all 'product' values not in the list, multiply their corresponding 'score' values by 10 using the `*=` operator. This updates the DataFrame in place.",
+        "to_label": "The resulting DataFrame will have scores multiplied by 10 for all products not in the specified list, while scores for products in the list will remain unchanged."
+    },
+    {
+        "distance": 0.4427063419923946,
+        "from_label": "The resulting DataFrame will have scores multiplied by 10 for all products not in the specified list, while scores for products in the list will remain unchanged.",
+        "to_label": "df.loc[~df['product'].isin(products), 'score'] *= 10"
+    }
+]

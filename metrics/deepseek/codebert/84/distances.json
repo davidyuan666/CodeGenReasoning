@@ -1,42 +1,37 @@
 [
     {
         "distance": 1.0,
-        "from_label": "import matplotlib.pyplot as pltfrom mpl_toolkits.mplot3d import Axes3Dimport numpy as npx = np.random.random(10)y = np.random.random(10)z = np.random.random(10)# Make a 3D scatter plot of x,y,z# change the view of the plot to have 100 azimuth and 50 elevation# SOLUTION START",
-        "to_label": "Import the necessary libraries: matplotlib.pyplot for plotting, mpl_toolkits.mplot3d for 3D plotting capabilities, and numpy for numerical operations."
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as snsdf = sns.load_dataset(\"penguins\")[    [\"bill_length_mm\", \"bill_depth_mm\", \"flipper_length_mm\", \"body_mass_g\"]]sns.distplot(df[\"bill_length_mm\"], color=\"blue\")# Plot a vertical line at 55 with green color# SOLUTION START",
+        "to_label": "Import the necessary libraries. In this case, we already have numpy, pandas, matplotlib.pyplot, and seaborn imported."
     },
     {
-        "distance": 0.4392542551615375,
-        "from_label": "Import the necessary libraries: matplotlib.pyplot for plotting, mpl_toolkits.mplot3d for 3D plotting capabilities, and numpy for numerical operations.",
-        "to_label": "Generate random data for the x, y, and z coordinates using numpy's random.random function. Here, 10 random values are generated for each coordinate."
+        "distance": 0.61504048745773,
+        "from_label": "Import the necessary libraries. In this case, we already have numpy, pandas, matplotlib.pyplot, and seaborn imported.",
+        "to_label": "Load the 'penguins' dataset from seaborn and select the columns 'bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', and 'body_mass_g'."
     },
     {
-        "distance": 0.9700229092804913,
-        "from_label": "Generate random data for the x, y, and z coordinates using numpy's random.random function. Here, 10 random values are generated for each coordinate.",
-        "to_label": "Create a figure object using plt.figure(). This will serve as the container for the plot."
+        "distance": 0.803039757724403,
+        "from_label": "Load the 'penguins' dataset from seaborn and select the columns 'bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', and 'body_mass_g'.",
+        "to_label": "Create a distribution plot (histogram with a density curve) for the 'bill_length_mm' column using sns.distplot and set the color to blue."
     },
     {
-        "distance": 0.691216344693738,
-        "from_label": "Create a figure object using plt.figure(). This will serve as the container for the plot.",
-        "to_label": "Add a 3D subplot to the figure using fig.add_subplot(111, projection='3d'). The '111' indicates a single subplot, and 'projection='3d'' specifies that it should be a 3D plot."
+        "distance": 0.6435827805663646,
+        "from_label": "Create a distribution plot (histogram with a density curve) for the 'bill_length_mm' column using sns.distplot and set the color to blue.",
+        "to_label": "To add a vertical line at the value 55 with green color, use the plt.axvline() function. This function allows you to draw a vertical line at a specific x-value on the plot."
     },
     {
-        "distance": 0.3717954509094662,
-        "from_label": "Add a 3D subplot to the figure using fig.add_subplot(111, projection='3d'). The '111' indicates a single subplot, and 'projection='3d'' specifies that it should be a 3D plot.",
-        "to_label": "Create a 3D scatter plot using ax.scatter(x, y, z), where x, y, and z are the arrays of coordinates."
+        "distance": 0.41813513015098663,
+        "from_label": "To add a vertical line at the value 55 with green color, use the plt.axvline() function. This function allows you to draw a vertical line at a specific x-value on the plot.",
+        "to_label": "The plt.axvline() function should be called with x=55 to position the line at 55 on the x-axis, and color='green' to set the line color to green."
     },
     {
-        "distance": 0.959883327384471,
-        "from_label": "Create a 3D scatter plot using ax.scatter(x, y, z), where x, y, and z are the arrays of coordinates.",
-        "to_label": "Set the azimuth angle of the plot to 100 degrees using ax.azim = 100. The azimuth angle controls the rotation of the plot around the z-axis."
+        "distance": 0.8274893540379238,
+        "from_label": "The plt.axvline() function should be called with x=55 to position the line at 55 on the x-axis, and color='green' to set the line color to green.",
+        "to_label": "The complete solution is to add the line 'plt.axvline(x=55, color='green')' after the sns.distplot() call."
     },
     {
-        "distance": 0.32809286376060554,
-        "from_label": "Set the azimuth angle of the plot to 100 degrees using ax.azim = 100. The azimuth angle controls the rotation of the plot around the z-axis.",
-        "to_label": "Set the elevation angle of the plot to 50 degrees using ax.elev = 50. The elevation angle controls the angle at which the plot is viewed from above or below."
-    },
-    {
-        "distance": 0.771055054132675,
-        "from_label": "Set the elevation angle of the plot to 50 degrees using ax.elev = 50. The elevation angle controls the angle at which the plot is viewed from above or below.",
-        "to_label": "fig = plt.figure()ax = fig.add_subplot(111, projection=\"3d\")ax.scatter(x, y, z)ax.azim = 100ax.elev = 50"
+        "distance": 0.7731893943816044,
+        "from_label": "The complete solution is to add the line 'plt.axvline(x=55, color='green')' after the sns.distplot() call.",
+        "to_label": "plt.axvline(55, color=\"green\")"
     }
 ]

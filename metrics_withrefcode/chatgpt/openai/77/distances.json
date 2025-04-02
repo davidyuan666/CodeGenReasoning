@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 0.6526440721785217,
+        "from_label": "import matplotlib.pyplot as pltimport numpy as npx = np.linspace(0.1, 2 * np.pi, 41)y = np.exp(np.sin(x))# make a stem plot of y over x and set the orientation to be horizontal# SOLUTION START",
+        "to_label": "Identify the problem: The task is to create a horizontal stem plot using matplotlib for the given data. The data is generated using numpy."
+    },
+    {
+        "distance": 0.46967961086029175,
+        "from_label": "Identify the problem: The task is to create a horizontal stem plot using matplotlib for the given data. The data is generated using numpy.",
+        "to_label": "Import the necessary libraries: We need matplotlib and numpy to solve this problem. We will use matplotlib.pyplot for plotting and numpy for numerical operations."
+    },
+    {
+        "distance": 0.3487289044434124,
+        "from_label": "Import the necessary libraries: We need matplotlib and numpy to solve this problem. We will use matplotlib.pyplot for plotting and numpy for numerical operations.",
+        "to_label": "Correct the import statement: The provided code has 'pltimport' which is incorrect. It should be corrected to import 'matplotlib.pyplot' as 'plt' and 'numpy' as 'np'."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Correct the import statement: The provided code has 'pltimport' which is incorrect. It should be corrected to import 'matplotlib.pyplot' as 'plt' and 'numpy' as 'np'.",
+        "to_label": "Generate the data: Use numpy's 'linspace' function to create an array 'x' of 41 points linearly spaced between 0.1 and 2π. Then, compute 'y' as the exponential of the sine of 'x'."
+    },
+    {
+        "distance": 0.6131422265417411,
+        "from_label": "Generate the data: Use numpy's 'linspace' function to create an array 'x' of 41 points linearly spaced between 0.1 and 2π. Then, compute 'y' as the exponential of the sine of 'x'.",
+        "to_label": "Create a stem plot: Use matplotlib's 'stem' function to create a stem plot with 'x' and 'y'. Set the 'orientation' parameter to 'horizontal' to make the stems horizontal."
+    },
+    {
+        "distance": 0.4598870116004615,
+        "from_label": "Create a stem plot: Use matplotlib's 'stem' function to create a stem plot with 'x' and 'y'. Set the 'orientation' parameter to 'horizontal' to make the stems horizontal.",
+        "to_label": "Display the plot: Use 'plt.show()' to display the plot, ensuring the stem plot is visible."
+    },
+    {
+        "distance": 0.7869782784589532,
+        "from_label": "Display the plot: Use 'plt.show()' to display the plot, ensuring the stem plot is visible.",
+        "to_label": "plt.stem(x, y, orientation=\"horizontal\")"
+    }
+]

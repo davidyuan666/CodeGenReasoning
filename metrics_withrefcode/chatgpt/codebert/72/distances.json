@@ -1,0 +1,57 @@
+[
+    {
+        "distance": 0.7306917682242389,
+        "from_label": "Problem:I have a simple dataframe which I would like to bin for every 3 rows to get sum and 2 rows to get avg from end to head.That means for the last 3 rows get their sum, then 2 rows get their avg, then 3 rows get their sum, then 2 rows get their avg…It looks like this:    col10      21      12      33      14      05      26      17      38      1and I would like to turn it into this:   col10     51     12     53     2I have already posted a similar question here but I have no Idea how to port the solution to my current use case.Can you help me out?Many thanks!A:<code>import pandas as pddf = pd.DataFrame({'col1':[2, 1, 3, 1, 0, 2, 1, 3, 1]})</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We have a dataframe where we want to bin the rows in groups of 3 and 2 alternately starting from the end. For every 3 rows, we calculate their sum, and for every 2 rows, we calculate their average."
+    },
+    {
+        "distance": 0.12875051048640587,
+        "from_label": "Understand the problem: We have a dataframe where we want to bin the rows in groups of 3 and 2 alternately starting from the end. For every 3 rows, we calculate their sum, and for every 2 rows, we calculate their average.",
+        "to_label": "Analyze the provided dataframe: It has a single column 'col1' with 9 integer values. Our task is to transform this data into a new dataframe by applying the described binning logic."
+    },
+    {
+        "distance": 0.43795562484710576,
+        "from_label": "Analyze the provided dataframe: It has a single column 'col1' with 9 integer values. Our task is to transform this data into a new dataframe by applying the described binning logic.",
+        "to_label": "Create an empty list 'l' that will store the results of the binning operations as we iterate over the dataframe from the end to the start."
+    },
+    {
+        "distance": 0.7839212805633287,
+        "from_label": "Create an empty list 'l' that will store the results of the binning operations as we iterate over the dataframe from the end to the start.",
+        "to_label": "Calculate the number of groups: The number of groups is determined by the length of the dataframe and the alternating pattern of 3 and 2. Use the formula `2*(len(df) // 5) + (len(df) % 5) // 3 + 1` to initialize the list with zeros to hold the group results."
+    },
+    {
+        "distance": 0.4892033593277318,
+        "from_label": "Calculate the number of groups: The number of groups is determined by the length of the dataframe and the alternating pattern of 3 and 2. Use the formula `2*(len(df) // 5) + (len(df) % 5) // 3 + 1` to initialize the list with zeros to hold the group results.",
+        "to_label": "Iterate over the dataframe in reverse order: Use a for-loop to traverse the dataframe from the last element to the first element. For each element, determine its group index based on its position."
+    },
+    {
+        "distance": 0.563428804218522,
+        "from_label": "Iterate over the dataframe in reverse order: Use a for-loop to traverse the dataframe from the last element to the first element. For each element, determine its group index based on its position.",
+        "to_label": "Determine group index: Calculate the group index using `2*((len(df)-1-i) // 5) + ((len(df)-1-i) % 5) // 3`. This formula helps us decide whether the current element belongs to a sum group (last 3 elements) or an average group (last 2 elements)."
+    },
+    {
+        "distance": 0.26136410692479634,
+        "from_label": "Determine group index: Calculate the group index using `2*((len(df)-1-i) // 5) + ((len(df)-1-i) % 5) // 3`. This formula helps us decide whether the current element belongs to a sum group (last 3 elements) or an average group (last 2 elements).",
+        "to_label": "Group operation: Depending on the position within the 5-element cycle, decide whether to add the element to the sum or compute average. If it's a sum group (first 3 in the cycle), add the element to the existing group sum. If it's an average group, compute the average of two elements."
+    },
+    {
+        "distance": 0.4898671174942559,
+        "from_label": "Group operation: Depending on the position within the 5-element cycle, decide whether to add the element to the sum or compute average. If it's a sum group (first 3 in the cycle), add the element to the existing group sum. If it's an average group, compute the average of two elements.",
+        "to_label": "Update the result list: As you process each element, update the result list 'l' at the calculated index with either the running sum or the average."
+    },
+    {
+        "distance": 0.15320788482956885,
+        "from_label": "Update the result list: As you process each element, update the result list 'l' at the calculated index with either the running sum or the average.",
+        "to_label": "Convert the result list into a dataframe: Once the iteration is complete, convert the list 'l' into a new pandas dataframe, which represents the required transformation of the original dataframe."
+    },
+    {
+        "distance": 0.3089555674645747,
+        "from_label": "Convert the result list into a dataframe: Once the iteration is complete, convert the list 'l' into a new pandas dataframe, which represents the required transformation of the original dataframe.",
+        "to_label": "Return the resulting dataframe: The final step is to return the new dataframe that has been created with the binning and aggregation logic applied."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Return the resulting dataframe: The final step is to return the new dataframe that has been created with the binning and aggregation logic applied.",
+        "to_label": "def g(df):    l = []    for i in range(2*(len(df) // 5) + (len(df) % 5) // 3 + 1):        l.append(0)    for i in reversed(range(len(df))):        idx = 2*((len(df)-1-i) // 5) + ((len(df)-1-i) % 5) // 3        if (len(df)-1-i) % 5 < 3:            l[idx] += df['col1'].iloc[i]        elif (len(df)-1-i) % 5 == 3:            l[idx] = df['col1'].iloc[i]        else:            l[idx] = (l[idx] + df['col1'].iloc[i]) / 2    return pd.DataFrame({'col1': l})result = g(df.copy())"
+    }
+]

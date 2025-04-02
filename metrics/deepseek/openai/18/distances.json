@@ -1,37 +1,42 @@
 [
     {
-        "distance": 0.5127520231509917,
-        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as snsx = np.random.rand(10)y = np.random.rand(10)plt.scatter(x, y)# how to turn on minor ticks on x axis only# SOLUTION START",
-        "to_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, matplotlib.pyplot for plotting, and seaborn for enhanced visualizations."
+        "distance": 0.536391910080125,
+        "from_label": "Problem:I have a simple dataframe which I would like to bin for every 3 rows to get sum and 2 rows to get avg.That means for the first 3 rows get their sum, then 2 rows get their avg, then 3 rows get their sum, then 2 rows get their avg…It looks like this:    col10      21      12      33      14      05      26      17      38      1and I would like to turn it into this:    col10    61    0.52    63    1I have already posted a similar question here but I have no Idea how to port the solution to my current use case.Can you help me out?Many thanks!A:<code>import pandas as pddf = pd.DataFrame({'col1':[2, 1, 3, 1, 0, 2, 1, 3, 1]})</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Create a grouping pattern that alternates between groups of 3 and 2 rows. This can be done by creating a repeating sequence of 3 'sum' labels followed by 2 'avg' labels, then repeating this pattern."
     },
     {
-        "distance": 0.7604751697905083,
-        "from_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, matplotlib.pyplot for plotting, and seaborn for enhanced visualizations.",
-        "to_label": "Generate random data for the x and y coordinates using numpy's random.rand function, which creates an array of given shape filled with random values between 0 and 1."
+        "distance": 0.42770723292002555,
+        "from_label": "Create a grouping pattern that alternates between groups of 3 and 2 rows. This can be done by creating a repeating sequence of 3 'sum' labels followed by 2 'avg' labels, then repeating this pattern.",
+        "to_label": "Generate a list that assigns each row to a specific group based on the pattern. For a dataframe with 9 rows, the groups would be: sum (rows 0-2), avg (rows 3-4), sum (rows 5-7), avg (row 8). Note that the last group might be incomplete."
     },
     {
-        "distance": 0.3341435566952572,
-        "from_label": "Generate random data for the x and y coordinates using numpy's random.rand function, which creates an array of given shape filled with random values between 0 and 1.",
-        "to_label": "Create a scatter plot using plt.scatter(x, y) to visualize the random data points."
+        "distance": 0.3735048409707782,
+        "from_label": "Generate a list that assigns each row to a specific group based on the pattern. For a dataframe with 9 rows, the groups would be: sum (rows 0-2), avg (rows 3-4), sum (rows 5-7), avg (row 8). Note that the last group might be incomplete.",
+        "to_label": "Create a group identifier column in the dataframe that marks which group each row belongs to. This can be done using integer division or a custom function to assign group numbers."
     },
     {
         "distance": 1.0,
-        "from_label": "Create a scatter plot using plt.scatter(x, y) to visualize the random data points.",
-        "to_label": "Enable minor ticks on all axes by calling plt.minorticks_on(). This function turns on the minor ticks that are not labeled."
+        "from_label": "Create a group identifier column in the dataframe that marks which group each row belongs to. This can be done using integer division or a custom function to assign group numbers.",
+        "to_label": "Apply the appropriate aggregation function (sum or avg) to each group. This requires checking the group type (sum group or avg group) and applying the corresponding function."
     },
     {
-        "distance": 0.8226106399914737,
-        "from_label": "Enable minor ticks on all axes by calling plt.minorticks_on(). This function turns on the minor ticks that are not labeled.",
-        "to_label": "Get the current axes instance using plt.gca() (get current axes) and store it in the variable 'ax'. This allows for more detailed customization of the axes."
+        "distance": 0.6670169253400938,
+        "from_label": "Apply the appropriate aggregation function (sum or avg) to each group. This requires checking the group type (sum group or avg group) and applying the corresponding function.",
+        "to_label": "Combine the results into a new dataframe where each row represents one group's aggregation result."
     },
     {
-        "distance": 0.4583638848511815,
-        "from_label": "Get the current axes instance using plt.gca() (get current axes) and store it in the variable 'ax'. This allows for more detailed customization of the axes.",
-        "to_label": "Use the tick_params method on the axes object 'ax' to customize the ticks. Set axis='y' to target the y-axis, which='minor' to specify minor ticks, and tick1On=False to turn off the minor ticks on the y-axis. This leaves the minor ticks on the x-axis visible while hiding them on the y-axis."
+        "distance": 0.7181559421301289,
+        "from_label": "Combine the results into a new dataframe where each row represents one group's aggregation result.",
+        "to_label": "Here's the implementation code: First, create a pattern array that alternates between 'sum' and 'avg' groups. Then use this pattern to create group labels. Finally, group by these labels and apply the appropriate aggregation function."
     },
     {
-        "distance": 0.35494183325399553,
-        "from_label": "Use the tick_params method on the axes object 'ax' to customize the ticks. Set axis='y' to target the y-axis, which='minor' to specify minor ticks, and tick1On=False to turn off the minor ticks on the y-axis. This leaves the minor ticks on the x-axis visible while hiding them on the y-axis.",
-        "to_label": "plt.minorticks_on()ax = plt.gca()ax.tick_params(axis=\"y\", which=\"minor\", tick1On=False)"
+        "distance": 0.29374394052071084,
+        "from_label": "Here's the implementation code: First, create a pattern array that alternates between 'sum' and 'avg' groups. Then use this pattern to create group labels. Finally, group by these labels and apply the appropriate aggregation function.",
+        "to_label": "The solution code creates a repeating pattern of [0,0,0,1,1] (where 0 represents sum groups and 1 represents avg groups), uses cumsum to create group identifiers, then applies groupby with a custom aggregation function that checks the group type."
+    },
+    {
+        "distance": 0.9205498624568142,
+        "from_label": "The solution code creates a repeating pattern of [0,0,0,1,1] (where 0 represents sum groups and 1 represents avg groups), uses cumsum to create group identifiers, then applies groupby with a custom aggregation function that checks the group type.",
+        "to_label": "def g(df):    l = []    for i in range(2*(len(df) // 5) + (len(df) % 5) // 3 + 1):        l.append(0)    for i in range(len(df)):        idx = 2*(i // 5) + (i % 5) // 3        if i % 5 < 3:            l[idx] += df['col1'].iloc[i]        elif i % 5 == 3:            l[idx] = df['col1'].iloc[i]        else:            l[idx] = (l[idx] + df['col1'].iloc[i]) / 2    return pd.DataFrame({'col1': l})result = g(df.copy())"
     }
 ]

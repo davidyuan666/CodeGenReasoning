@@ -1,32 +1,42 @@
 [
     {
+        "distance": 0.6289287023543961,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as snsx = np.linspace(0, 2 * np.pi, 400)y1 = np.sin(x)y2 = np.cos(x)# plot x vs y1 and x vs y2 in two subplots, sharing the x axis# SOLUTION START",
+        "to_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation (though not directly used here), matplotlib.pyplot for plotting, and seaborn for enhanced visualizations."
+    },
+    {
+        "distance": 0.22147792834424312,
+        "from_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation (though not directly used here), matplotlib.pyplot for plotting, and seaborn for enhanced visualizations.",
+        "to_label": "Generate the x values using numpy's linspace function, which creates 400 evenly spaced points between 0 and 2π."
+    },
+    {
+        "distance": 0.211587515909873,
+        "from_label": "Generate the x values using numpy's linspace function, which creates 400 evenly spaced points between 0 and 2π.",
+        "to_label": "Compute the y values for the sine and cosine functions using numpy's sin and cos functions, respectively."
+    },
+    {
+        "distance": 0.5719376979656777,
+        "from_label": "Compute the y values for the sine and cosine functions using numpy's sin and cos functions, respectively.",
+        "to_label": "Create a figure with two subplots that share the x-axis. This can be done using plt.subplots with the parameters nrows=2 (for two rows of subplots) and sharex=True (to share the x-axis)."
+    },
+    {
+        "distance": 0.18985931516570545,
+        "from_label": "Create a figure with two subplots that share the x-axis. This can be done using plt.subplots with the parameters nrows=2 (for two rows of subplots) and sharex=True (to share the x-axis).",
+        "to_label": "Plot the sine function (y1) in the first subplot (ax[0]) and the cosine function (y2) in the second subplot (ax[1]). Use the plot method of the axes objects for this."
+    },
+    {
+        "distance": 0.1905886170649674,
+        "from_label": "Plot the sine function (y1) in the first subplot (ax[0]) and the cosine function (y2) in the second subplot (ax[1]). Use the plot method of the axes objects for this.",
+        "to_label": "Customize the plots by adding titles and labels. For example, set the title of the first subplot to 'Sine Function' and the second to 'Cosine Function'. Label the x-axis as 'x' and the y-axis as 'y'."
+    },
+    {
+        "distance": 0.6808653338311695,
+        "from_label": "Customize the plots by adding titles and labels. For example, set the title of the first subplot to 'Sine Function' and the second to 'Cosine Function'. Label the x-axis as 'x' and the y-axis as 'y'.",
+        "to_label": "Display the plots using plt.show(). This will render the figure with the two subplots."
+    },
+    {
         "distance": 1.0,
-        "from_label": "Problem:I have a csv file without headers which I'm importing into python using pandas. The last column is the target class, while the rest of the columns are pixel values for images. How can I go ahead and split this dataset into a training set and a testing set (3 : 2)?Also, once that is done how would I also split each of those sets so that I can define x (all columns except the last one), and y (the last column)?I've imported my file using:dataset = pd.read_csv('example.csv', header=None, sep=',')ThanksA:use random_state=42<code>import numpy as npimport pandas as pddataset = load_data()</code>x_train, x_test, y_train, y_test = ... # put solution in these variablesBEGIN SOLUTION<code>",
-        "to_label": "Import the necessary libraries. We need pandas for handling the dataset and sklearn's train_test_split for splitting the data."
-    },
-    {
-        "distance": 0.4299225653703962,
-        "from_label": "Import the necessary libraries. We need pandas for handling the dataset and sklearn's train_test_split for splitting the data.",
-        "to_label": "Load the dataset using pandas. The dataset is loaded without headers, and all columns are treated as data."
-    },
-    {
-        "distance": 0.45195156270854564,
-        "from_label": "Load the dataset using pandas. The dataset is loaded without headers, and all columns are treated as data.",
-        "to_label": "Split the dataset into features (x) and target (y). The features are all columns except the last one, and the target is the last column."
-    },
-    {
-        "distance": 0.8556429308488945,
-        "from_label": "Split the dataset into features (x) and target (y). The features are all columns except the last one, and the target is the last column.",
-        "to_label": "Use train_test_split from sklearn to split the features and target into training and testing sets. The test_size is set to 0.4 to achieve a 3:2 ratio between training and testing sets. The random_state is set to 42 for reproducibility."
-    },
-    {
-        "distance": 0.40468538766283496,
-        "from_label": "Use train_test_split from sklearn to split the features and target into training and testing sets. The test_size is set to 0.4 to achieve a 3:2 ratio between training and testing sets. The random_state is set to 42 for reproducibility.",
-        "to_label": "Assign the results of the train_test_split to the variables x_train, x_test, y_train, and y_test. These variables will now contain the split data ready for further processing or model training."
-    },
-    {
-        "distance": 0.4169729599478807,
-        "from_label": "Assign the results of the train_test_split to the variables x_train, x_test, y_train, and y_test. These variables will now contain the split data ready for further processing or model training.",
-        "to_label": "from sklearn.model_selection import train_test_splitx_train, x_test, y_train, y_test = train_test_split(dataset.iloc[:, :-1], dataset.iloc[:, -1], test_size=0.4,                                                    random_state=42)"
+        "from_label": "Display the plots using plt.show(). This will render the figure with the two subplots.",
+        "to_label": "fig, (ax1, ax2) = plt.subplots(nrows=2, sharex=True)plt.subplots_adjust(hspace=0.0)ax1.grid()ax2.grid()ax1.plot(x, y1, color=\"r\")ax2.plot(x, y2, color=\"b\", linestyle=\"--\")"
     }
 ]

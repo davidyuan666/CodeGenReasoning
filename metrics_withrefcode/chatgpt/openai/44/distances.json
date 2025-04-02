@@ -1,0 +1,57 @@
+[
+    {
+        "distance": 0.33919918476022737,
+        "from_label": "Problem:I'm using tensorflow 2.10.0.I have a tensor of lengths in tensorflow, let's say it looks like this:[4, 3, 5, 2]I wish to create a mask of 1s and 0s whose number of 1s correspond to the entries to this tensor, padded in front by 0s to a total length of 8. I.e. I want to create this tensor:[[0. 0. 0. 0. 1. 1. 1. 1.] [0. 0. 0. 0. 0. 1. 1. 1.] [0. 0. 0. 1. 1. 1. 1. 1.] [0. 0. 0. 0. 0. 0. 1. 1.]]How might I do this?A:<code>import tensorflow as tflengths = [4, 3, 5, 2]</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to create a binary mask for each length in the input list, where the number of 1s equals the length value, starting from the right, and the remaining positions (to a total length of 8) are filled with 0s."
+    },
+    {
+        "distance": 0.18467599814312063,
+        "from_label": "Understand the problem: We need to create a binary mask for each length in the input list, where the number of 1s equals the length value, starting from the right, and the remaining positions (to a total length of 8) are filled with 0s.",
+        "to_label": "We are given the lengths tensor [4, 3, 5, 2] and want to convert it into a binary mask of shape (4, 8), where each row contains a certain number of 1s at the end and is padded with 0s at the beginning."
+    },
+    {
+        "distance": 0.5345320268368549,
+        "from_label": "We are given the lengths tensor [4, 3, 5, 2] and want to convert it into a binary mask of shape (4, 8), where each row contains a certain number of 1s at the end and is padded with 0s at the beginning.",
+        "to_label": "Calculate the number of leading zeros required for each row. If the total length is 8, for a given length 'l', the number of leading zeros is (8 - l)."
+    },
+    {
+        "distance": 0.18696471052338465,
+        "from_label": "Calculate the number of leading zeros required for each row. If the total length is 8, for a given length 'l', the number of leading zeros is (8 - l).",
+        "to_label": "To create this mask, we need to compare each position index (from 0 to 7) with the calculated number of leading zeros for each row."
+    },
+    {
+        "distance": 0.2992005961054596,
+        "from_label": "To create this mask, we need to compare each position index (from 0 to 7) with the calculated number of leading zeros for each row.",
+        "to_label": "Use TensorFlow to perform these calculations. First, convert the lengths into the number of leading zeros by subtracting each length from 8."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Use TensorFlow to perform these calculations. First, convert the lengths into the number of leading zeros by subtracting each length from 8.",
+        "to_label": "Use tf.expand_dims on the resulting array to make it suitable for broadcasting."
+    },
+    {
+        "distance": 0.1500277989079403,
+        "from_label": "Use tf.expand_dims on the resulting array to make it suitable for broadcasting.",
+        "to_label": "Create a range tensor from 0 to 7, then expand its dimensions for broadcasting."
+    },
+    {
+        "distance": 0.8812322714108745,
+        "from_label": "Create a range tensor from 0 to 7, then expand its dimensions for broadcasting.",
+        "to_label": "Use tf.less to create a mask where each element is True if the column index is less than the number of leading zeros for that row. This will help us identify the positions that need to be filled with 0s."
+    },
+    {
+        "distance": 0.16712793750580013,
+        "from_label": "Use tf.less to create a mask where each element is True if the column index is less than the number of leading zeros for that row. This will help us identify the positions that need to be filled with 0s.",
+        "to_label": "Use tf.where to fill the positions identified by the mask with 0s and the rest with 1s."
+    },
+    {
+        "distance": 0.7517646251954562,
+        "from_label": "Use tf.where to fill the positions identified by the mask with 0s and the rest with 1s.",
+        "to_label": "The final result is a tensor where each row has the specified number of 1s at the end, padded with 0s at the beginning, matching the specified lengths."
+    },
+    {
+        "distance": 0.3547257047409404,
+        "from_label": "The final result is a tensor where each row has the specified number of 1s at the end, padded with 0s at the beginning, matching the specified lengths.",
+        "to_label": "def g(lengths):    lengths = [8-x for x in lengths]    lengths_transposed = tf.expand_dims(lengths, 1)    range = tf.range(0, 8, 1)    range_row = tf.expand_dims(range, 0)    mask = tf.less(range_row, lengths_transposed)    result = tf.where(~mask, tf.ones([4, 8]), tf.zeros([4, 8]))    return resultresult = g(lengths.copy())"
+    }
+]

@@ -1,32 +1,37 @@
 [
     {
-        "distance": 0.37390375106520707,
-        "from_label": "Problem:Given a pandas DataFrame, how does one convert several binary columns (where 1 denotes the value exists, 0 denotes it doesn't) into a single categorical column? Another way to think of this is how to perform the \"reverse pd.get_dummies()\"? Here is an example of converting a categorical column into several binary columns:import pandas as pds = pd.Series(list('ABCDAB'))df = pd.get_dummies(s)df   A  B  C  D0  1  0  0  01  0  1  0  02  0  0  1  03  0  0  0  14  1  0  0  05  0  1  0  0What I would like to accomplish is given a dataframedf1   A  B  C  D0  1  0  0  01  0  1  0  02  0  0  1  03  0  0  0  14  1  0  0  05  0  1  0  0could do I convert it into df1   A  B  C  D   category0  1  0  0  0   A1  0  1  0  0   B2  0  0  1  0   C3  0  0  0  1   D4  1  0  0  0   A5  0  1  0  0   BA:<code>import pandas as pddf = pd.DataFrame({'A': [1, 0, 0, 0, 1, 0],                   'B': [0, 1, 0, 0, 0, 1],                   'C': [0, 0, 1, 0, 0, 0],                   'D': [0, 0, 0, 1, 0, 0]})</code>df = ... # put solution in this variableBEGIN SOLUTION<code>",
-        "to_label": "Understand the problem: We need to convert multiple binary columns into a single categorical column where the category name corresponds to the column name that has a value of 1."
+        "distance": 0.7434504135981542,
+        "from_label": "Problem:Let's say I have a 1d numpy integer array like thisa = array([-1,0,3])I would like to encode this as a 2D one-hot array(for integers)b = array([[1,0,0,0,0], [0,1,0,0,0], [0,0,0,0,1]])The leftmost element always corresponds to the smallest element in `a`, and the rightmost vice versa.Is there a quick way to do this only using numpy? Quicker than just looping over a to set elements of b, that is.A:<code>import numpy as npa = np.array([-1, 0, 3])</code>b = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Determine the range of values in the input array 'a'. This involves finding the minimum and maximum values to understand the span of integers we need to cover in the one-hot encoding."
     },
     {
-        "distance": 0.8152746546948182,
-        "from_label": "Understand the problem: We need to convert multiple binary columns into a single categorical column where the category name corresponds to the column name that has a value of 1.",
-        "to_label": "Identify the appropriate pandas function: The `idxmax()` function can be used to find the column name with the maximum value in each row. Since the binary columns contain only 0s and 1s, the column with 1 will always be the maximum."
+        "distance": 0.29473575233522176,
+        "from_label": "Determine the range of values in the input array 'a'. This involves finding the minimum and maximum values to understand the span of integers we need to cover in the one-hot encoding.",
+        "to_label": "Calculate the number of unique integers in the range from min to max in 'a'. This will determine the width of the one-hot encoded matrix."
     },
     {
-        "distance": 0.3868162123502949,
-        "from_label": "Identify the appropriate pandas function: The `idxmax()` function can be used to find the column name with the maximum value in each row. Since the binary columns contain only 0s and 1s, the column with 1 will always be the maximum.",
-        "to_label": "Apply the function: Use `df.idxmax(axis=1)` to get the column name with the value 1 for each row. This will return a Series where each element is the name of the column that had a 1 in the original DataFrame."
+        "distance": 0.43466234734799714,
+        "from_label": "Calculate the number of unique integers in the range from min to max in 'a'. This will determine the width of the one-hot encoded matrix.",
+        "to_label": "Initialize a 2D array 'b' of zeros with shape (len(a), max - min + 1). This array will hold the one-hot encoded values."
     },
     {
-        "distance": 0.539401559427223,
-        "from_label": "Apply the function: Use `df.idxmax(axis=1)` to get the column name with the value 1 for each row. This will return a Series where each element is the name of the column that had a 1 in the original DataFrame.",
-        "to_label": "Add the result to the DataFrame: Assign the result of `idxmax()` to a new column in the DataFrame, for example, 'category'."
+        "distance": 0.8599020719619516,
+        "from_label": "Initialize a 2D array 'b' of zeros with shape (len(a), max - min + 1). This array will hold the one-hot encoded values.",
+        "to_label": "Adjust the values in 'a' by subtracting the minimum value. This shifts the values so that the smallest value in 'a' corresponds to 0, making it easier to index into the columns of 'b'."
     },
     {
-        "distance": 0.57692784230571,
-        "from_label": "Add the result to the DataFrame: Assign the result of `idxmax()` to a new column in the DataFrame, for example, 'category'.",
-        "to_label": "Verify the result: Check the DataFrame to ensure that the new 'category' column correctly reflects the original binary columns."
+        "distance": 0.2884014883082552,
+        "from_label": "Adjust the values in 'a' by subtracting the minimum value. This shifts the values so that the smallest value in 'a' corresponds to 0, making it easier to index into the columns of 'b'.",
+        "to_label": "Use advanced indexing to set the appropriate positions in 'b' to 1. For each element in the adjusted 'a', set the corresponding column in 'b' to 1."
     },
     {
         "distance": 1.0,
-        "from_label": "Verify the result: Check the DataFrame to ensure that the new 'category' column correctly reflects the original binary columns.",
-        "to_label": "df[\"category\"] = df.idxmax(axis=1)"
+        "from_label": "Use advanced indexing to set the appropriate positions in 'b' to 1. For each element in the adjusted 'a', set the corresponding column in 'b' to 1.",
+        "to_label": "Return the resulting one-hot encoded array 'b'."
+    },
+    {
+        "distance": 0.6795294376611956,
+        "from_label": "Return the resulting one-hot encoded array 'b'.",
+        "to_label": "temp = a - a.min()b = np.zeros((a.size, temp.max()+1))b[np.arange(a.size), temp]=1"
     }
 ]

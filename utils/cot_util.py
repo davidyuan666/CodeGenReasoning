@@ -82,13 +82,24 @@ class CoTUtil:
         """生成思维链推理过程"""
         # Please install OpenAI SDK first: `pip3 install openai`
         client = OpenAI(api_key=os.getenv("DEEPSEEK_API_KEY"), base_url=os.getenv("DEEPSEEK_BASE_URL"))
+        '''
+        with reference code
+        '''
+        # self.messages=[
+        #     {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
+        #     {"role": "user", "content": f"Problem: {prompt}\nReference solution: {reference_code}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
+        # ]
 
+        '''
+        without reference code
+        '''
+        self.messages=[
+            {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
+            {"role": "user", "content": f"Problem: {prompt}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
+        ]
         response = client.chat.completions.create(
             model=os.getenv("DEEPSEEK_MODEL"),
-            messages=[
-                {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
-                {"role": "user", "content": f"Problem: {prompt}\nReference solution: {reference_code}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
-            ],
+            messages=self.messages,
             stream=False
         )
 
@@ -127,11 +138,21 @@ class CoTUtil:
 
     def generate_chain_of_thought_by_gpt(self, prompt: str, reference_code: str) -> List[Dict]:
         """生成思维链推理过程"""
+        '''
+        with reference code
+        '''
+        # self.messages = [
+        #     {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
+        #     {"role": "user", "content": f"Problem: {prompt}\nReference solution: {reference_code}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
+        # ]
+
+        '''
+        without reference code
+        '''
         self.messages = [
             {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
-            {"role": "user", "content": f"Problem: {prompt}\nReference solution: {reference_code}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
+            {"role": "user", "content": f"Problem: {prompt}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
         ]
-
 
         self.struct_model = "gpt-4o-2024-08-06"
 

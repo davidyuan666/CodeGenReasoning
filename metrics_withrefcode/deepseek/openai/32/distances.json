@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 0.2753982854309257,
+        "from_label": "Problem:I have a file with arrays or different shapes. I want to zeropad all the array to match the largest shape. The largest shape is (93,13).To test this I have the following code:a = np.ones((41,12))how can I zero pad this array to match the shape of (93,13)? And ultimately, how can I do it for thousands of rows? Specifically, I want to pad to the right and bottom of original array in 2D.A:<code>import numpy as npa = np.ones((41, 12))shape = (93, 13)</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to zero-pad a 2D numpy array 'a' of shape (41, 12) to match a target shape of (93, 13). The padding should be added to the right and bottom of the original array."
+    },
+    {
+        "distance": 0.4611023585846822,
+        "from_label": "Understand the problem: We need to zero-pad a 2D numpy array 'a' of shape (41, 12) to match a target shape of (93, 13). The padding should be added to the right and bottom of the original array.",
+        "to_label": "Calculate the required padding: For the first dimension (rows), we need to add (93 - 41 = 52) zeros at the bottom. For the second dimension (columns), we need to add (13 - 12 = 1) zero to the right."
+    },
+    {
+        "distance": 0.8626724055456867,
+        "from_label": "Calculate the required padding: For the first dimension (rows), we need to add (93 - 41 = 52) zeros at the bottom. For the second dimension (columns), we need to add (13 - 12 = 1) zero to the right.",
+        "to_label": "Use numpy's pad function: The np.pad function can be used to add padding. The padding configuration is specified as ((before_1, after_1), (before_2, after_2)) where 1 and 2 refer to the dimensions. Since we want to pad only at the bottom and right, we set before_1 and before_2 to 0."
+    },
+    {
+        "distance": 0.786301093028069,
+        "from_label": "Use numpy's pad function: The np.pad function can be used to add padding. The padding configuration is specified as ((before_1, after_1), (before_2, after_2)) where 1 and 2 refer to the dimensions. Since we want to pad only at the bottom and right, we set before_1 and before_2 to 0.",
+        "to_label": "Implement the padding: For our case, the padding configuration will be ((0, 52), (0, 1)). We use 'constant' mode which fills the padding with zeros."
+    },
+    {
+        "distance": 0.5358740301005875,
+        "from_label": "Implement the padding: For our case, the padding configuration will be ((0, 52), (0, 1)). We use 'constant' mode which fills the padding with zeros.",
+        "to_label": "Apply to multiple arrays: To apply this to thousands of arrays, you would loop through each array, calculate its required padding based on the target shape, and apply np.pad with the appropriate padding configuration."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Apply to multiple arrays: To apply this to thousands of arrays, you would loop through each array, calculate its required padding based on the target shape, and apply np.pad with the appropriate padding configuration.",
+        "to_label": "Verify the result: After padding, the array 'a' should have the shape (93, 13) with the original values in the top-left corner and zeros elsewhere."
+    },
+    {
+        "distance": 0.5206446754582218,
+        "from_label": "Verify the result: After padding, the array 'a' should have the shape (93, 13) with the original values in the top-left corner and zeros elsewhere.",
+        "to_label": "result = np.pad(a, ((0, shape[0]-a.shape[0]), (0, shape[1]-a.shape[1])), 'constant')"
+    }
+]

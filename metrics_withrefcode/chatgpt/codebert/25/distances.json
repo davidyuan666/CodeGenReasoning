@@ -1,0 +1,42 @@
+[
+    {
+        "distance": 0.8405862788503013,
+        "from_label": "Problem:I'm using tensorflow 2.10.0.I have a tensor that have shape (50, 100, 512) and i want to reshape it or add a new dimension so that the new tensor have shape (50, 100, 1, 512).a = tf.constant(np.random.rand(50, 100, 512))How can I solve it. ThanksA:<code>import tensorflow as tfimport numpy as npnp.random.seed(10)a = tf.constant(np.random.rand(50, 100, 512))</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "The problem requires adding a new dimension to a tensor with shape (50, 100, 512) to get a new shape of (50, 100, 1, 512)."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "The problem requires adding a new dimension to a tensor with shape (50, 100, 512) to get a new shape of (50, 100, 1, 512).",
+        "to_label": "In TensorFlow, we can add a new dimension to a tensor using the `tf.expand_dims` function. This function inserts a new dimension at the specified axis index."
+    },
+    {
+        "distance": 0.5998791723139286,
+        "from_label": "In TensorFlow, we can add a new dimension to a tensor using the `tf.expand_dims` function. This function inserts a new dimension at the specified axis index.",
+        "to_label": "The original tensor 'a' has the shape (50, 100, 512). We want to add a new dimension at index 2 (the third dimension) to transform it into shape (50, 100, 1, 512)."
+    },
+    {
+        "distance": 0.5912219470664527,
+        "from_label": "The original tensor 'a' has the shape (50, 100, 512). We want to add a new dimension at index 2 (the third dimension) to transform it into shape (50, 100, 1, 512).",
+        "to_label": "By calling `tf.expand_dims(a, 2)`, we add a new dimension at the specified axis index, which results in the desired shape."
+    },
+    {
+        "distance": 0.46461380026610555,
+        "from_label": "By calling `tf.expand_dims(a, 2)`, we add a new dimension at the specified axis index, which results in the desired shape.",
+        "to_label": "Define a function `g(a)` that takes a tensor 'a' as input and returns the tensor with the new dimension added: `return tf.expand_dims(a, 2)`."
+    },
+    {
+        "distance": 0.5798473213914269,
+        "from_label": "Define a function `g(a)` that takes a tensor 'a' as input and returns the tensor with the new dimension added: `return tf.expand_dims(a, 2)`.",
+        "to_label": "Use the function to obtain the result: `result = g(a)`."
+    },
+    {
+        "distance": 0.55244903232022,
+        "from_label": "Use the function to obtain the result: `result = g(a)`.",
+        "to_label": "The 'result' variable now contains the tensor with shape (50, 100, 1, 512)."
+    },
+    {
+        "distance": 0.799973287264813,
+        "from_label": "The 'result' variable now contains the tensor with shape (50, 100, 1, 512).",
+        "to_label": "def g(a):    return tf.expand_dims(a, 2)result = g(a.__copy__())"
+    }
+]

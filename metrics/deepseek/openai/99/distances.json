@@ -1,42 +1,32 @@
 [
     {
-        "distance": 0.28977055654333783,
-        "from_label": "Problem:I am performing a query on a DataFrame:Index Category1     Foo2     Bar3     Cho4     FooI would like to return the rows where the category is \"Foo\" or \"Bar\".When I use the code:df.query(\"Catergory==['Foo','Bar']\")This works fine and returns:Index Category1     Foo2     Bar4     FooHowever in future I will want the filter to be changed dynamically so I wrote:filter_list=['Foo','Bar']df.query(\"Catergory==filter_list\")Which threw out the error:UndefinedVariableError: name 'filter_list' is not definedOther variations I tried with no success were:df.query(\"Catergory\"==filter_list)df.query(\"Catergory==\"filter_list)Respectively producing:ValueError: expr must be a string to be evaluated, <class 'bool'> givenSyntaxError: invalid syntaxA:<code>import pandas as pddf=pd.DataFrame({\"Category\":['Foo','Bar','Cho','Foo'],'Index':[1,2,3,4]})filter_list=['Foo','Bar']</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
-        "to_label": "Understand the problem: We need to filter a DataFrame to include only rows where the 'Category' column matches any value in a dynamically defined list called 'filter_list'."
+        "distance": 0.38090824106826815,
+        "from_label": "Problem:I have used sklearn for Cross-validation and want to do a more visual information with the values of each model.The problem is, I can't only get the name of the templates.Instead, the parameters always come altogether. How can I only retrieve the name of the models without its parameters?Or does it mean that I have to create an external list for the names?here I have a piece of code:for model in models:   scores = cross_val_score(model, X, y, cv=5)   print(f'Name model: {model} , Mean score: {scores.mean()}')But I also obtain the parameters:Name model: LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False), Mean score: 0.8066782865537986In fact I want to get the information this way:Name Model: LinearRegression, Mean Score: 0.8066782865537986Any ideas to do that? Thanks!A:<code>import numpy as npimport pandas as pdfrom sklearn.linear_model import LinearRegressionmodel = LinearRegression()</code>model_name = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We want to extract just the model's class name (e.g., 'LinearRegression') without its parameters from a scikit-learn model object."
+    },
+    {
+        "distance": 0.49431191427199034,
+        "from_label": "Understand the problem: We want to extract just the model's class name (e.g., 'LinearRegression') without its parameters from a scikit-learn model object.",
+        "to_label": "Recognize that scikit-learn model objects have a '__class__' attribute that refers to their class."
+    },
+    {
+        "distance": 0.45469227854960254,
+        "from_label": "Recognize that scikit-learn model objects have a '__class__' attribute that refers to their class.",
+        "to_label": "Access the '__name__' attribute of the model's class to get the class name as a string."
+    },
+    {
+        "distance": 0.386354886596283,
+        "from_label": "Access the '__name__' attribute of the model's class to get the class name as a string.",
+        "to_label": "Implement the solution by getting the model's class name using model.__class__.__name__."
     },
     {
         "distance": 1.0,
-        "from_label": "Understand the problem: We need to filter a DataFrame to include only rows where the 'Category' column matches any value in a dynamically defined list called 'filter_list'.",
-        "to_label": "Recognize the issue with the initial attempts: The error occurs because the query method doesn't directly recognize Python variables inside the query string unless properly referenced."
+        "from_label": "Implement the solution by getting the model's class name using model.__class__.__name__.",
+        "to_label": "Apply this to the original code to print just the model name without parameters."
     },
     {
-        "distance": 0.31548317444433527,
-        "from_label": "Recognize the issue with the initial attempts: The error occurs because the query method doesn't directly recognize Python variables inside the query string unless properly referenced.",
-        "to_label": "Learn about variable referencing in pandas query: To use external variables in a pandas query string, you need to prefix them with '@' to tell pandas to treat them as variables rather than column names."
-    },
-    {
-        "distance": 0.28544648255199256,
-        "from_label": "Learn about variable referencing in pandas query: To use external variables in a pandas query string, you need to prefix them with '@' to tell pandas to treat them as variables rather than column names.",
-        "to_label": "Implement the solution: Use the '@' symbol before the variable name in the query string to reference the external 'filter_list' variable."
-    },
-    {
-        "distance": 0.6078921520450071,
-        "from_label": "Implement the solution: Use the '@' symbol before the variable name in the query string to reference the external 'filter_list' variable.",
-        "to_label": "Verify the solution: Test the query with the '@' prefix to ensure it correctly filters the DataFrame based on the values in 'filter_list'."
-    },
-    {
-        "distance": 0.5922507438149442,
-        "from_label": "Verify the solution: Test the query with the '@' prefix to ensure it correctly filters the DataFrame based on the values in 'filter_list'.",
-        "to_label": "Encapsulate the solution in a function: Create a function 'g' that takes a DataFrame and a filter list as inputs, applies the query with proper variable referencing, and returns the filtered DataFrame."
-    },
-    {
-        "distance": 0.38447096069023645,
-        "from_label": "Encapsulate the solution in a function: Create a function 'g' that takes a DataFrame and a filter list as inputs, applies the query with proper variable referencing, and returns the filtered DataFrame.",
-        "to_label": "Test the function: Apply the function to the given DataFrame and filter_list to confirm it produces the expected output."
-    },
-    {
-        "distance": 0.6244505001950746,
-        "from_label": "Test the function: Apply the function to the given DataFrame and filter_list to confirm it produces the expected output.",
-        "to_label": "def g(df, filter_list):    return df.query(\"Category == @filter_list\")result = g(df.copy(), filter_list)"
+        "distance": 0.6391076335153352,
+        "from_label": "Apply this to the original code to print just the model name without parameters.",
+        "to_label": "model_name = type(model).__name__"
     }
 ]

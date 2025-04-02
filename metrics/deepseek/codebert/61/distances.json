@@ -1,32 +1,27 @@
 [
     {
-        "distance": 0.7878922912005606,
-        "from_label": "Problem:I'm working on a problem that has to do with calculating angles of refraction and what not. However, it seems that I'm unable to use the numpy.cos() function in degrees. I have tried to use numpy.degrees() and numpy.rad2deg().degree = 90numpy.cos(degree)numpy.degrees(numpy.cos(degree))But with no help. How do I compute cosine value using degree?Thanks for your help.A:<code>import numpy as npdegree = 90</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
-        "to_label": "Understand the problem: The issue is that the numpy.cos() function expects its input in radians, but the user is providing the angle in degrees. The goal is to compute the cosine of an angle given in degrees."
+        "distance": 0.5878661710335822,
+        "from_label": "Problem:I have two tensors of dimension 11 * 1. I want to check how many of the 11 elements are equal in the two tensors. I think I should be able to do this in few lines like Numpy but couldn't find a similar function.A:<code>import numpy as npimport pandas as pdimport torchA, B = load_data()</code>cnt_equal = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Load the tensors A and B from the data. These tensors are of dimensions 11 * 1."
     },
     {
-        "distance": 0.6255934966000465,
-        "from_label": "Understand the problem: The issue is that the numpy.cos() function expects its input in radians, but the user is providing the angle in degrees. The goal is to compute the cosine of an angle given in degrees.",
-        "to_label": "Convert degrees to radians: Since numpy.cos() works with radians, the first step is to convert the angle from degrees to radians. This can be done using the numpy.deg2rad() function."
-    },
-    {
-        "distance": 0.6956096570874233,
-        "from_label": "Convert degrees to radians: Since numpy.cos() works with radians, the first step is to convert the angle from degrees to radians. This can be done using the numpy.deg2rad() function.",
-        "to_label": "Compute the cosine: Once the angle is converted to radians, pass it to the numpy.cos() function to get the cosine value."
-    },
-    {
-        "distance": 0.9669620676162818,
-        "from_label": "Compute the cosine: Once the angle is converted to radians, pass it to the numpy.cos() function to get the cosine value.",
-        "to_label": "Assign the result: Store the computed cosine value in the variable 'result'."
-    },
-    {
-        "distance": 0.7810805763135412,
-        "from_label": "Assign the result: Store the computed cosine value in the variable 'result'.",
-        "to_label": "Verify the solution: For example, with degree = 90, converting to radians gives π/2, and cos(π/2) is 0. So, the result should be 0."
+        "distance": 0.9677711544430945,
+        "from_label": "Load the tensors A and B from the data. These tensors are of dimensions 11 * 1.",
+        "to_label": "Compare the two tensors element-wise using the equality operator (==). This will return a boolean tensor of the same dimensions (11 * 1) where each element is True if the corresponding elements in A and B are equal, and False otherwise."
     },
     {
         "distance": 1.0,
-        "from_label": "Verify the solution: For example, with degree = 90, converting to radians gives π/2, and cos(π/2) is 0. So, the result should be 0.",
-        "to_label": "result = np.cos(np.deg2rad(degree))"
+        "from_label": "Compare the two tensors element-wise using the equality operator (==). This will return a boolean tensor of the same dimensions (11 * 1) where each element is True if the corresponding elements in A and B are equal, and False otherwise.",
+        "to_label": "Sum the boolean tensor obtained in the previous step. Since True is equivalent to 1 and False is equivalent to 0 in PyTorch, summing the boolean tensor will give the count of equal elements."
+    },
+    {
+        "distance": 0.5110186322106807,
+        "from_label": "Sum the boolean tensor obtained in the previous step. Since True is equivalent to 1 and False is equivalent to 0 in PyTorch, summing the boolean tensor will give the count of equal elements.",
+        "to_label": "Store the result in the variable cnt_equal."
+    },
+    {
+        "distance": 0.5000676904688919,
+        "from_label": "Store the result in the variable cnt_equal.",
+        "to_label": "cnt_equal = int((A == B).sum())"
     }
 ]

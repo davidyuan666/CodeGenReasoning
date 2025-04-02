@@ -1,37 +1,32 @@
 [
     {
         "distance": 1.0,
-        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltx = np.arange(10)y = np.arange(10)# Plot y over x# move the y axis ticks to the right# SOLUTION START",
-        "to_label": "Import the necessary libraries: numpy for numerical operations, pandas for data handling, and matplotlib.pyplot for plotting."
+        "from_label": "Problem:I have a data which include dates in sorted order.I would like to split the given data to train and test set. However, I must to split the data in a way that the test have to be newer than the train set.Please look at the given example:Let's assume that we have data by dates:1, 2, 3, ..., n.The numbers from 1 to n represents the days.I would like to split it to 20% from the data to be train set and 80% of the data to be test set.Good results:1) train set = 1, 2, 3, ..., 20   test set = 21, ..., 1002) train set = 101, 102, ... 120    test set = 121, ... 200My code:train_size = 0.2train_dataframe, test_dataframe = cross_validation.train_test_split(features_dataframe, train_size=train_size)train_dataframe = train_dataframe.sort([\"date\"])test_dataframe = test_dataframe.sort([\"date\"])Does not work for me!Any suggestions?A:<code>import numpy as npimport pandas as pdfrom sklearn.model_selection import train_test_splitfeatures_dataframe = load_data()def solve(features_dataframe):    # return the solution in this function    # train_dataframe, test_dataframe = solve(features_dataframe)    ### BEGIN SOLUTION",
+        "to_label": "Sort the dataframe by the date column to ensure the data is in chronological order."
     },
     {
-        "distance": 0.2989577852439398,
-        "from_label": "Import the necessary libraries: numpy for numerical operations, pandas for data handling, and matplotlib.pyplot for plotting.",
-        "to_label": "Create sample data for the x and y axes using numpy's arange function, which generates a sequence of numbers from 0 to 9."
+        "distance": 0.35334289354529785,
+        "from_label": "Sort the dataframe by the date column to ensure the data is in chronological order.",
+        "to_label": "Calculate the number of rows that correspond to 20% of the data for the train set. This can be done by multiplying the total number of rows by 0.2 and converting the result to an integer."
     },
     {
-        "distance": 0.415111044392276,
-        "from_label": "Create sample data for the x and y axes using numpy's arange function, which generates a sequence of numbers from 0 to 9.",
-        "to_label": "Initialize a figure object using plt.figure(). This will serve as the container for the plot."
+        "distance": 0.3237341572977263,
+        "from_label": "Calculate the number of rows that correspond to 20% of the data for the train set. This can be done by multiplying the total number of rows by 0.2 and converting the result to an integer.",
+        "to_label": "Split the dataframe into train and test sets by taking the first 20% of the rows for the train set and the remaining 80% for the test set. This ensures that the test set contains newer dates than the train set."
     },
     {
-        "distance": 0.6100283316667955,
-        "from_label": "Initialize a figure object using plt.figure(). This will serve as the container for the plot.",
-        "to_label": "Add a subplot to the figure using add_subplot(111). The '111' indicates a single subplot (1 row, 1 column, first subplot)."
+        "distance": 0.6341114214121994,
+        "from_label": "Split the dataframe into train and test sets by taking the first 20% of the rows for the train set and the remaining 80% for the test set. This ensures that the test set contains newer dates than the train set.",
+        "to_label": "Return the train and test dataframes as the result of the function."
     },
     {
-        "distance": 0.3632590482998578,
-        "from_label": "Add a subplot to the figure using add_subplot(111). The '111' indicates a single subplot (1 row, 1 column, first subplot).",
-        "to_label": "Plot the data by calling the plot method on the axes object (ax), passing the x and y data."
+        "distance": 0.32466691313035545,
+        "from_label": "Return the train and test dataframes as the result of the function.",
+        "to_label": "The function can then be called with the features_dataframe as input to get the desired split."
     },
     {
-        "distance": 0.2896866529354774,
-        "from_label": "Plot the data by calling the plot method on the axes object (ax), passing the x and y data.",
-        "to_label": "Move the y-axis ticks to the right side of the plot by calling ax.yaxis.tick_right()."
-    },
-    {
-        "distance": 0.3576909896038367,
-        "from_label": "Move the y-axis ticks to the right side of the plot by calling ax.yaxis.tick_right().",
-        "to_label": "f = plt.figure()ax = f.add_subplot(111)ax.plot(x, y)ax.yaxis.tick_right()"
+        "distance": 0.6853636224792207,
+        "from_label": "The function can then be called with the features_dataframe as input to get the desired split.",
+        "to_label": "# def solve(features_dataframe):    ### BEGIN SOLUTION    n = features_dataframe.shape[0]    train_size = 0.2    train_dataframe = features_dataframe.iloc[:int(n * train_size)]    test_dataframe = features_dataframe.iloc[int(n * train_size):]    ### END SOLUTION    # return train_dataframe, test_dataframe# train_dataframe, test_dataframe = solve(features_dataframe)    return train_dataframe, test_dataframe"
     }
 ]

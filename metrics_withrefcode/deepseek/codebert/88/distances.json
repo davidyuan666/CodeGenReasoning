@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltx = np.arange(10)y = np.arange(10)# Plot y over x# move the y axis ticks to the right# SOLUTION START",
+        "to_label": "Import the necessary libraries: numpy for numerical operations, pandas for data handling, and matplotlib.pyplot for plotting."
+    },
+    {
+        "distance": 0.2989577852439398,
+        "from_label": "Import the necessary libraries: numpy for numerical operations, pandas for data handling, and matplotlib.pyplot for plotting.",
+        "to_label": "Create sample data for the x and y axes using numpy's arange function, which generates a sequence of numbers from 0 to 9."
+    },
+    {
+        "distance": 0.415111044392276,
+        "from_label": "Create sample data for the x and y axes using numpy's arange function, which generates a sequence of numbers from 0 to 9.",
+        "to_label": "Initialize a figure object using plt.figure(). This will serve as the container for the plot."
+    },
+    {
+        "distance": 0.6100283316667955,
+        "from_label": "Initialize a figure object using plt.figure(). This will serve as the container for the plot.",
+        "to_label": "Add a subplot to the figure using add_subplot(111). The '111' indicates a single subplot (1 row, 1 column, first subplot)."
+    },
+    {
+        "distance": 0.3632590482998578,
+        "from_label": "Add a subplot to the figure using add_subplot(111). The '111' indicates a single subplot (1 row, 1 column, first subplot).",
+        "to_label": "Plot the data by calling the plot method on the axes object (ax), passing the x and y data."
+    },
+    {
+        "distance": 0.2896866529354774,
+        "from_label": "Plot the data by calling the plot method on the axes object (ax), passing the x and y data.",
+        "to_label": "Move the y-axis ticks to the right side of the plot by calling ax.yaxis.tick_right()."
+    },
+    {
+        "distance": 0.3576909896038367,
+        "from_label": "Move the y-axis ticks to the right side of the plot by calling ax.yaxis.tick_right().",
+        "to_label": "f = plt.figure()ax = f.add_subplot(111)ax.plot(x, y)ax.yaxis.tick_right()"
+    }
+]

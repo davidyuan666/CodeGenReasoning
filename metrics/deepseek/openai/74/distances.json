@@ -1,22 +1,32 @@
 [
     {
-        "distance": 0.712939102261924,
-        "from_label": "Problem:How can I know the (row, column) index of the minimum of a numpy array/matrix?For example, if A = array([[1, 2], [3, 0]]), I want to get (1, 1)Thanks!A:<code>import numpy as npa = np.array([[1, 2], [3, 0]])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
-        "to_label": "Find the index of the minimum value in the flattened array using the argmin() method. This returns the index as if the array were 1D."
+        "distance": 0.34147246051596114,
+        "from_label": "Problem:I have the following torch tensor:tensor([[-0.2,  0.3],    [-0.5,  0.1],    [-0.4,  0.2]])and the following numpy array: (I can convert it to something else if necessary)[1 0 1]I want to get the following tensor:tensor([0.3, -0.5, 0.2])i.e. I want the numpy array to index each sub-element of my tensor. Preferably without using a loop.Thanks in advanceA:<code>import numpy as npimport pandas as pdimport torcht, idx = load_data()assert type(t) == torch.Tensorassert type(idx) == np.ndarray</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We have a PyTorch tensor 't' with shape (3, 2) and a NumPy array 'idx' with shape (3,). We want to select one element from each row of 't' based on the corresponding index in 'idx'."
     },
     {
-        "distance": 0.5289084844779173,
-        "from_label": "Find the index of the minimum value in the flattened array using the argmin() method. This returns the index as if the array were 1D.",
-        "to_label": "Use the unravel_index() function from NumPy to convert the flat index into the corresponding (row, column) index in the original 2D array. The function takes the flat index and the shape of the original array as arguments."
+        "distance": 0.7256024247524212,
+        "from_label": "Understand the problem: We have a PyTorch tensor 't' with shape (3, 2) and a NumPy array 'idx' with shape (3,). We want to select one element from each row of 't' based on the corresponding index in 'idx'.",
+        "to_label": "Convert the NumPy array 'idx' to a PyTorch tensor to ensure compatibility with the PyTorch tensor operations."
     },
     {
-        "distance": 0.5476491504348693,
-        "from_label": "Use the unravel_index() function from NumPy to convert the flat index into the corresponding (row, column) index in the original 2D array. The function takes the flat index and the shape of the original array as arguments.",
-        "to_label": "Assign the result of unravel_index() to the variable 'result' to store the (row, column) index of the minimum value."
+        "distance": 0.39622508434429615,
+        "from_label": "Convert the NumPy array 'idx' to a PyTorch tensor to ensure compatibility with the PyTorch tensor operations.",
+        "to_label": "Use the converted index tensor to perform advanced indexing on 't'. We'll use torch.arange to get row indices and combine them with 'idx' to select the desired elements."
+    },
+    {
+        "distance": 0.6625621031143109,
+        "from_label": "Use the converted index tensor to perform advanced indexing on 't'. We'll use torch.arange to get row indices and combine them with 'idx' to select the desired elements.",
+        "to_label": "Verify that the resulting tensor matches the expected output tensor([0.3, -0.5, 0.2])."
     },
     {
         "distance": 1.0,
-        "from_label": "Assign the result of unravel_index() to the variable 'result' to store the (row, column) index of the minimum value.",
-        "to_label": "result = np.unravel_index(a.argmin(), a.shape)"
+        "from_label": "Verify that the resulting tensor matches the expected output tensor([0.3, -0.5, 0.2]).",
+        "to_label": "Implement the solution by first converting 'idx' to a torch tensor, then using it to index 't' with the expression: t[torch.arange(t.shape[0]), idx]."
+    },
+    {
+        "distance": 0.41672957621373974,
+        "from_label": "Implement the solution by first converting 'idx' to a torch tensor, then using it to index 't' with the expression: t[torch.arange(t.shape[0]), idx].",
+        "to_label": "idxs = torch.from_numpy(idx).long().unsqueeze(1)# or   torch.from_numpy(idxs).long().view(-1,1)result = t.gather(1, idxs).squeeze(1)"
     }
 ]

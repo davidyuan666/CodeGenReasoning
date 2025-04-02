@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 0.37390375106520707,
+        "from_label": "Problem:Given a pandas DataFrame, how does one convert several binary columns (where 1 denotes the value exists, 0 denotes it doesn't) into a single categorical column? Another way to think of this is how to perform the \"reverse pd.get_dummies()\"? Here is an example of converting a categorical column into several binary columns:import pandas as pds = pd.Series(list('ABCDAB'))df = pd.get_dummies(s)df   A  B  C  D0  1  0  0  01  0  1  0  02  0  0  1  03  0  0  0  14  1  0  0  05  0  1  0  0What I would like to accomplish is given a dataframedf1   A  B  C  D0  1  0  0  01  0  1  0  02  0  0  1  03  0  0  0  14  1  0  0  05  0  1  0  0could do I convert it into df1   A  B  C  D   category0  1  0  0  0   A1  0  1  0  0   B2  0  0  1  0   C3  0  0  0  1   D4  1  0  0  0   A5  0  1  0  0   BA:<code>import pandas as pddf = pd.DataFrame({'A': [1, 0, 0, 0, 1, 0],                   'B': [0, 1, 0, 0, 0, 1],                   'C': [0, 0, 1, 0, 0, 0],                   'D': [0, 0, 0, 1, 0, 0]})</code>df = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: We need to convert multiple binary columns into a single categorical column where the category name corresponds to the column name that has a value of 1."
+    },
+    {
+        "distance": 0.8152746546948182,
+        "from_label": "Understand the problem: We need to convert multiple binary columns into a single categorical column where the category name corresponds to the column name that has a value of 1.",
+        "to_label": "Identify the appropriate pandas function: The `idxmax()` function can be used to find the column name with the maximum value in each row. Since the binary columns contain only 0s and 1s, the column with 1 will always be the maximum."
+    },
+    {
+        "distance": 0.3868162123502949,
+        "from_label": "Identify the appropriate pandas function: The `idxmax()` function can be used to find the column name with the maximum value in each row. Since the binary columns contain only 0s and 1s, the column with 1 will always be the maximum.",
+        "to_label": "Apply the function: Use `df.idxmax(axis=1)` to get the column name with the value 1 for each row. This will return a Series where each element is the name of the column that had a 1 in the original DataFrame."
+    },
+    {
+        "distance": 0.539401559427223,
+        "from_label": "Apply the function: Use `df.idxmax(axis=1)` to get the column name with the value 1 for each row. This will return a Series where each element is the name of the column that had a 1 in the original DataFrame.",
+        "to_label": "Add the result to the DataFrame: Assign the result of `idxmax()` to a new column in the DataFrame, for example, 'category'."
+    },
+    {
+        "distance": 0.57692784230571,
+        "from_label": "Add the result to the DataFrame: Assign the result of `idxmax()` to a new column in the DataFrame, for example, 'category'.",
+        "to_label": "Verify the result: Check the DataFrame to ensure that the new 'category' column correctly reflects the original binary columns."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Verify the result: Check the DataFrame to ensure that the new 'category' column correctly reflects the original binary columns.",
+        "to_label": "df[\"category\"] = df.idxmax(axis=1)"
+    }
+]

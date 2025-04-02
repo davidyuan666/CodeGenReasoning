@@ -1,37 +1,27 @@
 [
     {
-        "distance": 0.5953830232214484,
-        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as snsx = np.random.randn(10)y = xplt.scatter(x, y)# put y ticks at -1 and 1 only# SOLUTION START",
-        "to_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, matplotlib.pyplot for plotting, and seaborn for enhanced visualizations."
-    },
-    {
-        "distance": 0.4812113897465535,
-        "from_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, matplotlib.pyplot for plotting, and seaborn for enhanced visualizations.",
-        "to_label": "Generate random data for the x-axis using numpy's random.randn function, which creates an array of 10 numbers drawn from a standard normal distribution."
-    },
-    {
         "distance": 1.0,
-        "from_label": "Generate random data for the x-axis using numpy's random.randn function, which creates an array of 10 numbers drawn from a standard normal distribution.",
-        "to_label": "Set the y-axis values equal to the x-axis values to create a perfect linear relationship for the scatter plot."
+        "from_label": "Problem:How do I get the mode and mediean Dates from a dataframe's major axis?                value2014-03-13  10000.0002014-03-21   2000.0002014-03-27   2000.0002014-03-17    200.0002014-03-17      5.0002014-03-17     70.0002014-03-21    200.0002014-03-27      5.0002014-03-27     25.0002014-03-27      0.0202014-03-31     12.0002014-03-31     11.0002014-03-31      0.022Essentially I want a way to get the mode and mediean dates, i.e. 2014-03-27 and 2014-03-21. I tried using numpy.mode  or df.mode(axis=0), I'm able to get the mode or mediean value but that's not what I wantA:<code>import pandas as pddf = pd.DataFrame({'value':[10000,2000,2000,200,5,70,200,5,25,0.02,12,11,0.022]},                  index=['2014-03-13','2014-03-21','2014-03-27','2014-03-17','2014-03-17','2014-03-17','2014-03-21','2014-03-27','2014-03-27','2014-03-27','2014-03-31','2014-03-31','2014-03-31'])</code>mode_result,median_result = ... # put solution in these variablesBEGIN SOLUTION<code>",
+        "to_label": "Convert the index of the DataFrame to datetime objects to ensure proper date handling."
     },
     {
-        "distance": 0.3928407255209647,
-        "from_label": "Set the y-axis values equal to the x-axis values to create a perfect linear relationship for the scatter plot.",
-        "to_label": "Create a scatter plot using plt.scatter(x, y) to visualize the relationship between x and y."
+        "distance": 0.848635538768132,
+        "from_label": "Convert the index of the DataFrame to datetime objects to ensure proper date handling.",
+        "to_label": "Calculate the mode of the dates. Since pandas' mode() function returns a DataFrame, we'll take the first mode if there are multiple."
     },
     {
-        "distance": 0.41076030305111866,
-        "from_label": "Create a scatter plot using plt.scatter(x, y) to visualize the relationship between x and y.",
-        "to_label": "Get the current axes (ax) of the plot using plt.gca(). This allows us to modify properties of the axes."
+        "distance": 0.849128745917727,
+        "from_label": "Calculate the mode of the dates. Since pandas' mode() function returns a DataFrame, we'll take the first mode if there are multiple.",
+        "to_label": "Calculate the median of the dates. Since the median of dates is not directly available, we'll convert the dates to their numerical representation (Unix timestamps), compute the median, and then convert back to a date."
     },
     {
-        "distance": 0.3539877379026269,
-        "from_label": "Get the current axes (ax) of the plot using plt.gca(). This allows us to modify properties of the axes.",
-        "to_label": "Set the y-axis ticks to only display at -1 and 1 using ax.set_yticks([-1, 1]). This customizes the y-axis to show only these specific tick marks."
+        "distance": 0.997229391752813,
+        "from_label": "Calculate the median of the dates. Since the median of dates is not directly available, we'll convert the dates to their numerical representation (Unix timestamps), compute the median, and then convert back to a date.",
+        "to_label": "Extract the mode and median results as strings in the 'YYYY-MM-DD' format."
     },
     {
-        "distance": 0.623625878406188,
-        "from_label": "Set the y-axis ticks to only display at -1 and 1 using ax.set_yticks([-1, 1]). This customizes the y-axis to show only these specific tick marks.",
-        "to_label": "ax = plt.gca()ax.set_yticks([-1, 1])"
+        "distance": 0.9979470517499899,
+        "from_label": "Extract the mode and median results as strings in the 'YYYY-MM-DD' format.",
+        "to_label": "def g(df):    Date = list(df.index)    Date = sorted(Date)    half = len(list(Date)) // 2    return max(Date, key=lambda v: Date.count(v)), Date[half]mode_result,median_result = g(df.copy())"
     }
 ]

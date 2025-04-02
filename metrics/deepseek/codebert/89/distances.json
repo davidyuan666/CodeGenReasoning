@@ -1,37 +1,42 @@
 [
     {
-        "distance": 0.5555030887695647,
-        "from_label": "Problem:I have the following dataframe:  text1 \"abc\" 2 \"def\" 3 \"ghi\"4 \"jkl\" How can I merge these rows into a dataframe with a single row like the following one Series?0    abc, def, ghi, jklName: text, dtype: objectA:<code>import pandas as pddf = pd.DataFrame({'text': ['abc', 'def', 'ghi', 'jkl']})</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
-        "to_label": "Import the pandas library to work with DataFrames and Series."
+        "distance": 0.8073064517542629,
+        "from_label": "Problem:I am trying to find duplicates rows in a pandas dataframe.df=pd.DataFrame(data=[[1,2],[3,4],[1,2],[1,4],[1,2]],columns=['col1','col2'])dfOut[15]:    col1  col20     1     21     3     42     1     23     1     44     1     2duplicate_bool = df.duplicated(subset=['col1','col2'], keep='first')duplicate = df.loc[duplicate_bool == True]duplicateOut[16]:    col1  col22     1     24     1     2Is there a way to add a column referring to the index of the first duplicate (the one kept)duplicateOut[16]:    col1  col2  index_original2     1     2               04     1     2               0Note: df could be very very big in my case....A:<code>import pandas as pddf=pd.DataFrame(data=[[1,2],[3,4],[1,2],[1,4],[1,2]],columns=['col1','col2'])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Identify the duplicate rows in the DataFrame using the `duplicated` method. This method marks all duplicates as True except for the first occurrence."
     },
     {
-        "distance": 0.3839255429037587,
-        "from_label": "Import the pandas library to work with DataFrames and Series.",
-        "to_label": "Create a DataFrame 'df' with a column named 'text' containing the strings 'abc', 'def', 'ghi', and 'jkl'."
+        "distance": 0.3168752046865003,
+        "from_label": "Identify the duplicate rows in the DataFrame using the `duplicated` method. This method marks all duplicates as True except for the first occurrence.",
+        "to_label": "Create a boolean mask where duplicate rows are marked as True. This can be done by setting `keep='first'` in the `duplicated` method to keep the first occurrence and mark subsequent duplicates."
     },
     {
-        "distance": 0.27638594965165925,
-        "from_label": "Create a DataFrame 'df' with a column named 'text' containing the strings 'abc', 'def', 'ghi', and 'jkl'.",
-        "to_label": "Convert the 'text' column of the DataFrame into a list using the 'to_list()' method."
+        "distance": 0.597283569793379,
+        "from_label": "Create a boolean mask where duplicate rows are marked as True. This can be done by setting `keep='first'` in the `duplicated` method to keep the first occurrence and mark subsequent duplicates.",
+        "to_label": "Filter the DataFrame to get only the duplicate rows using the boolean mask created in the previous step."
     },
     {
-        "distance": 0.26039407926643726,
-        "from_label": "Convert the 'text' column of the DataFrame into a list using the 'to_list()' method.",
-        "to_label": "Join the elements of the list into a single string separated by commas using the 'join()' method."
+        "distance": 0.6018236974694623,
+        "from_label": "Filter the DataFrame to get only the duplicate rows using the boolean mask created in the previous step.",
+        "to_label": "Find the index of the first occurrence of each duplicate row. This can be done by grouping the original DataFrame by the columns of interest and then taking the first index of each group."
     },
     {
-        "distance": 0.37135878211048096,
-        "from_label": "Join the elements of the list into a single string separated by commas using the 'join()' method.",
-        "to_label": "Create a pandas Series from the joined string, naming the Series 'text' to match the original column name."
+        "distance": 0.25163400417144605,
+        "from_label": "Find the index of the first occurrence of each duplicate row. This can be done by grouping the original DataFrame by the columns of interest and then taking the first index of each group.",
+        "to_label": "Map the index of the first occurrence back to the duplicate rows. This can be achieved by creating a dictionary that maps each unique row to its first index and then applying this map to the duplicate rows."
     },
     {
-        "distance": 0.6500967060617618,
-        "from_label": "Create a pandas Series from the joined string, naming the Series 'text' to match the original column name.",
-        "to_label": "Assign the resulting Series to the variable 'result'."
+        "distance": 0.48726664397489694,
+        "from_label": "Map the index of the first occurrence back to the duplicate rows. This can be achieved by creating a dictionary that maps each unique row to its first index and then applying this map to the duplicate rows.",
+        "to_label": "Add the mapped indices as a new column to the duplicate DataFrame. This column will refer to the index of the first occurrence of each duplicate row."
+    },
+    {
+        "distance": 0.25906473897518933,
+        "from_label": "Add the mapped indices as a new column to the duplicate DataFrame. This column will refer to the index of the first occurrence of each duplicate row.",
+        "to_label": "Return the modified duplicate DataFrame with the new column indicating the index of the first occurrence."
     },
     {
         "distance": 1.0,
-        "from_label": "Assign the resulting Series to the variable 'result'.",
-        "to_label": "def g(df):    return pd.Series(', '.join(df['text'].to_list()), name='text')result = g(df.copy())"
+        "from_label": "Return the modified duplicate DataFrame with the new column indicating the index of the first occurrence.",
+        "to_label": "def g(df):    df['index_original'] = df.groupby(['col1', 'col2']).col1.transform('idxmin')    return df[df.duplicated(subset=['col1', 'col2'], keep='first')]result = g(df.copy())"
     }
 ]

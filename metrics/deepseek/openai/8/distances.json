@@ -1,42 +1,47 @@
 [
     {
-        "distance": 0.38089883071890945,
-        "from_label": "Problem:Right now, I have my data in a 3D numpy array. If I was to use MinMaxScaler fit_transform on each matrix of the array, it will normalize it column by column, whereas I wish to normalize entire matrices. Is there anyway to do that?A:<code>import numpy as npfrom sklearn.preprocessing import MinMaxScalera = np.array([[[1, 0.5, -2], [-0.5,1, 6], [1,1,1]], [[-2, -3, 1], [-0.5, 10, 6], [1,1,1]]])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
-        "to_label": "Import the necessary libraries. We need numpy for array operations and MinMaxScaler from sklearn.preprocessing for normalization."
-    },
-    {
-        "distance": 0.24883430386483288,
-        "from_label": "Import the necessary libraries. We need numpy for array operations and MinMaxScaler from sklearn.preprocessing for normalization.",
-        "to_label": "Initialize the MinMaxScaler which will be used to normalize the data."
-    },
-    {
         "distance": 1.0,
-        "from_label": "Initialize the MinMaxScaler which will be used to normalize the data.",
-        "to_label": "Create a result array with the same shape as the input array 'a' to store the normalized values."
+        "from_label": "Problem:I'm using tensorflow 2.10.0.I have a tensor of lengths in tensorflow, let's say it looks like this:[4, 3, 5, 2]I wish to create a mask of 1s and 0s whose number of 1s correspond to the entries to this tensor, padded in front by 0s to a total length of 8. I.e. I want to create this tensor:[[0. 0. 0. 0. 1. 1. 1. 1.] [0. 0. 0. 0. 0. 1. 1. 1.] [0. 0. 0. 1. 1. 1. 1. 1.] [0. 0. 0. 0. 0. 0. 1. 1.]]How might I do this?A:<code>import tensorflow as tflengths = [4, 3, 5, 2]</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Import the necessary TensorFlow library."
     },
     {
-        "distance": 0.4230750567506383,
-        "from_label": "Create a result array with the same shape as the input array 'a' to store the normalized values.",
-        "to_label": "Loop through each 2D matrix in the 3D array 'a'. For each matrix, reshape it into a single column because MinMaxScaler expects a 2D array with shape (n_samples, n_features)."
+        "distance": 0.4999312936686578,
+        "from_label": "Import the necessary TensorFlow library.",
+        "to_label": "Define the input tensor 'lengths' which contains the number of 1s each row should have."
     },
     {
-        "distance": 0.323367178323879,
-        "from_label": "Loop through each 2D matrix in the 3D array 'a'. For each matrix, reshape it into a single column because MinMaxScaler expects a 2D array with shape (n_samples, n_features).",
-        "to_label": "Apply the fit_transform method of the MinMaxScaler to the reshaped matrix. This will normalize all the values in the matrix globally (not column-wise)."
+        "distance": 0.8140581978592546,
+        "from_label": "Define the input tensor 'lengths' which contains the number of 1s each row should have.",
+        "to_label": "Determine the maximum length of the output rows, which is 8 in this case."
     },
     {
-        "distance": 0.7614830052618109,
-        "from_label": "Apply the fit_transform method of the MinMaxScaler to the reshaped matrix. This will normalize all the values in the matrix globally (not column-wise).",
-        "to_label": "Reshape the normalized column back to the original 2D matrix shape and store it in the result array at the corresponding position."
+        "distance": 0.4703917239757065,
+        "from_label": "Determine the maximum length of the output rows, which is 8 in this case.",
+        "to_label": "Create a range tensor from 0 to the maximum length (8) to represent the positions in each row."
     },
     {
-        "distance": 0.2395331225195518,
-        "from_label": "Reshape the normalized column back to the original 2D matrix shape and store it in the result array at the corresponding position.",
-        "to_label": "After processing all matrices, the result array will contain all the normalized matrices."
+        "distance": 0.4602611181712562,
+        "from_label": "Create a range tensor from 0 to the maximum length (8) to represent the positions in each row.",
+        "to_label": "Expand the dimensions of the 'lengths' tensor to allow for broadcasting against the range tensor."
     },
     {
-        "distance": 0.7685213142538411,
-        "from_label": "After processing all matrices, the result array will contain all the normalized matrices.",
-        "to_label": "scaler = MinMaxScaler()result = np.zeros_like(a)for i, arr in enumerate(a):    a_one_column = arr.reshape(-1, 1)    result_one_column = scaler.fit_transform(a_one_column)    result[i, :, :] = result_one_column.reshape(arr.shape)"
+        "distance": 0.370917599936937,
+        "from_label": "Expand the dimensions of the 'lengths' tensor to allow for broadcasting against the range tensor.",
+        "to_label": "Compare the range tensor with the expanded 'lengths' tensor to determine where the 1s should start. The condition checks if the position is greater than or equal to (maximum length - length) to place 1s towards the end of each row."
+    },
+    {
+        "distance": 0.8503243139062875,
+        "from_label": "Compare the range tensor with the expanded 'lengths' tensor to determine where the 1s should start. The condition checks if the position is greater than or equal to (maximum length - length) to place 1s towards the end of each row.",
+        "to_label": "Convert the boolean mask to float32 to get 1s and 0s."
+    },
+    {
+        "distance": 0.9196584572302902,
+        "from_label": "Convert the boolean mask to float32 to get 1s and 0s.",
+        "to_label": "The resulting tensor will have 1s starting from the position (max_length - length) to the end of each row, with 0s padded in front."
+    },
+    {
+        "distance": 0.6260589136212731,
+        "from_label": "The resulting tensor will have 1s starting from the position (max_length - length) to the end of each row, with 0s padded in front.",
+        "to_label": "def g(lengths):    lengths = [8-x for x in lengths]    lengths_transposed = tf.expand_dims(lengths, 1)    range = tf.range(0, 8, 1)    range_row = tf.expand_dims(range, 0)    mask = tf.less(range_row, lengths_transposed)    result = tf.where(~mask, tf.ones([4, 8]), tf.zeros([4, 8]))    return resultresult = g(lengths.copy())"
     }
 ]

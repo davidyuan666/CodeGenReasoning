@@ -1,47 +1,32 @@
 [
     {
-        "distance": 0.28789583053909373,
-        "from_label": "import numpyimport pandasimport matplotlib.pyplot as pltimport seabornseaborn.set(style=\"ticks\")numpy.random.seed(0)N = 37_genders = [\"Female\", \"Male\", \"Non-binary\", \"No Response\"]df = pandas.DataFrame(    {        \"Height (cm)\": numpy.random.uniform(low=130, high=200, size=N),        \"Weight (kg)\": numpy.random.uniform(low=30, high=100, size=N),        \"Gender\": numpy.random.choice(_genders, size=N),    })# make seaborn relation plot and color by the gender field of the dataframe df# SOLUTION START",
-        "to_label": "Import the necessary libraries: numpy, pandas, matplotlib.pyplot, and seaborn."
+        "distance": 0.5252002357424433,
+        "from_label": "Problem:I'm working on a problem that has to do with calculating angles of refraction and what not. However, it seems that I'm unable to use the numpy.sin() function in degrees. I have tried to use numpy.degrees() and numpy.rad2deg().degree = 90numpy.sin(degree)numpy.degrees(numpy.sin(degree))Both return ~ 0.894 and ~ 51.2 respectively.How do I compute sine value using degree?Thanks for your help.A:<code>import numpy as npdegree = 90</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem: The issue is that numpy's sin function expects the input angle to be in radians, not degrees. The user wants to compute the sine of an angle given in degrees."
     },
     {
-        "distance": 0.8273368297581202,
-        "from_label": "Import the necessary libraries: numpy, pandas, matplotlib.pyplot, and seaborn.",
-        "to_label": "Set the seaborn style to 'ticks' for better visualization."
+        "distance": 0.5251722212811679,
+        "from_label": "Understand the problem: The issue is that numpy's sin function expects the input angle to be in radians, not degrees. The user wants to compute the sine of an angle given in degrees.",
+        "to_label": "Convert the angle from degrees to radians: Since numpy.sin() works with radians, the first step is to convert the degree value to radians. This can be done using numpy.radians() or numpy.deg2rad()."
+    },
+    {
+        "distance": 0.5076953069011796,
+        "from_label": "Convert the angle from degrees to radians: Since numpy.sin() works with radians, the first step is to convert the degree value to radians. This can be done using numpy.radians() or numpy.deg2rad().",
+        "to_label": "Compute the sine of the angle in radians: Once the angle is converted to radians, pass it to numpy.sin() to get the sine value."
     },
     {
         "distance": 1.0,
-        "from_label": "Set the seaborn style to 'ticks' for better visualization.",
-        "to_label": "Set a random seed for reproducibility using numpy.random.seed(0)."
+        "from_label": "Compute the sine of the angle in radians: Once the angle is converted to radians, pass it to numpy.sin() to get the sine value.",
+        "to_label": "Assign the result to the variable: Store the computed sine value in the variable 'result'."
     },
     {
-        "distance": 0.4024647836816199,
-        "from_label": "Set a random seed for reproducibility using numpy.random.seed(0).",
-        "to_label": "Define the number of samples (N) as 37."
+        "distance": 0.47580532805986575,
+        "from_label": "Assign the result to the variable: Store the computed sine value in the variable 'result'.",
+        "to_label": "Verify the result: For example, the sine of 90 degrees should be 1.0. This verification ensures the solution is correct."
     },
     {
-        "distance": 0.6489995863216645,
-        "from_label": "Define the number of samples (N) as 37.",
-        "to_label": "Create a list of gender categories: 'Female', 'Male', 'Non-binary', and 'No Response'."
-    },
-    {
-        "distance": 0.4382768836734636,
-        "from_label": "Create a list of gender categories: 'Female', 'Male', 'Non-binary', and 'No Response'.",
-        "to_label": "Generate a pandas DataFrame with random data for 'Height (cm)', 'Weight (kg)', and 'Gender' using numpy.random.uniform and numpy.random.choice."
-    },
-    {
-        "distance": 0.36579951793019694,
-        "from_label": "Generate a pandas DataFrame with random data for 'Height (cm)', 'Weight (kg)', and 'Gender' using numpy.random.uniform and numpy.random.choice.",
-        "to_label": "Use seaborn.relplot to create a relational plot. Specify the DataFrame (data=df), the x-axis as 'Weight (kg)', the y-axis as 'Height (cm)', and color the points by the 'Gender' field."
-    },
-    {
-        "distance": 0.4026660212823945,
-        "from_label": "Use seaborn.relplot to create a relational plot. Specify the DataFrame (data=df), the x-axis as 'Weight (kg)', the y-axis as 'Height (cm)', and color the points by the 'Gender' field.",
-        "to_label": "Ensure the order of the gender categories in the legend matches the original list by setting hue_order=_genders."
-    },
-    {
-        "distance": 0.26830042386585806,
-        "from_label": "Ensure the order of the gender categories in the legend matches the original list by setting hue_order=_genders.",
-        "to_label": "seaborn.relplot(    data=df, x=\"Weight (kg)\", y=\"Height (cm)\", hue=\"Gender\", hue_order=_genders)"
+        "distance": 0.9869360398276434,
+        "from_label": "Verify the result: For example, the sine of 90 degrees should be 1.0. This verification ensures the solution is correct.",
+        "to_label": "result = np.sin(np.deg2rad(degree))"
     }
 ]

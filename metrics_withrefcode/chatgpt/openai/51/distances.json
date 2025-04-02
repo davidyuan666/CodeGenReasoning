@@ -1,0 +1,52 @@
+[
+    {
+        "distance": 0.2341337199391296,
+        "from_label": "Problem:How to find relative extrema of a 2D array? An element is a relative extrema if it is less or equal to the neighbouring n (e.g. n = 2) elements forwards and backwards in the row. The result should be a list of indices of those elements, [0, 1] stands for arr[0][1]. It should be arranged like[[0, 1], [0, 5], [1, 1], [1, 4], [2, 3], [2, 5], ...]A:<code>import numpy as npfrom scipy import signalarr = np.array([[-624.59309896, -624.59309896, -624.59309896,                      -625., -625., -625.,], [3, 0, 0, 1, 2, 4]])n = 2</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "First, we need to understand the problem: we want to find the relative extrema of a 2D array along each row. An element is considered a relative extrema if it is less than or equal to 'n' neighboring elements in both forward and backward directions within its row."
+    },
+    {
+        "distance": 0.33933582524439115,
+        "from_label": "First, we need to understand the problem: we want to find the relative extrema of a 2D array along each row. An element is considered a relative extrema if it is less than or equal to 'n' neighboring elements in both forward and backward directions within its row.",
+        "to_label": "We are given a 2D numpy array and a variable 'n' which indicates the number of neighboring elements to compare with. In this problem, 'n' is set to 2."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "We are given a 2D numpy array and a variable 'n' which indicates the number of neighboring elements to compare with. In this problem, 'n' is set to 2.",
+        "to_label": "We will use the scipy.signal.argrelextrema function to find these relative extrema. This function takes an array and a comparator function (e.g., np.less_equal for finding minima or np.greater_equal for maxima), and it returns the indices of the extrema."
+    },
+    {
+        "distance": 0.2803081553869944,
+        "from_label": "We will use the scipy.signal.argrelextrema function to find these relative extrema. This function takes an array and a comparator function (e.g., np.less_equal for finding minima or np.greater_equal for maxima), and it returns the indices of the extrema.",
+        "to_label": "The function call signal.argrelextrema(arr, np.less_equal, order=n, axis=1) is used to find the relative minima along each row of the 2D array. Here, 'arr' is the input array, 'np.less_equal' specifies that we are looking for minima, 'order=n' specifies the number of neighboring elements, and 'axis=1' indicates we are comparing along rows."
+    },
+    {
+        "distance": 0.5337942999395954,
+        "from_label": "The function call signal.argrelextrema(arr, np.less_equal, order=n, axis=1) is used to find the relative minima along each row of the 2D array. Here, 'arr' is the input array, 'np.less_equal' specifies that we are looking for minima, 'order=n' specifies the number of neighboring elements, and 'axis=1' indicates we are comparing along rows.",
+        "to_label": "The result from signal.argrelextrema is a tuple of arrays. The first array contains the row indices, and the second array contains the column indices of the relative extrema."
+    },
+    {
+        "distance": 0.8461290518914476,
+        "from_label": "The result from signal.argrelextrema is a tuple of arrays. The first array contains the row indices, and the second array contains the column indices of the relative extrema.",
+        "to_label": "We need to format the indices into the required list of lists. Each list should contain a pair [row, col] for each relative extrema found."
+    },
+    {
+        "distance": 0.3479971410610454,
+        "from_label": "We need to format the indices into the required list of lists. Each list should contain a pair [row, col] for each relative extrema found.",
+        "to_label": "To format the result, we create an empty numpy array 'result' with the same number of rows as the number of extrema found. Each row in 'result' will have 2 columns to store the row and column indices."
+    },
+    {
+        "distance": 0.33530195259245127,
+        "from_label": "To format the result, we create an empty numpy array 'result' with the same number of rows as the number of extrema found. Each row in 'result' will have 2 columns to store the row and column indices.",
+        "to_label": "We then fill the first column of 'result' with the row indices from the first element of the tuple returned by argrelextrema. Similarly, we fill the second column with the column indices from the second element of the tuple."
+    },
+    {
+        "distance": 0.3965131541753521,
+        "from_label": "We then fill the first column of 'result' with the row indices from the first element of the tuple returned by argrelextrema. Similarly, we fill the second column with the column indices from the second element of the tuple.",
+        "to_label": "Finally, the 'result' array is converted to a list of lists format, where each inner list contains the row and column indices of a relative extrema. This gives us the desired output."
+    },
+    {
+        "distance": 0.9272571371529689,
+        "from_label": "Finally, the 'result' array is converted to a list of lists format, where each inner list contains the row and column indices of a relative extrema. This gives us the desired output.",
+        "to_label": "res = signal.argrelextrema(arr, np.less_equal, order=n, axis = 1)result = np.zeros((res[0].shape[0], 2)).astype(int)result[:, 0] = res[0]result[:, 1] = res[1]"
+    }
+]

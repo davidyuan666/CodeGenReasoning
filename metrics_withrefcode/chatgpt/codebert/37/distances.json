@@ -1,0 +1,42 @@
+[
+    {
+        "distance": 1.0,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltx = np.arange(10)y = np.arange(10)# Plot y over x with label \"y\" and show legend# Remove the border of frame of legend# SOLUTION START",
+        "to_label": "Import the necessary libraries: NumPy, Pandas, and Matplotlib. These libraries are essential for numerical computations, data manipulation, and plotting in Python, respectively."
+    },
+    {
+        "distance": 0.4778026412388988,
+        "from_label": "Import the necessary libraries: NumPy, Pandas, and Matplotlib. These libraries are essential for numerical computations, data manipulation, and plotting in Python, respectively.",
+        "to_label": "Create an array `x` using NumPy's `arange` function, which generates an array of evenly spaced values within a given range. Here, `x = np.arange(10)` creates an array with values from 0 to 9."
+    },
+    {
+        "distance": 0.3079887877559148,
+        "from_label": "Create an array `x` using NumPy's `arange` function, which generates an array of evenly spaced values within a given range. Here, `x = np.arange(10)` creates an array with values from 0 to 9.",
+        "to_label": "Similarly, create another array `y` using `np.arange(10)`, which will also contain values from 0 to 9. This ensures that both `x` and `y` have the same values, which is useful for plotting."
+    },
+    {
+        "distance": 0.8590677178911639,
+        "from_label": "Similarly, create another array `y` using `np.arange(10)`, which will also contain values from 0 to 9. This ensures that both `x` and `y` have the same values, which is useful for plotting.",
+        "to_label": "Use Matplotlib's `plot` function to create a 2D line plot. The function `plt.plot(y, x, label='y')` will plot the values of `y` on the y-axis against the values of `x` on the x-axis, and label the line as 'y'."
+    },
+    {
+        "distance": 0.35934892421105014,
+        "from_label": "Use Matplotlib's `plot` function to create a 2D line plot. The function `plt.plot(y, x, label='y')` will plot the values of `y` on the y-axis against the values of `x` on the x-axis, and label the line as 'y'.",
+        "to_label": "Add a legend to the plot using `plt.legend()`, which displays the label 'y' on the plot. This helps in identifying different plotted lines when there are multiple datasets."
+    },
+    {
+        "distance": 0.6109209055271263,
+        "from_label": "Add a legend to the plot using `plt.legend()`, which displays the label 'y' on the plot. This helps in identifying different plotted lines when there are multiple datasets.",
+        "to_label": "To remove the border of the legend's frame, set the `frameon` parameter to `False` in the `plt.legend()` function call, like this: `plt.legend(frameon=False)`. This will make the legend appear without a surrounding box."
+    },
+    {
+        "distance": 0.322875612187978,
+        "from_label": "To remove the border of the legend's frame, set the `frameon` parameter to `False` in the `plt.legend()` function call, like this: `plt.legend(frameon=False)`. This will make the legend appear without a surrounding box.",
+        "to_label": "Finally, use `plt.show()` to display the plot with the line and legend. This function renders the plot window, showing the visual representation of the data."
+    },
+    {
+        "distance": 0.7490819853849328,
+        "from_label": "Finally, use `plt.show()` to display the plot with the line and legend. This function renders the plot window, showing the visual representation of the data.",
+        "to_label": "plt.plot(y, x, label=\"y\")plt.legend(frameon=False)"
+    }
+]

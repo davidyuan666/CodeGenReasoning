@@ -1,0 +1,77 @@
+[
+    {
+        "distance": 0.36288588957427437,
+        "from_label": "Problem:How to get one maximal set of linearly independent vectors of a given matrix `a`?For example, [[0 1 0 0], [0 0 1 0], [1 0 0 1]] in [[0 1 0 0], [0 0 1 0], [0 1 1 0], [1 0 0 1]]A:<code>import numpy as npa = np.array([[0,1,0,0], [0,0,1,0], [0,1,1,0], [1,0,0,1]])</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Import the numpy library to work with matrices and perform linear algebra operations."
+    },
+    {
+        "distance": 0.14205667847626255,
+        "from_label": "Import the numpy library to work with matrices and perform linear algebra operations.",
+        "to_label": "Define the input matrix 'a' as a numpy array with the given values."
+    },
+    {
+        "distance": 0.5986065106606788,
+        "from_label": "Define the input matrix 'a' as a numpy array with the given values.",
+        "to_label": "Create a function `LI_vecs` that will take a matrix 'M' as input and return a maximal set of linearly independent vectors from the rows of 'M'."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Create a function `LI_vecs` that will take a matrix 'M' as input and return a maximal set of linearly independent vectors from the rows of 'M'.",
+        "to_label": "Determine the number of rows in the matrix 'M' using `M.shape[0]` and store it in the variable 'dim'."
+    },
+    {
+        "distance": 0.7556948657266769,
+        "from_label": "Determine the number of rows in the matrix 'M' using `M.shape[0]` and store it in the variable 'dim'.",
+        "to_label": "Initialize a list 'LI' to keep track of linearly independent vectors. Start by adding the first row of the matrix 'M' to 'LI'."
+    },
+    {
+        "distance": 0.8213604912326739,
+        "from_label": "Initialize a list 'LI' to keep track of linearly independent vectors. Start by adding the first row of the matrix 'M' to 'LI'.",
+        "to_label": "Iterate over each row index 'i' in the matrix 'M'."
+    },
+    {
+        "distance": 0.8227441971756321,
+        "from_label": "Iterate over each row index 'i' in the matrix 'M'.",
+        "to_label": "For each row index 'i', create a temporary list 'tmp' and copy all vectors currently in 'LI' into 'tmp'."
+    },
+    {
+        "distance": 0.36461023214331084,
+        "from_label": "For each row index 'i', create a temporary list 'tmp' and copy all vectors currently in 'LI' into 'tmp'.",
+        "to_label": "Add the current row 'M[i]' to the list 'tmp'. This step tests whether the current row can be added to the set of linearly independent vectors."
+    },
+    {
+        "distance": 0.3298705671829241,
+        "from_label": "Add the current row 'M[i]' to the list 'tmp'. This step tests whether the current row can be added to the set of linearly independent vectors.",
+        "to_label": "Calculate the rank of the matrix formed by the vectors in 'tmp' using `np.linalg.matrix_rank(tmp)`. The rank is the maximum number of linearly independent row vectors in the matrix."
+    },
+    {
+        "distance": 0.2210921683153712,
+        "from_label": "Calculate the rank of the matrix formed by the vectors in 'tmp' using `np.linalg.matrix_rank(tmp)`. The rank is the maximum number of linearly independent row vectors in the matrix.",
+        "to_label": "Compare the rank of 'tmp' with the current number of vectors in 'LI'. If the rank of 'tmp' is greater than the length of 'LI', it means 'M[i]' is linearly independent of the vectors in 'LI'."
+    },
+    {
+        "distance": 0.2353208100803869,
+        "from_label": "Compare the rank of 'tmp' with the current number of vectors in 'LI'. If the rank of 'tmp' is greater than the length of 'LI', it means 'M[i]' is linearly independent of the vectors in 'LI'.",
+        "to_label": "If 'M[i]' is linearly independent, add it to the list 'LI'."
+    },
+    {
+        "distance": 0.5582158346166141,
+        "from_label": "If 'M[i]' is linearly independent, add it to the list 'LI'.",
+        "to_label": "Continue this process for all rows in the matrix 'M'."
+    },
+    {
+        "distance": 0.7869608561761102,
+        "from_label": "Continue this process for all rows in the matrix 'M'.",
+        "to_label": "Return the list 'LI', which now contains a maximal set of linearly independent vectors from the rows of 'M'."
+    },
+    {
+        "distance": 0.3684325823502221,
+        "from_label": "Return the list 'LI', which now contains a maximal set of linearly independent vectors from the rows of 'M'.",
+        "to_label": "Call the function `LI_vecs(a)` with the input matrix 'a' and store the result in the variable 'result'."
+    },
+    {
+        "distance": 0.22444787326785537,
+        "from_label": "Call the function `LI_vecs(a)` with the input matrix 'a' and store the result in the variable 'result'.",
+        "to_label": "def LI_vecs(M):    dim = M.shape[0]    LI=[M[0]]    for i in range(dim):        tmp=[]        for r in LI:            tmp.append(r)        tmp.append(M[i])                #set tmp=LI+[M[i]]        if np.linalg.matrix_rank(tmp)>len(LI):    #test if M[i] is linearly independent from all (row) vectors in LI            LI.append(M[i])             #note that matrix_rank does not need to take in a square matrix    return LI                           #return set of linearly independent (row) vectorsresult = LI_vecs(a)"
+    }
+]

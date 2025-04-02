@@ -1,0 +1,37 @@
+[
+    {
+        "distance": 0.4435617364469271,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as snsx = np.random.randn(10)y = xplt.scatter(x, y)# put y ticks at -1 and 1 only# SOLUTION START",
+        "to_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, matplotlib.pyplot for plotting, and seaborn for enhanced visualizations."
+    },
+    {
+        "distance": 0.4006519164058824,
+        "from_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, matplotlib.pyplot for plotting, and seaborn for enhanced visualizations.",
+        "to_label": "Generate random data for the x-axis using numpy's random.randn function, which creates an array of 10 numbers drawn from a standard normal distribution."
+    },
+    {
+        "distance": 0.7282651765520465,
+        "from_label": "Generate random data for the x-axis using numpy's random.randn function, which creates an array of 10 numbers drawn from a standard normal distribution.",
+        "to_label": "Set the y-axis values equal to the x-axis values to create a perfect linear relationship for the scatter plot."
+    },
+    {
+        "distance": 0.30254152027322395,
+        "from_label": "Set the y-axis values equal to the x-axis values to create a perfect linear relationship for the scatter plot.",
+        "to_label": "Create a scatter plot using plt.scatter(x, y) to visualize the relationship between x and y."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Create a scatter plot using plt.scatter(x, y) to visualize the relationship between x and y.",
+        "to_label": "Get the current axes (ax) of the plot using plt.gca(). This allows us to modify properties of the axes."
+    },
+    {
+        "distance": 0.5228278249792083,
+        "from_label": "Get the current axes (ax) of the plot using plt.gca(). This allows us to modify properties of the axes.",
+        "to_label": "Set the y-axis ticks to only display at -1 and 1 using ax.set_yticks([-1, 1]). This customizes the y-axis to show only these specific tick marks."
+    },
+    {
+        "distance": 0.28994785088295316,
+        "from_label": "Set the y-axis ticks to only display at -1 and 1 using ax.set_yticks([-1, 1]). This customizes the y-axis to show only these specific tick marks.",
+        "to_label": "ax = plt.gca()ax.set_yticks([-1, 1])"
+    }
+]

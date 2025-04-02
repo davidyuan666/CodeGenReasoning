@@ -1,0 +1,47 @@
+[
+    {
+        "distance": 0.677949737520778,
+        "from_label": "Problem:I’m trying to solve a simple ODE to visualise the temporal response, which works well for constant input conditions using the new solve_ivp integration API in SciPy. For example:def dN1_dt_simple(t, N1):    return -100 * N1sol = solve_ivp(fun=dN1_dt_simple, t_span=time_span, y0=[N0,])However, I wonder is it possible to plot the response to a time-varying input? For instance, rather than having y0 fixed at N0, can I find the response to a simple sinusoid? Specifically, I want to add `-cos(t)` to original y. The result I want is values of solution at time points.Is there a compatible way to pass time-varying input conditions into the API?A:<code>import scipy.integrateimport numpy as npN0 = 10time_span = [-0.1, 0.1]</code>solve this question with example variable `sol` and set `result = sol.y`BEGIN SOLUTION<code>",
+        "to_label": "Understand the differential equation problem. We have an ordinary differential equation (ODE) dN1/dt = -100*N1 originally, and we want to modify it to include a time-varying input, specifically adding a sine function."
+    },
+    {
+        "distance": 0.32770397507360044,
+        "from_label": "Understand the differential equation problem. We have an ordinary differential equation (ODE) dN1/dt = -100*N1 originally, and we want to modify it to include a time-varying input, specifically adding a sine function.",
+        "to_label": "To represent a time-varying input in the ODE, modify the function to include the sine or cosine term. In this case, replace the original function with dN1/dt = -100*N1 + sin(t)."
+    },
+    {
+        "distance": 0.5057751208962017,
+        "from_label": "To represent a time-varying input in the ODE, modify the function to include the sine or cosine term. In this case, replace the original function with dN1/dt = -100*N1 + sin(t).",
+        "to_label": "Define the modified ODE function in Python. This involves creating a function that takes time 't' and state 'N1' as inputs and returns the derivative dN1/dt according to the new equation."
+    },
+    {
+        "distance": 0.9794977402692856,
+        "from_label": "Define the modified ODE function in Python. This involves creating a function that takes time 't' and state 'N1' as inputs and returns the derivative dN1/dt according to the new equation.",
+        "to_label": "Set up the initial conditions and time span for the solve_ivp function. The initial condition y0 is still set to N0 and the time_span is defined by the problem, [-0.1, 0.1]."
+    },
+    {
+        "distance": 0.4594731533769406,
+        "from_label": "Set up the initial conditions and time span for the solve_ivp function. The initial condition y0 is still set to N0 and the time_span is defined by the problem, [-0.1, 0.1].",
+        "to_label": "Use the scipy.integrate.solve_ivp function to solve the modified ODE. Pass the function dN1_dt, the time_span, and initial condition y0 to solve_ivp."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Use the scipy.integrate.solve_ivp function to solve the modified ODE. Pass the function dN1_dt, the time_span, and initial condition y0 to solve_ivp.",
+        "to_label": "Extract the solution from the result of solve_ivp. The solution will contain time points and corresponding values of N1, which you can access via sol.t and sol.y."
+    },
+    {
+        "distance": 0.3664284065714316,
+        "from_label": "Extract the solution from the result of solve_ivp. The solution will contain time points and corresponding values of N1, which you can access via sol.t and sol.y.",
+        "to_label": "Store the solution values in a variable named 'result'. This will contain the computed values of N1 over the specified time span."
+    },
+    {
+        "distance": 0.9764339615906622,
+        "from_label": "Store the solution values in a variable named 'result'. This will contain the computed values of N1 over the specified time span.",
+        "to_label": "Here's the complete code for solving this problem:\n\n```python\nimport scipy.integrate\nimport numpy as np\n\nN0 = 10\n\ndef dN1_dt(t, N1):\n    return -100 * N1 + np.sin(t)\n\n# Define the time span for the solution\ntime_span = [-0.1, 0.1]\n\n# Solve the ODE\nsol = scipy.integrate.solve_ivp(fun=dN1_dt, t_span=time_span, y0=[N0,])\n\n# Extract the result\nresult = sol.y\n```"
+    },
+    {
+        "distance": 0.3317726615985313,
+        "from_label": "Here's the complete code for solving this problem:\n\n```python\nimport scipy.integrate\nimport numpy as np\n\nN0 = 10\n\ndef dN1_dt(t, N1):\n    return -100 * N1 + np.sin(t)\n\n# Define the time span for the solution\ntime_span = [-0.1, 0.1]\n\n# Solve the ODE\nsol = scipy.integrate.solve_ivp(fun=dN1_dt, t_span=time_span, y0=[N0,])\n\n# Extract the result\nresult = sol.y\n```",
+        "to_label": "def dN1_dt (t, N1):    return -100 * N1 + np.sin(t)sol = scipy.integrate.solve_ivp(fun=dN1_dt, t_span=time_span, y0=[N0,])"
+    }
+]

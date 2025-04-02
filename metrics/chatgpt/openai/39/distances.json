@@ -1,47 +1,42 @@
 [
     {
-        "distance": 0.28120967021164667,
-        "from_label": "Problem:I want to convert a 1-dimensional array into a 2-dimensional array by specifying the number of rows in the 2D array. Something that would work like this:> import numpy as np> A = np.array([1,2,3,4,5,6])> B = vec2matrix(A,nrow=3)> Barray([[1, 2],       [3, 4],       [5, 6]])Does numpy have a function that works like my made-up function \"vec2matrix\"? (I understand that you can index a 1D array like a 2D array, but that isn't an option in the code I have - I need to make this conversion.)A:<code>import numpy as npA = np.array([1,2,3,4,5,6])nrow = 3</code>B = ... # put solution in this variableBEGIN SOLUTION<code>",
-        "to_label": "Understand the problem requirement: Convert a 1D array into a 2D array by specifying the number of rows. The 2D array should be filled row-wise from the 1D array."
+        "distance": 0.7881010424787348,
+        "from_label": "import matplotlib.pyplot as pltimport numpy as npdata = np.random.random((10, 10))# Set xlim and ylim to be between 0 and 10# Plot a heatmap of data in the rectangle where right is 5, left is 1, bottom is 1, and top is 4.# SOLUTION START",
+        "to_label": "Begin by importing the necessary libraries. We need `matplotlib.pyplot` for plotting and `numpy` for generating random data. The import statement should be `import matplotlib.pyplot as plt` and `import numpy as np`."
     },
     {
-        "distance": 0.47609048579965313,
-        "from_label": "Understand the problem requirement: Convert a 1D array into a 2D array by specifying the number of rows. The 2D array should be filled row-wise from the 1D array.",
-        "to_label": "Identify the input: A 1-dimensional NumPy array, `A`, and a specified number of rows, `nrow`, for the resulting 2D array."
+        "distance": 0.5429647813533646,
+        "from_label": "Begin by importing the necessary libraries. We need `matplotlib.pyplot` for plotting and `numpy` for generating random data. The import statement should be `import matplotlib.pyplot as plt` and `import numpy as np`.",
+        "to_label": "Generate random data using numpy. We can use `np.random.random((10, 10))` to create a 10x10 array of random numbers between 0 and 1. This will be the data for our heatmap."
+    },
+    {
+        "distance": 0.6920869427052498,
+        "from_label": "Generate random data using numpy. We can use `np.random.random((10, 10))` to create a 10x10 array of random numbers between 0 and 1. This will be the data for our heatmap.",
+        "to_label": "Plot the heatmap using `plt.imshow(data)`. This function creates a heatmap from the 2D array `data`. By default, it will plot the entire data with axes ranging from 0 to 9 (since the array is 10x10)."
     },
     {
         "distance": 1.0,
-        "from_label": "Identify the input: A 1-dimensional NumPy array, `A`, and a specified number of rows, `nrow`, for the resulting 2D array.",
-        "to_label": "Determine the total number of elements in the 1D array. In this case, `A` has 6 elements."
+        "from_label": "Plot the heatmap using `plt.imshow(data)`. This function creates a heatmap from the 2D array `data`. By default, it will plot the entire data with axes ranging from 0 to 9 (since the array is 10x10).",
+        "to_label": "Set the limits for the x and y axes to be between 0 and 10 using `plt.xlim(0, 10)` and `plt.ylim(0, 10)`. This ensures that the entire range of the data is considered."
     },
     {
-        "distance": 0.26845773572055387,
-        "from_label": "Determine the total number of elements in the 1D array. In this case, `A` has 6 elements.",
-        "to_label": "Calculate the number of columns needed for the 2D array. Since the total number of elements (6) must be divided into `nrow` rows (3), calculate the number of columns as `total_elements / nrow`. Here, the calculation is 6 / 3 = 2 columns."
+        "distance": 0.8249407879580772,
+        "from_label": "Set the limits for the x and y axes to be between 0 and 10 using `plt.xlim(0, 10)` and `plt.ylim(0, 10)`. This ensures that the entire range of the data is considered.",
+        "to_label": "Adjust the display area of the heatmap to focus on the specific rectangle where left is 1, right is 5, bottom is 1, and top is 4. We can do this by setting `plt.xlim(1, 5)` and `plt.ylim(1, 4)`. This will zoom into the desired section of the heatmap."
     },
     {
-        "distance": 0.46105046100075764,
-        "from_label": "Calculate the number of columns needed for the 2D array. Since the total number of elements (6) must be divided into `nrow` rows (3), calculate the number of columns as `total_elements / nrow`. Here, the calculation is 6 / 3 = 2 columns.",
-        "to_label": "Use NumPy's `reshape` function to transform the 1D array into a 2D array. The `reshape` function can take the desired shape as a tuple. The shape should be `(nrow, ncol)`, where `ncol` is calculated as `len(A) / nrow`."
+        "distance": 0.39707035307115246,
+        "from_label": "Adjust the display area of the heatmap to focus on the specific rectangle where left is 1, right is 5, bottom is 1, and top is 4. We can do this by setting `plt.xlim(1, 5)` and `plt.ylim(1, 4)`. This will zoom into the desired section of the heatmap.",
+        "to_label": "After setting the limits, we need to display the plot using `plt.show()`. This will render the heatmap within the specified rectangle."
     },
     {
-        "distance": 0.30164430328717357,
-        "from_label": "Use NumPy's `reshape` function to transform the 1D array into a 2D array. The `reshape` function can take the desired shape as a tuple. The shape should be `(nrow, ncol)`, where `ncol` is calculated as `len(A) / nrow`.",
-        "to_label": "Since we already know `nrow`, use `-1` as a placeholder for the number of columns in the `reshape` function. NumPy will automatically calculate the appropriate number of columns based on the length of the array and the specified number of rows."
+        "distance": 0.7522872674912178,
+        "from_label": "After setting the limits, we need to display the plot using `plt.show()`. This will render the heatmap within the specified rectangle.",
+        "to_label": "The final code should look like this:\n```python\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Generate random data\ndata = np.random.random((10, 10))\n\n# Plot the heatmap\nplt.imshow(data)\n\n# Set global x and y limits\nplt.xlim(0, 10)\nplt.ylim(0, 10)\n\n# Focus on the specified rectangle\nplt.xlim(1, 5)\nplt.ylim(1, 4)\n\n# Display the plot\nplt.show()\n```"
     },
     {
-        "distance": 0.4410740380528794,
-        "from_label": "Since we already know `nrow`, use `-1` as a placeholder for the number of columns in the `reshape` function. NumPy will automatically calculate the appropriate number of columns based on the length of the array and the specified number of rows.",
-        "to_label": "Write the solution using NumPy's `reshape` function: `B = np.reshape(A, (nrow, -1))`. This will reshape `A` into a 2D array with `nrow` rows and the correct number of columns."
-    },
-    {
-        "distance": 0.3402655095860025,
-        "from_label": "Write the solution using NumPy's `reshape` function: `B = np.reshape(A, (nrow, -1))`. This will reshape `A` into a 2D array with `nrow` rows and the correct number of columns.",
-        "to_label": "Verify the solution by checking the shape of `B` to ensure it has the desired number of rows and columns. The shape should be `(3, 2)` for the given example."
-    },
-    {
-        "distance": 0.5928958103216352,
-        "from_label": "Verify the solution by checking the shape of `B` to ensure it has the desired number of rows and columns. The shape should be `(3, 2)` for the given example.",
-        "to_label": "B = np.reshape(A, (nrow, -1))"
+        "distance": 0.7395150097616267,
+        "from_label": "The final code should look like this:\n```python\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Generate random data\ndata = np.random.random((10, 10))\n\n# Plot the heatmap\nplt.imshow(data)\n\n# Set global x and y limits\nplt.xlim(0, 10)\nplt.ylim(0, 10)\n\n# Focus on the specified rectangle\nplt.xlim(1, 5)\nplt.ylim(1, 4)\n\n# Display the plot\nplt.show()\n```",
+        "to_label": "plt.xlim(0, 10)plt.ylim(0, 10)plt.imshow(data, extent=[1, 5, 1, 4])"
     }
 ]

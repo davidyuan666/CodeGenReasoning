@@ -1,0 +1,27 @@
+[
+    {
+        "distance": 0.5260519919522222,
+        "from_label": "Problem:I'm sorry in advance if this is a duplicated question, I looked for this information but still couldn't find it.Is it possible to get a numpy array (or python list) filled with the indexes of the N biggest elements in decreasing order?For instance, the array:a = array([4, 1, 0, 8, 5, 2])The indexes of the biggest elements in decreasing order would give (considering N = 3):8 --> 35 --> 44 --> 0result = [3, 4, 0]Thanks in advance!A:<code>import numpy as npa = np.array([4, 1, 0, 8, 5, 2])N = 3</code>result = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Use the numpy function 'argsort' on the array 'a'. This function returns the indices that would sort the array in ascending order."
+    },
+    {
+        "distance": 0.617028584413921,
+        "from_label": "Use the numpy function 'argsort' on the array 'a'. This function returns the indices that would sort the array in ascending order.",
+        "to_label": "Reverse the array of indices obtained from 'argsort' to get the indices that would sort the array in descending order."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Reverse the array of indices obtained from 'argsort' to get the indices that would sort the array in descending order.",
+        "to_label": "Slice the first 'N' elements from the reversed array of indices to get the indices of the 'N' biggest elements in decreasing order."
+    },
+    {
+        "distance": 0.6202468571137806,
+        "from_label": "Slice the first 'N' elements from the reversed array of indices to get the indices of the 'N' biggest elements in decreasing order.",
+        "to_label": "Assign the result of the above operations to the variable 'result'."
+    },
+    {
+        "distance": 0.6191078201583593,
+        "from_label": "Assign the result of the above operations to the variable 'result'.",
+        "to_label": "result = np.argsort(a)[::-1][:N]"
+    }
+]

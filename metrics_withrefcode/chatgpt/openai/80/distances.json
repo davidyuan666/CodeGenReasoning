@@ -1,0 +1,47 @@
+[
+    {
+        "distance": 0.3164487362132994,
+        "from_label": "Problem:I have two tensors of dimension 1000 * 1. I want to check how many of the 1000 elements are equal in the two tensors. I think I should be able to do this in few lines like Numpy but couldn't find a similar function.A:<code>import numpy as npimport pandas as pdimport torchA, B = load_data()</code>cnt_equal = ... # put solution in this variableBEGIN SOLUTION<code>",
+        "to_label": "Understand the problem. We have two tensors, A and B, each with dimensions 1000x1, and we need to find out how many corresponding elements in these two tensors are equal."
+    },
+    {
+        "distance": 0.9402643920711896,
+        "from_label": "Understand the problem. We have two tensors, A and B, each with dimensions 1000x1, and we need to find out how many corresponding elements in these two tensors are equal.",
+        "to_label": "Identify the tools available for solving this problem. We are using PyTorch, a popular machine learning library that provides support for tensor operations similar to NumPy."
+    },
+    {
+        "distance": 0.34800159364598277,
+        "from_label": "Identify the tools available for solving this problem. We are using PyTorch, a popular machine learning library that provides support for tensor operations similar to NumPy.",
+        "to_label": "Check if PyTorch provides functionality to compare tensors element-wise. PyTorch supports element-wise comparison using the '==' operator, which returns a tensor of boolean values (True or False) indicating element-wise equality."
+    },
+    {
+        "distance": 0.3776405388389658,
+        "from_label": "Check if PyTorch provides functionality to compare tensors element-wise. PyTorch supports element-wise comparison using the '==' operator, which returns a tensor of boolean values (True or False) indicating element-wise equality.",
+        "to_label": "Perform the element-wise comparison between tensors A and B using A == B. This will give us a new tensor of the same dimensions (1000x1) where each element is True if the corresponding elements of A and B are equal, and False otherwise."
+    },
+    {
+        "distance": 0.7487419738752782,
+        "from_label": "Perform the element-wise comparison between tensors A and B using A == B. This will give us a new tensor of the same dimensions (1000x1) where each element is True if the corresponding elements of A and B are equal, and False otherwise.",
+        "to_label": "Count the number of True values in the resulting boolean tensor. In PyTorch, you can use the '.sum()' method on a boolean tensor to count the number of True values, as True is treated as 1 and False as 0."
+    },
+    {
+        "distance": 0.28592798763224075,
+        "from_label": "Count the number of True values in the resulting boolean tensor. In PyTorch, you can use the '.sum()' method on a boolean tensor to count the number of True values, as True is treated as 1 and False as 0.",
+        "to_label": "Convert the result of the sum to an integer, as the sum will be a tensor with a single element, and we need an integer count. Use the 'int()' function to convert the resulting tensor to an integer."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Convert the result of the sum to an integer, as the sum will be a tensor with a single element, and we need an integer count. Use the 'int()' function to convert the resulting tensor to an integer.",
+        "to_label": "Implement the solution in code: `cnt_equal = int((A == B).sum())`. This line compares A and B element-wise, sums the True values, and converts the sum to an integer."
+    },
+    {
+        "distance": 0.3358739490774611,
+        "from_label": "Implement the solution in code: `cnt_equal = int((A == B).sum())`. This line compares A and B element-wise, sums the True values, and converts the sum to an integer.",
+        "to_label": "Assign the resulting integer to the variable 'cnt_equal', which represents the number of elements that are equal in both tensors A and B."
+    },
+    {
+        "distance": 0.403284215185463,
+        "from_label": "Assign the resulting integer to the variable 'cnt_equal', which represents the number of elements that are equal in both tensors A and B.",
+        "to_label": "cnt_equal = int((A == B).sum())"
+    }
+]

@@ -1,32 +1,37 @@
 [
     {
-        "distance": 0.51316826944585,
-        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as snsx = np.arange(10)y = np.random.randn(10)# line plot x and y with a thin diamond marker# SOLUTION START",
-        "to_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, matplotlib.pyplot for plotting, and seaborn for enhanced visualization."
+        "distance": 0.4228269055868134,
+        "from_label": "import matplotlib.pyplot as pltimport numpy as npbox_position, box_height, box_errors = np.arange(4), np.ones(4), np.arange(1, 5)c = [\"r\", \"r\", \"b\", \"b\"]fig, ax = plt.subplots()ax.bar(box_position, box_height, color=\"yellow\")# Plot error bars with errors specified in box_errors. Use colors in c to color the error bars# SOLUTION START",
+        "to_label": "Understand the problem: We need to plot error bars on top of existing yellow bars in a bar plot. The error values are given in 'box_errors', and the error bars should be colored according to the list 'c'."
+    },
+    {
+        "distance": 0.507435040991692,
+        "from_label": "Understand the problem: We need to plot error bars on top of existing yellow bars in a bar plot. The error values are given in 'box_errors', and the error bars should be colored according to the list 'c'.",
+        "to_label": "Identify the method: The 'errorbar()' method in matplotlib can be used to plot error bars. We'll use this on the same 'ax' object where the bars are already plotted."
+    },
+    {
+        "distance": 0.6046144127024939,
+        "from_label": "Identify the method: The 'errorbar()' method in matplotlib can be used to plot error bars. We'll use this on the same 'ax' object where the bars are already plotted.",
+        "to_label": "Prepare parameters: The error bars should be at the same positions as the bars (box_position), with heights matching the bars (box_height), and errors specified by box_errors. The colors are given in list 'c'."
+    },
+    {
+        "distance": 0.35285263534427297,
+        "from_label": "Prepare parameters: The error bars should be at the same positions as the bars (box_position), with heights matching the bars (box_height), and errors specified by box_errors. The colors are given in list 'c'.",
+        "to_label": "Plot error bars: Call 'ax.errorbar()' with x=box_position, y=box_height, yerr=box_errors. Set the color parameter using the list 'c' and specify fmt='none' to avoid plotting markers."
+    },
+    {
+        "distance": 0.8216046479418447,
+        "from_label": "Plot error bars: Call 'ax.errorbar()' with x=box_position, y=box_height, yerr=box_errors. Set the color parameter using the list 'c' and specify fmt='none' to avoid plotting markers.",
+        "to_label": "Verify: The resulting plot should show yellow bars with error bars colored 'r' for the first two bars and 'b' for the last two bars, with error magnitudes increasing from 1 to 4."
     },
     {
         "distance": 1.0,
-        "from_label": "Import the necessary libraries: numpy for numerical operations, pandas for data manipulation, matplotlib.pyplot for plotting, and seaborn for enhanced visualization.",
-        "to_label": "Create an array 'x' with values from 0 to 9 using np.arange(10)."
+        "from_label": "Verify: The resulting plot should show yellow bars with error bars colored 'r' for the first two bars and 'b' for the last two bars, with error magnitudes increasing from 1 to 4.",
+        "to_label": "Final solution code: ax.errorbar(box_position, box_height, yerr=box_errors, color=c, fmt='none')"
     },
     {
-        "distance": 0.4209343118546055,
-        "from_label": "Create an array 'x' with values from 0 to 9 using np.arange(10).",
-        "to_label": "Generate an array 'y' with 10 random values from a standard normal distribution using np.random.randn(10)."
-    },
-    {
-        "distance": 0.9966240761999579,
-        "from_label": "Generate an array 'y' with 10 random values from a standard normal distribution using np.random.randn(10).",
-        "to_label": "Use plt.plot() to create a line plot of 'x' versus 'y'. Specify the marker style as diamond ('d') by setting the 'marker' parameter to 'd'."
-    },
-    {
-        "distance": 0.44515257291146815,
-        "from_label": "Use plt.plot() to create a line plot of 'x' versus 'y'. Specify the marker style as diamond ('d') by setting the 'marker' parameter to 'd'.",
-        "to_label": "The line plot will display the data points connected by lines, with each point marked by a thin diamond shape."
-    },
-    {
-        "distance": 0.8421832525317924,
-        "from_label": "The line plot will display the data points connected by lines, with each point marked by a thin diamond shape.",
-        "to_label": "plt.plot(x, y, marker=\"d\")"
+        "distance": 0.3690507924517071,
+        "from_label": "Final solution code: ax.errorbar(box_position, box_height, yerr=box_errors, color=c, fmt='none')",
+        "to_label": "for pos, y, err, color in zip(box_position, box_height, box_errors, c):    ax.errorbar(pos, y, err, color=color)"
     }
 ]

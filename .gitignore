@@ -2,3 +2,4 @@
 .pdm
 .venv
 utils/__pycache__
+.env

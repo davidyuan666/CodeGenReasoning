@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 0.6202750221341957,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltimport seaborn as snsdf = sns.load_dataset(\"exercise\")# Make catplots of scatter plots by using \"time\" as x, \"pulse\" as y, \"kind\" as hue, and \"diet\" as col# Do not show any ylabel on either subplot# SOLUTION START",
+        "to_label": "Import the necessary libraries: numpy as np, pandas as pd, matplotlib.pyplot as plt, and seaborn as sns."
+    },
+    {
+        "distance": 0.7313982272569808,
+        "from_label": "Import the necessary libraries: numpy as np, pandas as pd, matplotlib.pyplot as plt, and seaborn as sns.",
+        "to_label": "Load the 'exercise' dataset from seaborn into a DataFrame called 'df' using sns.load_dataset()."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Load the 'exercise' dataset from seaborn into a DataFrame called 'df' using sns.load_dataset().",
+        "to_label": "Create a catplot using sns.catplot(). Set 'time' as the x-axis, 'pulse' as the y-axis, 'kind' as the hue, and 'diet' as the column variable to create subplots."
+    },
+    {
+        "distance": 0.9196374341182622,
+        "from_label": "Create a catplot using sns.catplot(). Set 'time' as the x-axis, 'pulse' as the y-axis, 'kind' as the hue, and 'diet' as the column variable to create subplots.",
+        "to_label": "Access the subplot axes by flattening the axes array from the catplot object (g.axes.flatten())."
+    },
+    {
+        "distance": 0.6969713789870066,
+        "from_label": "Access the subplot axes by flattening the axes array from the catplot object (g.axes.flatten()).",
+        "to_label": "Remove the y-axis label from the first subplot by setting its ylabel to an empty string (axs[0].set_ylabel(''))."
+    },
+    {
+        "distance": 0.6203487774411562,
+        "from_label": "Remove the y-axis label from the first subplot by setting its ylabel to an empty string (axs[0].set_ylabel('')).",
+        "to_label": "g = sns.catplot(x=\"time\", y=\"pulse\", hue=\"kind\", col=\"diet\", data=df)axs = g.axes.flatten()axs[0].set_ylabel(\"\")"
+    }
+]

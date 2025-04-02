@@ -1,0 +1,32 @@
+[
+    {
+        "distance": 0.7783119742515925,
+        "from_label": "import numpy as npimport pandas as pdimport matplotlib.pyplot as pltx = np.arange(10)y = np.arange(10)# Plot y over x and use the greek letter phi for title. Bold the title and make sure phi is bold.# SOLUTION START",
+        "to_label": "Import the necessary libraries. We need numpy for creating arrays, pandas for data manipulation (though it's not used directly in this problem), and matplotlib for plotting."
+    },
+    {
+        "distance": 0.36192771740471813,
+        "from_label": "Import the necessary libraries. We need numpy for creating arrays, pandas for data manipulation (though it's not used directly in this problem), and matplotlib for plotting.",
+        "to_label": "Create the data for plotting. Use numpy's arange function to create arrays for x and y. Here, both x and y are created with the same range of values from 0 to 9."
+    },
+    {
+        "distance": 0.4420717982873468,
+        "from_label": "Create the data for plotting. Use numpy's arange function to create arrays for x and y. Here, both x and y are created with the same range of values from 0 to 9.",
+        "to_label": "Use matplotlib to plot the graph. The plt.plot(y, x) function is used to plot y against x."
+    },
+    {
+        "distance": 0.8592058878798008,
+        "from_label": "Use matplotlib to plot the graph. The plt.plot(y, x) function is used to plot y against x.",
+        "to_label": "Set the title of the plot. Use plt.title() to set the title, and include the Greek letter phi formatted in bold. The title uses LaTeX formatting with the r\"$...$\" syntax to render the phi character, and \\mathbf for making it bold."
+    },
+    {
+        "distance": 1.0,
+        "from_label": "Set the title of the plot. Use plt.title() to set the title, and include the Greek letter phi formatted in bold. The title uses LaTeX formatting with the r\"$...$\" syntax to render the phi character, and \\mathbf for making it bold.",
+        "to_label": "Display the plot using plt.show(). This step actually renders the plot so it can be viewed."
+    },
+    {
+        "distance": 0.4330965937324059,
+        "from_label": "Display the plot using plt.show(). This step actually renders the plot so it can be viewed.",
+        "to_label": "plt.plot(y, x)plt.title(r\"$\\mathbf{\\phi}$\")"
+    }
+]
