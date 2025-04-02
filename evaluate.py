@@ -88,6 +88,71 @@ def plot_boxplots(distances):
     plt.savefig('metrics/distance/distance_boxplots.png')
     plt.close()
 
+def calculate_ard(distances):
+    """
+    Calculate Average Reasoning Distance (ARD)
+    
+    ARD = (1/(n-1)) * sum(RSD_i) for i=1 to n-1
+    where n is the total number of reasoning steps
+    """
+    ard_results = {
+        'chatgpt': {'codebert': [], 'openai': []},
+        'deepseek': {'codebert': [], 'openai': []}
+    }
+    
+    for model in distances:
+        for embedding in distances[model]:
+            # For each sequence of distances
+            for sequence in distances[model][embedding]:
+                if len(sequence) > 1:  # Need at least 2 steps to calculate ARD
+                    # ARD is average of all distances in the sequence
+                    ard = sum(sequence) / len(sequence)
+                    ard_results[model][embedding].append(ard)
+    
+    return ard_results
+
+def analyze_ard(ard_results):
+    """Analyze ARD results and return statistics"""
+    stats = {}
+    for model in ard_results:
+        stats[model] = {}
+        for embedding in ard_results[model]:
+            if ard_results[model][embedding]:  # Check if list is not empty
+                stats[model][embedding] = {
+                    'mean': np.mean(ard_results[model][embedding]),
+                    'median': np.median(ard_results[model][embedding]),
+                    'std': np.std(ard_results[model][embedding]),
+                    'min': np.min(ard_results[model][embedding]),
+                    'max': np.max(ard_results[model][embedding])
+                }
+            else:
+                stats[model][embedding] = {
+                    'mean': 0, 'median': 0, 'std': 0, 'min': 0, 'max': 0
+                }
+    return stats
+
+def plot_ard_comparison(ard_results):
+    """Plot ARD comparison between models and embeddings"""
+    plt.figure(figsize=(10, 6))
+    
+    data = []
+    labels = []
+    for model in ard_results:
+        for embedding in ard_results[model]:
+            if ard_results[model][embedding]:  # Check if list is not empty
+                data.append(ard_results[model][embedding])
+                labels.append(f'{model}-{embedding}')
+    
+    plt.boxplot(data, labels=labels)
+    plt.title('Average Reasoning Distance (ARD) Comparison')
+    plt.xticks(rotation=45)
+    plt.ylabel('ARD')
+    plt.tight_layout()
+    os.makedirs('metrics/distance', exist_ok=True)
+    plt.savefig('metrics/distance/ard_comparison.png')
+    plt.close()
+
+    
 # 主执行代码
 base_path = 'metrics'
 distances = load_distances(base_path)
@@ -102,5 +167,25 @@ for model in stats:
             print(f"{metric}: {value:.4f}")
 
 # 生成可视化
+# plot_distributions(distances)
+# plot_boxplots(distances)
+
+
+
+# 计算和分析ARD
+ard_results = calculate_ard(distances)
+ard_stats = analyze_ard(ard_results)
+
+# 打印ARD统计信息
+print("\n\n===== Average Reasoning Distance (ARD) 统计信息 =====")
+for model in ard_stats:
+    print(f"\n{model}:")
+    for embedding in ard_stats[model]:
+        print(f"\n{embedding}:")
+        for metric, value in ard_stats[model][embedding].items():
+            print(f"{metric}: {value:.4f}")
+
+# 生成可视化
 plot_distributions(distances)
 plot_boxplots(distances)
+plot_ard_comparison(ard_results)
