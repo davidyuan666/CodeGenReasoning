@@ -23,21 +23,38 @@ class CoTUtil:
         # 确保输出目录存在
         os.makedirs(output_dir, exist_ok=True)
         self.limit = int(os.getenv("LIMIT"))
+        self.random_seed = 42
         
-    def read_dataset(self) -> List[Dict]:
-        """读取数据集文件"""
+    def read_dataset_random(self) -> List[Dict]:
+        """随机采样读取数据集文件，使用固定种子确保可重复性
+        
+        Returns:
+            随机采样的数据列表
+        """
+        import random
+        
+        # 设置随机种子确保两个模型使用相同的样本
+        random.seed(self.random_seed)
+        sample_size = self.limit
+            
         try:
-            codelist = []
+            all_data = []
             with open(self.data_path, 'r', encoding='utf-8') as f:
                 json_list = f.readlines()
-                for index, json_str in tqdm(enumerate(json_list), desc="Reading dataset", total=min(0, len(json_list))):
-                    if index > self.limit:
-                        break
+                for json_str in tqdm(json_list, desc="Loading full dataset"):
                     json_obj = json.loads(json_str)
                     json_obj['reference_code'] = json_obj['reference_code'].replace('\n', '')
                     json_obj['prompt'] = json_obj['prompt'].replace('\n', '')
-                    codelist.append(json_obj)
-            return codelist
+                    all_data.append(json_obj)
+                    
+            # 随机采样
+            if sample_size >= len(all_data):
+                return all_data
+            
+            sampled_data = random.sample(all_data, sample_size)
+            print(f"Randomly sampled {len(sampled_data)} examples from {len(all_data)} total examples (seed={self.random_seed})")
+            return sampled_data
+            
         except Exception as e:
             print(f"Error reading file: {str(e)}")
             raise
@@ -82,21 +99,18 @@ class CoTUtil:
         """生成思维链推理过程"""
         # Please install OpenAI SDK first: `pip3 install openai`
         client = OpenAI(api_key=os.getenv("DEEPSEEK_API_KEY"), base_url=os.getenv("DEEPSEEK_BASE_URL"))
-        '''
-        with reference code
-        '''
-        # self.messages=[
-        #     {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
-        #     {"role": "user", "content": f"Problem: {prompt}\nReference solution: {reference_code}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
-        # ]
 
-        '''
-        without reference code
-        '''
-        self.messages=[
-            {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
-            {"role": "user", "content": f"Problem: {prompt}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
-        ]
+        if os.getenv("is_with_reference_code"):
+            self.messages=[
+                {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
+                {"role": "user", "content": f"Problem: {prompt}\nReference solution: {reference_code}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
+            ]
+        else:
+            self.messages=[
+                {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
+                {"role": "user", "content": f"Problem: {prompt}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
+            ]
+ 
         response = client.chat.completions.create(
             model=os.getenv("DEEPSEEK_MODEL"),
             messages=self.messages,
@@ -138,21 +152,16 @@ class CoTUtil:
 
     def generate_chain_of_thought_by_gpt(self, prompt: str, reference_code: str) -> List[Dict]:
         """生成思维链推理过程"""
-        '''
-        with reference code
-        '''
-        # self.messages = [
-        #     {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
-        #     {"role": "user", "content": f"Problem: {prompt}\nReference solution: {reference_code}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
-        # ]
-
-        '''
-        without reference code
-        '''
-        self.messages = [
-            {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
-            {"role": "user", "content": f"Problem: {prompt}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
-        ]
+        if os.getenv("is_with_reference_code"):
+            self.messages = [
+                {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
+                {"role": "user", "content": f"Problem: {prompt}\nReference solution: {reference_code}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
+            ]
+        else:
+            self.messages = [
+                {"role": "system", "content": "You are a helpful programming assistant. Please explain your thinking step by step and format your response as a JSON object with a 'steps' array. Each step should have a 'step' number and a 'description' field."},
+                {"role": "user", "content": f"Problem: {prompt}\nPlease explain how to solve this step by step and return the steps in JSON format with 'step' and 'description' fields."}
+            ]
 
         self.struct_model = "gpt-4o-2024-08-06"
 

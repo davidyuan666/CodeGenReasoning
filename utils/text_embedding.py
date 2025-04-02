@@ -26,16 +26,25 @@ class TextEmbedder:
         reference_dict = {}
         for text in tqdm(texts, desc="Creating embeddings"):
             if os.getenv("EMBEDDING_MODEL") == "openai":
-                reference_dict[text] = self.get_embedding(text,normalize=True)
+                reference_dict[text] = self.get_embedding_by_openai(text,normalize=True)
             elif os.getenv("EMBEDDING_MODEL") == "codebert":
-                reference_dict[text] = self.get_embedding_by_remote_api(text,normalize=True)
+                reference_dict[text] = self.get_embedding_by_codebert(text,normalize=True)
         return reference_dict             
     
+
+    def get_embedding(self,
+                    text: Union[str, List[str]],
+                    normalize: bool = False) -> Union[np.ndarray, List[np.ndarray]]:
+        if os.getenv("EMBEDDING_MODEL") == "openai":
+            return self.get_embedding_by_openai(text,normalize=normalize)
+        elif os.getenv("EMBEDDING_MODEL") == "codebert":
+            return self.get_embedding_by_codebert(text,normalize=normalize)
+
 
     """
     openai embeddings 接口
     """
-    def get_embedding(self,
+    def get_embedding_by_openai(self,
                      text: Union[str, List[str]],
                      normalize: bool = False) -> Union[np.ndarray, List[np.ndarray]]:
         """
@@ -95,7 +104,7 @@ class TextEmbedder:
 
 
 
-    def get_embedding_by_remote_api(self,
+    def get_embedding_by_codebert(self,
                     text: Union[str, List[str]],
                     normalize: bool = False) -> Union[np.ndarray, List[np.ndarray]]:
         """
@@ -129,7 +138,7 @@ class TextEmbedder:
                 }
                 
                 response = requests.post(
-                    os.getenv("REMOTE_API_URL"),
+                    os.getenv("REMOTE_CODEBERT_API_URL"),
                     json=payload
                 )
                 
@@ -137,7 +146,6 @@ class TextEmbedder:
                     raise Exception(f"API request failed with status code: {response.status_code}")
                     
                 response_data = response.json()
-                print(response_data)
                 embedding = np.array(response_data["embedding"], dtype=np.float32)
                 embeddings.append(embedding)
 

@@ -1,0 +1,19 @@
+{
+    "With Reference": {
+        "mean": 0.0022429225500673056,
+        "std": 0.03585977479815483,
+        "norm": 0.9957162737846375,
+        "samples": 100
+    },
+    "Without Reference": {
+        "mean": 0.0022460450418293476,
+        "std": 0.03585920110344887,
+        "norm": 0.9957059621810913,
+        "samples": 100
+    },
+    "Comparison": {
+        "wasserstein_distance": 0.00010892221196575255,
+        "cohesion_with_ref": 0.9947638511657715,
+        "cohesion_without_ref": 0.9947525262832642
+    }
+}
