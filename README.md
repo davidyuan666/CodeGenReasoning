@@ -10,11 +10,10 @@ We can visualize the "thought process" for R1 by:
 - Converting the text to embeddings with the OpenAI API
 - Plotting the embeddings sequentially with t-SNE
 
-Here's what it looks like when R1 answers a question (in this case "Implement a binary tree search algorithm."):
-
+Here's what it looks like when R1 answers a question :
 | |
 |---------|
-| ![A](img/simple_animation.gif) |
+| ![A](dynamic-img-withrefcode/deepseek/codebert/0/simple_animation.gif) |
 
 ## Consecutive Distance
 
@@ -22,7 +21,7 @@ It might be useful to get a sense of how big each jump from "thought i" to "thou
 
 | |
 |---------|
-| ![A](img/distance.gif) |
+| ![A](dynamic-img-withrefcode/deepseek/codebert/0/distance.gif) |
 
 By default we calculate cosine similarity between the embeddings and normalize across the set of all consecutive steps to 0, 1. I'm interested in seeing when the bigger or smaller jumps happen in the "thought cycle".
 
@@ -30,17 +29,8 @@ By default we calculate cosine similarity between the embeddings and normalize a
 
 | |
 |---------|
-| ![A](img/dual_animation.gif) |
+| ![A](dynamic-img-withrefcode/deepseek/codebert/0/dual_animation.gif) |
 
-The combined plot shows both at once.
-
-## Aggregate Distances
-
-| |
-|---------|
-| ![A](img/normalized_sequences.png) |
-
-The graph above shows the aggregate distances for 10 samples. To my eyes it looks like a "search" phase where size of step is large, followed by a stable "thinking" phase, followed by a "concluding" phase.
 
 ## Usage
 
