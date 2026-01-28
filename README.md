@@ -1,5 +1,5 @@
 # CodeGenReasoning
-A Framework for Comparing Reasoning between ChatGPT and DeepSeek during Code Generation Tasks
+Analyzing CoT Reasoning in Code Generation via Embedding Distances
 
 ## Overview
 This project provides a framework to analyze and visualize the Chain of Thought (CoT) reasoning processes between different large language models (LLMs) during code generation tasks. Currently, it supports comparison between ChatGPT and DeepSeek models.
